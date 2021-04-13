@@ -28,6 +28,9 @@
     <Filter Include="Game\Object\Stage">
       <UniqueIdentifier>{60e829e8-f340-47e5-a519-bcdbe970f619}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Object\Player">
+      <UniqueIdentifier>{4558e387-d615-4679-8a2b-4dd521402255}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Space.cpp">
@@ -90,6 +93,9 @@
     <ClCompile Include="Stage1.cpp">
       <Filter>Game\Object\Stage</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Game\Object\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -151,6 +157,9 @@
     </ClInclude>
     <ClInclude Include="Stage1.h">
       <Filter>Game\Object\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Game\Object\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
