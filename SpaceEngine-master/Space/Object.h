@@ -38,6 +38,7 @@ public:
 	void Translate(float x, float y);
 	void SetScale(float x, float y);
 	void SetPosition(float x, float y);
+	void SetPosition(Vec2 Pos) { m_Position = Pos; }
 	void Rotate(float r);
 	void SetDestroy(bool destroy) { m_Destroy = destroy; }
 	void SetTag(const std::string tag);
