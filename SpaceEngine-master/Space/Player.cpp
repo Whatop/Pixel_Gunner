@@ -32,13 +32,13 @@ void Player::Move()
 	if (INPUT->GetKey('W') == KeyState::PRESS) {
 		m_Position.y -= dt * m_Speed;
 	}
-	else if(INPUT->GetKey('A') == KeyState::PRESS){
+	if(INPUT->GetKey('A') == KeyState::PRESS){
 		m_Position.x -= dt * m_Speed;
 	}
-	else if (INPUT->GetKey('S') == KeyState::PRESS) {
+	if (INPUT->GetKey('S') == KeyState::PRESS) {
 		m_Position.y += dt * m_Speed;
 	}
-	else if (INPUT->GetKey('D') == KeyState::PRESS) {
+	if (INPUT->GetKey('D') == KeyState::PRESS) {
 		m_Position.x += dt * m_Speed;
 	}
 }
@@ -49,6 +49,7 @@ void Player::WeaponRotate()
 
 void Player::Update(float deltaTime, float Time)
 {
+	m_Hand->SetPosition(m_Position.x, m_Position.y);
 	Move();
 }
 
