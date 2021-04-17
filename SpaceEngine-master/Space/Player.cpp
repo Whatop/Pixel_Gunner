@@ -5,7 +5,7 @@ Player::Player()
 {
 	m_Player = Sprite::Create(L"Painting/Player/Player.png");
 	m_Player->SetParent(this);
-	SetPosition(500,500);
+	SetPosition(1920/2,1080);
 
 	m_Hand = Sprite::Create(L"Painting/Player/Hand.png");
 	m_Hand->SetPosition(500, 500);
