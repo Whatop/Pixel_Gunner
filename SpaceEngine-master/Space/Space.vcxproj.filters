@@ -1,49 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="FrameWork">
-      <UniqueIdentifier>{7b65bbed-6e83-4cc8-9c4f-961050cae57b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FrameWork\Node">
-      <UniqueIdentifier>{43ab373c-a976-457f-bcee-bbfc43eb3693}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game">
-      <UniqueIdentifier>{bff92479-aded-4bbb-a31f-bec299500907}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Main">
-      <UniqueIdentifier>{f17fe9b6-b58a-4c2f-be29-96586991514b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Mgrs">
-      <UniqueIdentifier>{681cfe65-040d-4645-9abe-f2d0fa37c46b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Object">
-      <UniqueIdentifier>{f60928ff-4038-4b6c-9b3f-de8e54cce740}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FrameWork\Core">
-      <UniqueIdentifier>{94381774-e408-4df3-a1f3-2ae46f6c1ee3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Object\Scene">
-      <UniqueIdentifier>{6a0b488c-024d-464b-b7e5-e43bc432ea1d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Object\Stage">
-      <UniqueIdentifier>{60e829e8-f340-47e5-a519-bcdbe970f619}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Object\Player">
-      <UniqueIdentifier>{4558e387-d615-4679-8a2b-4dd521402255}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Space.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
-    <ClCompile Include="App.cpp">
-      <Filter>FrameWork\Core</Filter>
-    </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>Main</Filter>
     </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>FrameWork\Core</Filter>
+    <ClCompile Include="Space.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>FrameWork\Mgrs</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>FrameWork\Mgrs</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>FrameWork\Mgrs</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>FrameWork\Mgrs</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>FrameWork\Mgrs</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>FrameWork\Mgrs</Filter>
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
       <Filter>FrameWork\Core</Filter>
@@ -54,32 +34,11 @@
     <ClCompile Include="SceneDirector.cpp">
       <Filter>FrameWork\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Animation.cpp">
-      <Filter>FrameWork\Node</Filter>
+    <ClCompile Include="App.cpp">
+      <Filter>FrameWork\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>FrameWork\Node</Filter>
-    </ClCompile>
-    <ClCompile Include="Object.cpp">
-      <Filter>FrameWork\Node</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>FrameWork\Node</Filter>
-    </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>FrameWork\Node</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>FrameWork\Node</Filter>
-    </ClCompile>
-    <ClCompile Include="CollisionMgr.cpp">
-      <Filter>Game\Mgrs</Filter>
-    </ClCompile>
-    <ClCompile Include="EffectMgr.cpp">
-      <Filter>Game\Mgrs</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjectMgr.cpp">
-      <Filter>Game\Mgrs</Filter>
+    <ClCompile Include="Input.cpp">
+      <Filter>FrameWork\Core</Filter>
     </ClCompile>
     <ClCompile Include="SoundMgr.cpp">
       <Filter>Game\Mgrs</Filter>
@@ -87,29 +46,52 @@
     <ClCompile Include="TextMgr.cpp">
       <Filter>Game\Mgrs</Filter>
     </ClCompile>
-    <ClCompile Include="MainScene.cpp">
-      <Filter>Game\Object\Scene</Filter>
+    <ClCompile Include="ObjectMgr.cpp">
+      <Filter>Game\Mgrs</Filter>
     </ClCompile>
-    <ClCompile Include="Stage1.cpp">
-      <Filter>Game\Object\Stage</Filter>
+    <ClCompile Include="EffectMgr.cpp">
+      <Filter>Game\Mgrs</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionMgr.cpp">
+      <Filter>Game\Mgrs</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Game\Object\Player</Filter>
+      <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="GameMgr.cpp" />
+    <ClCompile Include="MainScene.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage1.cpp">
+      <Filter>Game\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>Game\Mgrs</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMgr.cpp">
+      <Filter>Game\Mgrs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="App.h">
-      <Filter>FrameWork\Core</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>Main</Filter>
     </ClInclude>
-    <ClInclude Include="Singleton.h">
-      <Filter>FrameWork\Core</Filter>
+    <ClInclude Include="Animation.h">
+      <Filter>FrameWork\Mgrs</Filter>
     </ClInclude>
-    <ClInclude Include="Input.h">
-      <Filter>FrameWork\Core</Filter>
+    <ClInclude Include="Camera.h">
+      <Filter>FrameWork\Mgrs</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>FrameWork\Mgrs</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>FrameWork\Mgrs</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>FrameWork\Mgrs</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>FrameWork\Mgrs</Filter>
     </ClInclude>
     <ClInclude Include="Renderer.h">
       <Filter>FrameWork\Core</Filter>
@@ -120,32 +102,14 @@
     <ClInclude Include="SceneDirector.h">
       <Filter>FrameWork\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Animation.h">
-      <Filter>FrameWork\Node</Filter>
+    <ClInclude Include="Singleton.h">
+      <Filter>FrameWork\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>FrameWork\Node</Filter>
+    <ClInclude Include="App.h">
+      <Filter>FrameWork\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>FrameWork\Node</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>FrameWork\Node</Filter>
-    </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>FrameWork\Node</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>FrameWork\Node</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionMgr.h">
-      <Filter>Game\Mgrs</Filter>
-    </ClInclude>
-    <ClInclude Include="EffectMgr.h">
-      <Filter>Game\Mgrs</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectMgr.h">
-      <Filter>Game\Mgrs</Filter>
+    <ClInclude Include="Input.h">
+      <Filter>FrameWork\Core</Filter>
     </ClInclude>
     <ClInclude Include="SoundMgr.h">
       <Filter>Game\Mgrs</Filter>
@@ -153,15 +117,55 @@
     <ClInclude Include="TextMgr.h">
       <Filter>Game\Mgrs</Filter>
     </ClInclude>
-    <ClInclude Include="MainScene.h">
-      <Filter>Game\Object\Scene</Filter>
+    <ClInclude Include="ObjectMgr.h">
+      <Filter>Game\Mgrs</Filter>
     </ClInclude>
-    <ClInclude Include="Stage1.h">
-      <Filter>Game\Object\Stage</Filter>
+    <ClInclude Include="EffectMgr.h">
+      <Filter>Game\Mgrs</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionMgr.h">
+      <Filter>Game\Mgrs</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Game\Object\Player</Filter>
+      <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="GameMgr.h" />
+    <ClInclude Include="MainScene.h">
+      <Filter>Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage1.h">
+      <Filter>Game\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>Game\Mgrs</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMgr.h">
+      <Filter>Game\Mgrs</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="FrameWork">
+      <UniqueIdentifier>{6dfe6e5b-2139-4c92-b762-37484d300f6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FrameWork\Core">
+      <UniqueIdentifier>{3cf0882e-9261-4f14-9bb7-0c5958894382}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FrameWork\Mgrs">
+      <UniqueIdentifier>{49d78fb8-5768-4c76-a0e8-8051119c933e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{a63c9141-89f0-497a-9004-a0af6d86bb1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{16ceae7a-26c3-41f7-b88f-4b25e2d45c74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Mgrs">
+      <UniqueIdentifier>{a00b6775-0b43-429e-a0aa-de3964eadff9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene">
+      <UniqueIdentifier>{b9b088bb-1297-4440-a544-b3496bde88ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Stage">
+      <UniqueIdentifier>{22854ae9-34ce-4f94-b76d-77b7099737d1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

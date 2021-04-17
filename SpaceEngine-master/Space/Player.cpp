@@ -45,11 +45,14 @@ void Player::Move()
 
 void Player::WeaponRotate()
 {
+	Mouse = INPUT->GetMousePos() - m_Hand->m_Position;
+	D3DXVec2Normalize(&Dire, &Mouse);
 }
 
 void Player::Update(float deltaTime, float Time)
 {
-	m_Hand->SetPosition(m_Position.x, m_Position.y);
+	WeaponRotate();
+	m_Hand->SetPosition(m_Position.x + Dire.x * 4000 * dt, m_Position.y + Dire.y * 4000 * dt);
 	Move();
 }
 

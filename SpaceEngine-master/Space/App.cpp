@@ -95,6 +95,7 @@ LRESULT App::WndProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
 	case WM_RBUTTONUP:
 		INPUT->RightButtonDown(false);
 		break;
+	
 	}
 
 	return DefWindowProc(hWnd, Msg, wParam, lParam);

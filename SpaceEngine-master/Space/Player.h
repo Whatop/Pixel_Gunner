@@ -9,6 +9,8 @@ private:
 	float m_Speed;
 	
 	int ButtonDown;
+	Vec2 Dire;
+	Vec2 Mouse;
 public:
 	Player();
 	Player(Vec2 Pos);

@@ -1,14 +1,17 @@
 #pragma once
-class Stage1 : public Scene
+class UI : public Singleton<UI>
 {
-	bool m_Puase;
+	Sprite* m_Mouse;
+	TextMgr* m_UI;
 public:
-	Stage1();
-	~Stage1();
+	UI();
+	~UI();
 
 	void Init();
+	void Release();
+
 	void Update(float deltaTime, float Time);
 	void Render();
-	void Release();
+	
 };
 

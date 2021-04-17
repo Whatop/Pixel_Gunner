@@ -9,6 +9,7 @@ public:
 	GameMgr();
 	~GameMgr();
 	
+	void Init();
 	void CreateUI();
 	void ReleaseUI();
 	void CreatePlayer();
