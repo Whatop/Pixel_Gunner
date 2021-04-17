@@ -7,7 +7,8 @@ private:
 	Sprite* m_Weapon;//이거 따로만들까 고민중 일단 만들기
 
 	float m_Speed;
-
+	
+	int ButtonDown;
 public:
 	Player();
 	Player(Vec2 Pos);
