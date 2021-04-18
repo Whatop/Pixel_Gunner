@@ -9,7 +9,7 @@ UI::~UI()
 {
 }
 
-void UI::Init()
+void UI::Init() // ÃÑ Ä­ + ÃÑ¾Ë Ä­ + HP + µîµî 
 {
 	m_Mouse = Sprite::Create(L"Painting/Mouse.png");
 	m_Mouse->SetPosition(INPUT->GetMousePos());

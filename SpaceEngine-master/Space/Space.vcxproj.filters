@@ -70,6 +70,12 @@
     <ClCompile Include="GameMgr.cpp">
       <Filter>Game\Mgrs</Filter>
     </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Evasion.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -88,9 +94,6 @@
       <Filter>FrameWork\Mgrs</Filter>
     </ClInclude>
     <ClInclude Include="Sprite.h">
-      <Filter>FrameWork\Mgrs</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
       <Filter>FrameWork\Mgrs</Filter>
     </ClInclude>
     <ClInclude Include="Renderer.h">
@@ -140,6 +143,15 @@
     </ClInclude>
     <ClInclude Include="GameMgr.h">
       <Filter>Game\Mgrs</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Evasion.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
