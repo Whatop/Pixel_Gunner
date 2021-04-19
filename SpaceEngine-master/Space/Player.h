@@ -1,4 +1,14 @@
 #pragma once
+
+enum class Weapon_Type {
+	BASIC,
+	GUN1,
+	GUN2,
+	MELEE,
+	GRENADE,
+	NONE
+};
+// 1번 기본무기, 2번 무기, 3번 근접무기, 4번 슈류탄
 class Player : public Object
 {
 private:
@@ -16,6 +26,8 @@ private:
 
 	Vec2 Dire;
 	Vec2 Mouse;
+
+	Weapon_Type Weapon;
 public:
 	Player();
 	Player(Vec2 Pos);
