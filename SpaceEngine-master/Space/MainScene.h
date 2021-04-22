@@ -2,11 +2,14 @@
 class MainScene : public Scene
 {
 	Sprite* BackGround;
-	Sprite* Start;
-	Sprite* Option;
-	Sprite* Exit;
 
-	Sprite* Rank;
+	Sprite* Start_Button;
+	Sprite* Option_Button;
+	Sprite* Exit_Button;
+	Sprite* Difficulty_Button;
+
+	Sprite* Difficulty;
+
 public:
 	MainScene();
 	~MainScene();

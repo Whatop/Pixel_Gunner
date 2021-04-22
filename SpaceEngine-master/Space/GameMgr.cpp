@@ -13,6 +13,7 @@ GameMgr::~GameMgr()
 
 void GameMgr::Init()
 {
+	Difficulty = 1;
 	_UICreate = false;
 	_PlayerCreate = false;
 }
@@ -39,4 +40,21 @@ void GameMgr::CreatePlayer()
 void GameMgr::CreateMonster()
 {
 
+}
+
+void GameMgr::AddDifficulty()
+{
+	if (Difficulty > 2) {
+		Difficulty = 0;
+	}
+	if (Difficulty == 0) {
+		GameDifficulty = Game_Difficulty::EASY;
+	}
+	if (Difficulty == 1) {
+		GameDifficulty = Game_Difficulty::NOMAL;
+	}
+	if (Difficulty == 2) {
+		GameDifficulty = Game_Difficulty::HARD;
+	}
+	Difficulty++;
 }

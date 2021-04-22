@@ -151,7 +151,7 @@
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
-      <Filter>Game</Filter>
+      <Filter>FrameWork\Mgrs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
