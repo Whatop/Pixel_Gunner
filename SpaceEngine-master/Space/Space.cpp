@@ -14,4 +14,4 @@ INT WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, INT)
 	SceneDirector::GetInst()->ChangeScene(new MainScene());
 	App::GetInst()->Run();
 	return 0;
-}
+}	

@@ -76,6 +76,9 @@
     <ClCompile Include="Evasion.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="Option.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -152,6 +155,9 @@
     </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>FrameWork\Mgrs</Filter>
+    </ClInclude>
+    <ClInclude Include="Option.h">
+      <Filter>Game\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
