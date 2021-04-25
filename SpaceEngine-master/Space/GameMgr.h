@@ -7,6 +7,16 @@ enum class Game_Difficulty {
 	NONE
 };
 
+enum class CurrentScene {
+	MAINSCENE,
+	OPTION,
+	Detail_Option,//세부옵션
+	STAGE1,
+	STAGE2,
+	
+	NONE
+};
+
 class GameMgr : public Singleton<GameMgr> // UI 생성 및 삭제(UI관리함), 플레이어, 몬스터 스폰, 랭킹, 
 {
 private:
@@ -25,9 +35,11 @@ public:
 	void CreateMonster();
 	void AddDifficulty();
 	Game_Difficulty GetDifficulty() { return GameDifficulty; }
+	CurrentScene GetScene() { return m_Scene; }
 public:
 	int Difficulty;
 	bool _UICreate;
 	bool _PlayerCreate;
+	CurrentScene m_Scene;
 };
 

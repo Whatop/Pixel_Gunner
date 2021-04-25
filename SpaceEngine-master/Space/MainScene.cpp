@@ -14,6 +14,7 @@ MainScene::~MainScene()
 
 void MainScene::Init()
 {
+	GameMgr::GetInst()->m_Scene = CurrentScene::MAINSCENE;
 	BackGround = Sprite::Create(L"Painting/TestBackGround.png");
 	BackGround->SetPosition(1920 / 2, 1080 / 2);
 
@@ -39,7 +40,7 @@ void MainScene::Release()
 
 void MainScene::Update(float deltaTime, float time)
 {
-	if (BackGround->m_Visible) {
+	if (GameMgr::GetInst()->GetScene()== CurrentScene::MAINSCENE) {
 		if (CollisionMgr::GetInst()->MouseWithBoxSize(Start_Button)) {
 			Start_Button = Sprite::Create(L"Painting/Button/Start_2.png");
 			Start_Button->SetPosition(265, 665);
@@ -77,14 +78,7 @@ void MainScene::Update(float deltaTime, float time)
 			}
 		}
 		else {
-			Start_Button = Sprite::Create(L"Painting/Button/Start_1.png");
-			Start_Button->SetPosition(265, 665);
-			Option_Button = Sprite::Create(L"Painting/Button/Control_1.png");
-			Option_Button->SetPosition(265, 760);
-			Difficulty_Button = Sprite::Create(L"Painting/Button/Difficulty_1.png");
-			Difficulty_Button->SetPosition(265, 855);
-			Exit_Button = Sprite::Create(L"Painting/Button/Exit_1.png");
-			Exit_Button->SetPosition(265, 945);
+			Init();
 		}
 
 		if (GameMgr::GetInst()->GetDifficulty() == Game_Difficulty::EASY) {
@@ -98,6 +92,14 @@ void MainScene::Update(float deltaTime, float time)
 		else if (GameMgr::GetInst()->GetDifficulty() == Game_Difficulty::HARD) {
 			Difficulty = Sprite::Create(L"Painting/Button/Difficulty_Hard.png");
 			Difficulty->SetPosition(268, 540);
+		}
+	}
+	else if(GameMgr::GetInst()->GetScene() == CurrentScene::OPTION){
+		if (INPUT->GetKey(VK_ESCAPE) == KeyState::DOWN) { // 옵션이 켜졌을때
+			Init();
+			ObjMgr->DeleteObject("Option");
+			GameMgr::GetInst()->m_Scene = CurrentScene::MAINSCENE;
+			
 		}
 	}
 }
