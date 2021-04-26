@@ -79,6 +79,9 @@
     <ClCompile Include="Option.cpp">
       <Filter>Game\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Detail_Option.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -157,6 +160,9 @@
       <Filter>FrameWork\Mgrs</Filter>
     </ClInclude>
     <ClInclude Include="Option.h">
+      <Filter>Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Detail_Option.h">
       <Filter>Game\Scene</Filter>
     </ClInclude>
   </ItemGroup>

@@ -10,10 +10,9 @@ enum class Game_Difficulty {
 enum class CurrentScene {
 	MAINSCENE,
 	OPTION,
-	Detail_Option,//技何可记
+	DETAIL_OPTION,//技何可记 Detail_Option
 	STAGE1,
 	STAGE2,
-	
 	NONE
 };
 

@@ -24,6 +24,7 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CollisionMgr.cpp" />
+    <ClCompile Include="Detail_Option.cpp" />
     <ClCompile Include="EffectMgr.cpp" />
     <ClCompile Include="Evasion.cpp" />
     <ClCompile Include="GameMgr.cpp" />
@@ -54,6 +55,7 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CollisionMgr.h" />
+    <ClInclude Include="Detail_Option.h" />
     <ClInclude Include="EffectMgr.h" />
     <ClInclude Include="Evasion.h" />
     <ClInclude Include="GameMgr.h" />
