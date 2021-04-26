@@ -8,11 +8,16 @@ class MainScene : public Scene
 	Sprite* Exit_Button;
 	Sprite* Difficulty_Button;
 
+	Sprite* m_Button[4];
+
 	Sprite* Difficulty;
 
+	int Line;
 public:
 	MainScene();
 	~MainScene();
+
+	void Button();
 
 	void Init();
 	void Release();
