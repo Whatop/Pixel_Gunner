@@ -43,6 +43,7 @@ void MainScene::Release()
 void MainScene::Update(float deltaTime, float time)
 // 마우스 닿고 있을때 키보드 못하도록 할수없나 근대 이거하려
 {
+	ColBox = false;
 	if (GameMgr::GetInst()->GetScene() == CurrentScene::MAINSCENE) {
 		Button();
 		if (Line == 1) {
@@ -97,20 +98,22 @@ void MainScene::Update(float deltaTime, float time)
 
 		//ButtonDelay += dt;
 		//if (ButtonDelay > 0.175f) { //누르고있을수록 빨라지는거 만들기
-		if (INPUT->GetKey(VK_DOWN) == KeyState::DOWN) {
-			if (Line > 3) {
-				Line = 1;
+		if (!ColBox) {
+			if (INPUT->GetKey(VK_DOWN) == KeyState::DOWN) {
+				if (Line > 3) {
+					Line = 1;
+				}
+				else {
+					Line++;
+				}
 			}
-			else {
-				Line++;
-			}
-		}
-		else if (INPUT->GetKey(VK_UP) == KeyState::DOWN) {
-			if (Line < 2) {
-				Line = 4;
-			}
-			else {
-				Line--;
+			else if (INPUT->GetKey(VK_UP) == KeyState::DOWN) {
+				if (Line < 2) {
+					Line = 4;
+				}
+				else {
+					Line--;
+				}
 			}
 		}
 	}
@@ -132,6 +135,7 @@ void MainScene::Button()
 				INPUT->ButtonDown(false);
 			}
 			Line = 1;
+			ColBox = true;
 		}
 		else if (CollisionMgr::GetInst()->MouseWithBoxSize(m_Button[1])) {
 			if (INPUT->GetButtonDown()) {
@@ -142,6 +146,7 @@ void MainScene::Button()
 				INPUT->ButtonDown(false);
 			}
 			Line = 2;
+			ColBox = true;
 		}
 		else if (CollisionMgr::GetInst()->MouseWithBoxSize(m_Button[2])) {
 			if (INPUT->GetButtonDown()) {
@@ -149,6 +154,7 @@ void MainScene::Button()
 				INPUT->ButtonDown(false);
 			}
 			Line = 3;
+			ColBox = true;
 		}
 		else if (CollisionMgr::GetInst()->MouseWithBoxSize(m_Button[3])) {
 			if (INPUT->GetButtonDown()) {
@@ -156,6 +162,7 @@ void MainScene::Button()
 				exit(0);
 			}
 			Line = 4;
+			ColBox = true;
 		}
 
 		if (GameMgr::GetInst()->GetDifficulty() == Game_Difficulty::EASY) {

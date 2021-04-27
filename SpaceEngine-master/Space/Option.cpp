@@ -30,7 +30,8 @@ void Option::Init()
 	Button[3]->SetPosition(1920 / 2, 670);
 
 	
-	ColBox = true;
+	Collsion = true;
+	ColBox = false;
 	for (int h = 0; h < 4; h++) {
 		Button[h]->R = 120;
 		Button[h]->G = 120;
@@ -50,7 +51,7 @@ void Option::Order()
 		
 			for (int h = 0; h < 4; h++) {
 				Button[h]->m_Visible = false;
-				ColBox = false; //fasle 걸어줘서 버튼의 충돌 판정 끔
+				Collsion = false; //fasle 걸어줘서 버튼의 충돌 판정 끔
 				GameMgr::GetInst()->m_Scene = CurrentScene::DETAIL_OPTION;
 			}
 			ObjMgr->AddObject(new Detail_Option(_Start), "Detail_Option");
@@ -64,7 +65,7 @@ void Option::Order()
 			
 			for (int h = 0; h < 4; h++) {
 				Button[h]->m_Visible = false;
-				ColBox = false; //fasle 걸어줘서 버튼의 충돌 판정 끔
+				Collsion = false; //fasle 걸어줘서 버튼의 충돌 판정 끔
 				GameMgr::GetInst()->m_Scene = CurrentScene::DETAIL_OPTION;
 			}
 			ObjMgr->AddObject(new Detail_Option(_Control), "Detail_Option");
@@ -78,7 +79,7 @@ void Option::Order()
 			
 			for (int h = 0; h < 4; h++) {
 				Button[h]->m_Visible = false;
-				ColBox = false; //fasle 걸어줘서 버튼의 충돌 판정 끔
+				Collsion = false; //fasle 걸어줘서 버튼의 충돌 판정 끔
 				GameMgr::GetInst()->m_Scene = CurrentScene::DETAIL_OPTION;
 			}
 			ObjMgr->AddObject(new Detail_Option(_Vidio), "Detail_Option");
@@ -92,7 +93,7 @@ void Option::Order()
 		
 			for (int h = 0; h < 4; h++) {
 				Button[h]->m_Visible = false;
-				ColBox = false; //fasle 걸어줘서 버튼의 충돌 판정 끔
+				Collsion = false; //fasle 걸어줘서 버튼의 충돌 판정 끔
 				GameMgr::GetInst()->m_Scene = CurrentScene::DETAIL_OPTION;
 			}
 			ObjMgr->AddObject(new Detail_Option(_Audio), "Detail_Option");
@@ -112,13 +113,14 @@ void Option::Update(float deltaTime, float Time)
 //	W누르면 올라가고 S누르면 내려가고 4에서 내려가면 1로 갑니다. 반대도 있고연
 //, void ??? 새로 만들어서 관리하도록 하고
 {
+	ColBox = false;
 	for (int h = 0; h < 4; h++) {
 		Button[h]->R = 120;
 		Button[h]->G = 120;
 		Button[h]->B = 120;
 	}
 
-	if (ColBox) {
+	if (Collsion) {
 		Delay += dt;
 		if (Delay > dt) {//ESC에 텀을주기 위하여 조건걸어둠
 			GameMgr::GetInst()->m_Scene = CurrentScene::OPTION; 
@@ -128,48 +130,52 @@ void Option::Update(float deltaTime, float Time)
 
 				for (int h = 0; h < 4; h++) {
 					Button[h]->m_Visible = false;
-					ColBox = false; //fasle 걸어줘서 버튼의 충돌 판정 끔
+					Collsion = false; //fasle 걸어줘서 버튼의 충돌 판정 끔
 				}
 				ObjMgr->AddObject(new Detail_Option(_Start), "Detail_Option");
 				INPUT->ButtonDown(false);
 			}
 			Line = 1;
+			ColBox = true;
 		}
 		else if (CollisionMgr::GetInst()->MouseWithBoxSize(Button[1])) { // 컨트롤 : 키바꾸기(재장전,W,A,S,D,구르기), (아이템고민중)
 			if (INPUT->GetButtonDown()) {
 
 				for (int h = 0; h < 4; h++) {
 					Button[h]->m_Visible = false;
-					ColBox = false; //fasle 걸어줘서 버튼의 충돌 판정 끔
+					Collsion = false; //fasle 걸어줘서 버튼의 충돌 판정 끔
 				}
 				ObjMgr->AddObject(new Detail_Option(_Control), "Detail_Option");
 				INPUT->ButtonDown(false);
 			}
 			Line = 2;
+			ColBox = true;
 		}
 		else if (CollisionMgr::GetInst()->MouseWithBoxSize(Button[2])) { // 비디오 : 전체화면, 해상도(1440:900,1920:1080), 감마, 잔해양(시체),크기
 			if (INPUT->GetButtonDown()) {
 
 				for (int h = 0; h < 4; h++) {
 					Button[h]->m_Visible = false;
-					ColBox = false; //fasle 걸어줘서 버튼의 충돌 판정 끔
+					Collsion = false; //fasle 걸어줘서 버튼의 충돌 판정 끔
 				}
 				ObjMgr->AddObject(new Detail_Option(_Vidio), "Detail_Option");
 				INPUT->ButtonDown(false);
 			}
 			Line = 3;
+			ColBox = true;
 		}
 		else if (CollisionMgr::GetInst()->MouseWithBoxSize(Button[3])) { // 오디오 : 음악 볼륨(배경음), 음향 볼륨(구른다, 총..), UI 볼륨(확인버튼이나 그런 소리)
 			if (INPUT->GetButtonDown()) {
 
 				for (int h = 0; h < 4; h++) {
 					Button[h]->m_Visible = false;
-					ColBox = false; //fasle 걸어줘서 버튼의 충돌 판정 끔
+					Collsion = false; //fasle 걸어줘서 버튼의 충돌 판정 끔
 				}
 				ObjMgr->AddObject(new Detail_Option(_Audio), "Detail_Option");
 				INPUT->ButtonDown(false);
 			}
 			Line = 4;
+			ColBox = true;
 		}
 	}
 	if (GameMgr::GetInst()->GetScene() == CurrentScene::DETAIL_OPTION) {
@@ -178,20 +184,22 @@ void Option::Update(float deltaTime, float Time)
 			ObjMgr->DeleteObject("Detail_Option");
 		}
 	}
-	if (INPUT->GetKey(VK_DOWN) == KeyState::DOWN) {
-		if (Line > 3) {
-			Line = 1;
+	if (!ColBox) {
+		if (INPUT->GetKey(VK_DOWN) == KeyState::DOWN) {
+			if (Line > 3) {
+				Line = 1;
+			}
+			else {
+				Line++;
+			}
 		}
-		else {
-			Line++;
-		}
-	}
-	else if (INPUT->GetKey(VK_UP) == KeyState::DOWN) {
-		if (Line < 2) {
-			Line = 4;
-		}
-		else {
-			Line--;
+		else if (INPUT->GetKey(VK_UP) == KeyState::DOWN) {
+			if (Line < 2) {
+				Line = 4;
+			}
+			else {
+				Line--;
+			}
 		}
 	}
 	Order();

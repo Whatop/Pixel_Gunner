@@ -8,6 +8,7 @@ class MainScene : public Scene
 	Sprite* Difficulty;
 
 	int Line;
+	bool ColBox;
 	float ButtonDelay;
 public:
 	MainScene();

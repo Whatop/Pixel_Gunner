@@ -10,9 +10,10 @@ private:
 	//게임 플레이, 컨트롤, 비디오, 오디오 설정
 	Sprite* Button[4];
 
-	bool ColBox;
+	bool Collsion;
 	float Delay;
 	int Line;
+	bool ColBox;
 	//Sprite* m_
 	
 public:

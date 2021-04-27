@@ -29,7 +29,7 @@ private:
 
 
 public:
-	Detail_Option(int a);
+	Detail_Option(int type);
 	~Detail_Option();
 
 	void Order();
