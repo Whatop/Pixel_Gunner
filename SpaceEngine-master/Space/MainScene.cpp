@@ -12,7 +12,7 @@ MainScene::~MainScene()
 {
 }
 
-void MainScene::Init()
+void MainScene::Init() //
 {
 	GameMgr::GetInst()->m_Scene = CurrentScene::MAINSCENE;
 	BackGround = Sprite::Create(L"Painting/TestBackGround.png");
@@ -41,9 +41,7 @@ void MainScene::Release()
 }
 
 void MainScene::Update(float deltaTime, float time)
-//이게 키보드랑 같이한다고 치면 그냥 그 4개의 상태로 만든다고 보면 될듯 ex)1번 게임플레이 버튼에 마우스가 닿았을때 Enter나 버튼을 클릭하면 시작 
-//	W누르면 올라가고 S누르면 내려가고 4에서 내려가면 1로 갑니다. 반대도 있고연
-//, void ??? 새로 만들어서 관리하도록 하고
+// 마우스 닿고 있을때 키보드 못하도록 할수없나 근대 이거하려
 {
 	if (GameMgr::GetInst()->GetScene() == CurrentScene::MAINSCENE) {
 		Button();
