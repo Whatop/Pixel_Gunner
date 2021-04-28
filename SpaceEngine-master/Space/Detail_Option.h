@@ -5,6 +5,16 @@
 #define _Vidio		3
 #define _Audio		4
 
+enum class MouseShape {
+	scope,
+	square,
+	circle,
+	bullet,
+	cross,
+	point,
+	none
+};
+
 class Detail_Option : public Object //키 바꾸는 것, 볼륨, 창 크기, UI 크기, 마우스 모양 및 색깔
 {
 private:
@@ -27,7 +37,8 @@ private:
 	// 취소, 초기화, 확인 버튼
 	Sprite* Choice_Button[3];
 
-
+	int Line;
+	bool ColBox;
 public:
 	Detail_Option(int type);
 	~Detail_Option();

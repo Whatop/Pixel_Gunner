@@ -12,7 +12,6 @@ Stage1::~Stage1()
 
 void Stage1::Init() 
 {
-	GameMgr::GetInst()->CreateUI();
 	ObjMgr->AddObject(new Player, "Player");
 }
 

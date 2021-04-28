@@ -33,7 +33,14 @@ void UI::Update(float deltaTime, float Time)
 void UI::Render()
 {
 	m_Mouse->Render();
-	Renderer::GetInst()->GetSprite()->Begin(D3DXSPRITE_ALPHABLEND);
-	m_UI->print("시간 : " + std::to_string(gt) + "\n프레임 : " + std::to_string(dt), 100, 100);
-	Renderer::GetInst()->GetSprite()->End();
+	if (GameMgr::GetInst()->GetScene() == CurrentScene::STAGE1) {
+		Renderer::GetInst()->GetSprite()->Begin(D3DXSPRITE_ALPHABLEND);
+		m_UI->print("시간 : " + std::to_string(gt) + "\n프레임 : " + std::to_string(dt), 100, 100);
+		Renderer::GetInst()->GetSprite()->End();
+	}
+	else if (GameMgr::GetInst()->GetScene() == CurrentScene::STAGE2) {
+		Renderer::GetInst()->GetSprite()->Begin(D3DXSPRITE_ALPHABLEND);
+		m_UI->print("시간 : " + std::to_string(gt) + "\n프레임 : " + std::to_string(dt), 100, 100);
+		Renderer::GetInst()->GetSprite()->End();
+	}
 }

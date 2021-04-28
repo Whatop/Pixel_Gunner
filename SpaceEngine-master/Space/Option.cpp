@@ -184,6 +184,10 @@ void Option::Update(float deltaTime, float Time)
 			ObjMgr->DeleteObject("Detail_Option");
 		}
 	}
+	if (GameMgr::GetInst()->GetScene() == CurrentScene::NONE) {
+		Init();
+		ObjMgr->DeleteObject("Detail_Option");
+	}
 	if (!ColBox) {
 		if (INPUT->GetKey(VK_DOWN) == KeyState::DOWN) {
 			if (Line > 3) {
