@@ -10,7 +10,7 @@ public:
 	~Texture();
 
 public:
-	bool Init(std::wstring fileName);
+	bool Init(std::wstring fileName, D3DCOLOR color);
 
 public:
 	LPDIRECT3DTEXTURE9 GetTexture() { return m_pTexture; }

@@ -44,6 +44,17 @@ void MainScene::Release()
 void MainScene::Update(float deltaTime, float time)
 // 마우스 닿고 있을때 키보드 못하도록 할수없나 근대 이거하려
 {
+
+	if (INPUT->GetKey(VK_F2) == KeyState::DOWN) {
+		if (!m_Puase) {
+			GameMgr::GetInst()->Shape(true);
+			m_Puase = true;
+		}
+		else {
+			GameMgr::GetInst()->Shape(false);
+			m_Puase = false;
+		}
+	}
 	ColBox = false;
 	if (GameMgr::GetInst()->GetScene() == CurrentScene::MAINSCENE) {
 		Button();

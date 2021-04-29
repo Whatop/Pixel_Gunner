@@ -6,7 +6,7 @@ class MainScene : public Scene
 	Sprite* m_Button[4];
 
 	Sprite* Difficulty;
-
+	bool m_Puase;
 	int Line;
 	bool ColBox;
 	float ButtonDelay;

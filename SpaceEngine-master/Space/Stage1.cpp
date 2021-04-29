@@ -27,6 +27,7 @@ void Stage1::Update(float deltaTime, float Time)
 			m_Puase = false;
 		}
 	}
+
 }
 
 void Stage1::Render()

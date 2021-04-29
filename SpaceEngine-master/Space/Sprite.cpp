@@ -18,9 +18,9 @@ Sprite::~Sprite()
 {
 }
 
-bool Sprite::Init(std::wstring fileName)
+bool Sprite::Init(std::wstring fileName, D3DCOLOR color)
 {
-	m_Texture = ResourceMgr::GetInst()->CreateTextureFromFile(fileName);
+	m_Texture = ResourceMgr::GetInst()->CreateTextureFromFile(fileName, color);
 	if (m_Texture)
 	{
 		m_Size = m_Texture->GetSize();
@@ -31,10 +31,10 @@ bool Sprite::Init(std::wstring fileName)
 		return false;
 }
 
-Sprite* Sprite::Create(std::wstring fileName)
+Sprite* Sprite::Create(std::wstring fileName,D3DCOLOR color)
 {
 	auto sprite = new (std::nothrow) Sprite();
-	if (sprite && sprite->Init(fileName))
+	if (sprite && sprite->Init(fileName, color))
 	{
 		return sprite;
 	}

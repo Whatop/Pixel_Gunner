@@ -9,26 +9,6 @@ UI::~UI()
 {
 }
 
-void UI::Shape(bool dir)//false À§·Î true ¾Æ·¡·Î
-{
-		if (dir) {
-			if (shape > 5) {
-				shape = 1;
-			}
-			else {
-				shape++;
-			}
-		}
-		else {
-			if (shape < 4) {
-				shape = 6;
-			}
-			else {
-				shape--;
-			}
-		}
-}
-
 void UI::Init() // ÃÑ Ä­ + ÃÑ¾Ë Ä­ + HP + µîµî 
 {
 	m_Mouse = Sprite::Create(L"Painting/Mouse.png");
@@ -47,26 +27,26 @@ void UI::Release()
 void UI::Update(float deltaTime, float Time)
 {
 	SetCursor(NULL);
-	if (m_MouseShape == MouseShape::scope) {
-		m_Mouse = Sprite::Create(L"Painting/Mouse/1.png");
+	if (GameMgr::GetInst()->m_MouseShape == MouseShape::scope) {
+		m_Mouse = Sprite::Create(L"Painting/Mouse/1.png", COLORKEY_BALCK);
 	}
-	else if (m_MouseShape == MouseShape::square) {
-		m_Mouse = Sprite::Create(L"Painting/Mouse/2.png");
+	else if (GameMgr::GetInst()->m_MouseShape == MouseShape::square) {
+		m_Mouse = Sprite::Create(L"Painting/Mouse/2.png", COLORKEY_BALCK);
 	}
-	else if (m_MouseShape == MouseShape::circle) {
-		m_Mouse = Sprite::Create(L"Painting/Mouse/3.png");
+	else if (GameMgr::GetInst()->m_MouseShape == MouseShape::circle) {
+		m_Mouse = Sprite::Create(L"Painting/Mouse/3.png", COLORKEY_BALCK);
 	}
-	else if (m_MouseShape == MouseShape::bullet) {
-		m_Mouse = Sprite::Create(L"Painting/Mouse/4.png");
+	else if (GameMgr::GetInst()->m_MouseShape == MouseShape::bullet) {
+		m_Mouse = Sprite::Create(L"Painting/Mouse/4.png", COLORKEY_BALCK);
 	}
-	else if (m_MouseShape == MouseShape::cross) {
-		m_Mouse = Sprite::Create(L"Painting/Mouse/5.png");
+	else if (GameMgr::GetInst()->m_MouseShape == MouseShape::cross) {
+		m_Mouse = Sprite::Create(L"Painting/Mouse/5.png", COLORKEY_BALCK);
 	}
-	else if (m_MouseShape == MouseShape::point) {
-		m_Mouse = Sprite::Create(L"Painting/Mouse/6.png");
+	else if (GameMgr::GetInst()->m_MouseShape == MouseShape::point) {
+		m_Mouse = Sprite::Create(L"Painting/Mouse/6.png", COLORKEY_BALCK);
 	}
 	else {
-		m_Mouse = Sprite::Create(L"Painting/Mouse.png");
+		m_Mouse = Sprite::Create(L"Painting/Mouse.png", COLORKEY_BALCK);
 	}
 	m_Mouse->SetPosition(INPUT->GetMousePos());
 }

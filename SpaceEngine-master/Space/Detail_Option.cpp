@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "UI.h"
 #include "Detail_Option.h"
 
 Detail_Option::Detail_Option(int type)
@@ -47,7 +46,7 @@ void Detail_Option::Order()
 	if (CollisionMgr::GetInst()->MouseWithBoxSize(Choice_Button[0])) { // 게임 플레이 : 커서 모양, 미니맵 표시(항상,전투중 제외,없음),
 		if (INPUT->GetButtonDown()) {
 			//GameMgr::GetInst()->m_Scene = CurrentScene::NONE;
-			UI::GetInst()->Shape(true);
+			GameMgr::GetInst()->Shape(true);
 			INPUT->ButtonDown(false);
 		}
 		Line = 1;
@@ -55,7 +54,7 @@ void Detail_Option::Order()
 	}
 	else if (CollisionMgr::GetInst()->MouseWithBoxSize(Choice_Button[1])) { // 컨트롤 : 키바꾸기(재장전,W,A,S,D,구르기), (아이템고민중)
 		if (INPUT->GetButtonDown()) {
-			UI::GetInst()->Shape(false);
+			GameMgr::GetInst()->Shape(false);
 
 			//GameMgr::GetInst()->m_Scene = CurrentScene::NONE;
 			INPUT->ButtonDown(false);

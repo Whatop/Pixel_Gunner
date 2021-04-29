@@ -1,18 +1,9 @@
 #pragma once
 
-enum class MouseShape {
-	scope,
-	square,
-	circle,
-	bullet,
-	cross,
-	point,
-	none
-};
+
 
 class UI : public Singleton<UI>
 {
-	MouseShape m_MouseShape;
 	Sprite* m_Mouse;
 	TextMgr* m_UI;
 	int m_Hp;
@@ -26,9 +17,7 @@ class UI : public Singleton<UI>
 public:
 	UI();
 	~UI();
-
-	void Shape(bool dir);
-
+	
 	void Init();
 	void Release();
 
