@@ -13,6 +13,7 @@ GameMgr::~GameMgr()
 
 void GameMgr::Init()
 {
+	shape = 0;
 	Difficulty = 1;
 	_UICreate = false;
 	_PlayerCreate = false;
@@ -45,15 +46,15 @@ void GameMgr::CreateMonster()
 void GameMgr::Shape(bool dir)//false 위로 true 아래로
 {
 	if (dir) {
-		if (shape > 5) {
+		if (shape >= 6) {
 			shape = 1;
 		}
 		else {
 			shape++;
 		}
 	}
-	else {
-		if (shape < 4) {
+	else if(!dir){
+		if (shape <= 1) {
 			shape = 6;
 		}
 		else {

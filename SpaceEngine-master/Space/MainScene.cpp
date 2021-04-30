@@ -46,14 +46,10 @@ void MainScene::Update(float deltaTime, float time)
 {
 
 	if (INPUT->GetKey(VK_F2) == KeyState::DOWN) {
-		if (!m_Puase) {
-			GameMgr::GetInst()->Shape(true);
-			m_Puase = true;
-		}
-		else {
 			GameMgr::GetInst()->Shape(false);
-			m_Puase = false;
-		}
+	}
+	else if (INPUT->GetKey(VK_F3) == KeyState::DOWN) {
+		GameMgr::GetInst()->Shape(true);
 	}
 	ColBox = false;
 	if (GameMgr::GetInst()->GetScene() == CurrentScene::MAINSCENE) {

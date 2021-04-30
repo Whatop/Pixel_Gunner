@@ -190,7 +190,7 @@ void Option::Update(float deltaTime, float Time)
 	}
 	if (!ColBox) {
 		if (INPUT->GetKey(VK_DOWN) == KeyState::DOWN) {
-			if (Line > 3) {
+			if (Line >= 4) {
 				Line = 1;
 			}
 			else {
@@ -198,7 +198,7 @@ void Option::Update(float deltaTime, float Time)
 			}
 		}
 		else if (INPUT->GetKey(VK_UP) == KeyState::DOWN) {
-			if (Line < 2) {
+			if (Line <= 1) {
 				Line = 4;
 			}
 			else {
