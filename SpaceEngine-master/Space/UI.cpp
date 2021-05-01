@@ -11,7 +11,7 @@ UI::~UI()
 
 void UI::Init() // ÃÑ Ä­ + ÃÑ¾Ë Ä­ + HP + µîµî 
 {
-	m_Mouse = Sprite::Create(L"Painting/Mouse.png");
+	m_Mouse = Sprite::Create(L"Painting/Mouse/Mouse.png");
 	m_Mouse->SetPosition(INPUT->GetMousePos());
 
 
@@ -45,8 +45,8 @@ void UI::Update(float deltaTime, float Time)
 	else if (GameMgr::GetInst()->m_MouseShape == MouseShape::point) {
 		m_Mouse = Sprite::Create(L"Painting/Mouse/6.png", COLORKEY_BALCK);
 	}
-	else {
-		m_Mouse = Sprite::Create(L"Painting/Mouse.png", COLORKEY_BALCK);
+	else if (GameMgr::GetInst()->m_MouseShape == MouseShape::none) {
+		m_Mouse = Sprite::Create(L"Painting/Mouse/Mouse.png", COLORKEY_BALCK);
 	}
 	m_Mouse->SetPosition(INPUT->GetMousePos());
 }

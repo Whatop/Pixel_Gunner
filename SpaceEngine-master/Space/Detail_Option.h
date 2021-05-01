@@ -28,6 +28,8 @@ private:
 	// 취소, 초기화, 확인 버튼
 	Sprite* Choice_Button[3];
 
+	Sprite* Arrow_Button[2];
+
 	int Line;
 	bool ColBox;
 public:
@@ -36,6 +38,7 @@ public:
 
 	void Order();
 	void Shape();
+	void Direction();
 	void Init();
 	void Update(float deltaTime, float Time);
 	void Render();

@@ -15,6 +15,7 @@ MainScene::~MainScene()
 void MainScene::Init() //
 {
 	GameMgr::GetInst()->m_Scene = CurrentScene::MAINSCENE;
+	GameMgr::GetInst()->m_MouseShape = MouseShape::none;
 	GameMgr::GetInst()->CreateUI();
 	BackGround = Sprite::Create(L"Painting/TestBackGround.png");
 	BackGround->SetPosition(1920 / 2, 1080 / 2);

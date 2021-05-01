@@ -46,7 +46,7 @@ void GameMgr::CreateMonster()
 void GameMgr::Shape(bool dir)//false 위로 true 아래로
 {
 	if (dir) {
-		if (shape >= 6) {
+		if (shape >= 7) {
 			shape = 1;
 		}
 		else {
@@ -55,7 +55,7 @@ void GameMgr::Shape(bool dir)//false 위로 true 아래로
 	}
 	else if(!dir){
 		if (shape <= 1) {
-			shape = 6;
+			shape = 7;
 		}
 		else {
 			shape--;
@@ -78,6 +78,9 @@ void GameMgr::Shape(bool dir)//false 위로 true 아래로
 	}
 	else if (shape == 6) {
 		m_MouseShape = MouseShape::point;
+	}
+	else if (shape == 7) {
+		m_MouseShape = MouseShape::none;
 	}
 }
 
