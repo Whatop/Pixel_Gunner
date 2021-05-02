@@ -1,7 +1,5 @@
 #pragma once
 
-
-
 class UI : public Singleton<UI>
 {
 	TextMgr* m_UI;

@@ -28,25 +28,25 @@ void UI::Update(float deltaTime, float Time)
 {
 	SetCursor(NULL);
 	if (GameMgr::GetInst()->m_MouseShape == MouseShape::scope) {
-		m_Mouse = Sprite::Create(L"Painting/Mouse/1.png", COLORKEY_BALCK);
+		m_Mouse = Sprite::Create(L"Painting/Mouse/1.png");
 	}
 	else if (GameMgr::GetInst()->m_MouseShape == MouseShape::square) {
-		m_Mouse = Sprite::Create(L"Painting/Mouse/2.png", COLORKEY_BALCK);
+		m_Mouse = Sprite::Create(L"Painting/Mouse/2.png");
 	}
 	else if (GameMgr::GetInst()->m_MouseShape == MouseShape::circle) {
-		m_Mouse = Sprite::Create(L"Painting/Mouse/3.png", COLORKEY_BALCK);
+		m_Mouse = Sprite::Create(L"Painting/Mouse/3.png");
 	}
 	else if (GameMgr::GetInst()->m_MouseShape == MouseShape::bullet) {
-		m_Mouse = Sprite::Create(L"Painting/Mouse/4.png", COLORKEY_BALCK);
+		m_Mouse = Sprite::Create(L"Painting/Mouse/4.png");
 	}
 	else if (GameMgr::GetInst()->m_MouseShape == MouseShape::cross) {
-		m_Mouse = Sprite::Create(L"Painting/Mouse/5.png", COLORKEY_BALCK);
+		m_Mouse = Sprite::Create(L"Painting/Mouse/5.png");
 	}
 	else if (GameMgr::GetInst()->m_MouseShape == MouseShape::point) {
-		m_Mouse = Sprite::Create(L"Painting/Mouse/6.png", COLORKEY_BALCK);
+		m_Mouse = Sprite::Create(L"Painting/Mouse/6.png");
 	}
 	else if (GameMgr::GetInst()->m_MouseShape == MouseShape::none) {
-		m_Mouse = Sprite::Create(L"Painting/Mouse/Mouse.png", COLORKEY_BALCK);
+		m_Mouse = Sprite::Create(L"Painting/Mouse/Mouse.png");
 	}
 	m_Mouse->SetPosition(INPUT->GetMousePos());
 }

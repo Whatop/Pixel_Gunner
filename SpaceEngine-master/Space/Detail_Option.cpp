@@ -25,6 +25,7 @@ Detail_Option::Detail_Option(int type)
 
 	Mouse_Shape = Sprite::Create(L"Painting/Mouse/Mouse.png");
 
+	m_Name[0] = Sprite::Create(L"Painting/Option/Cusor.png");
 	if (type == _Start) { // 게임 플레이 : 커서  모양, 미니맵 표시(항상,전투중 제외,없음),
 		//마우스 모양
 		
@@ -82,6 +83,11 @@ void Detail_Option::Order()
 	}
 }
 
+void Detail_Option::Name()
+{
+	m_Name[0]->SetPosition(Mouse_Shape->m_Position.x, Mouse_Shape->m_Position.y - 100);
+}
+
 void Detail_Option::Shape()
 {
 
@@ -90,16 +96,22 @@ void Detail_Option::Shape()
 void Detail_Option::Direction() //그 활성화 상태일때 오른쪽왼쪽누르면 되는것으로, 아닐땐 회색
 {
 	if (CollisionMgr::GetInst()->MouseWithBoxSize(Arrow_Button[0])) { // 화살표 왼쪽
+		Arrow_Button[0]->SetScale(1.5f,1.5f);
 		if (INPUT->GetButtonDown()||INPUT->GetKey(VK_LEFT)==KeyState::DOWN) {
 			GameMgr::GetInst()->Shape(true);
 			INPUT->ButtonDown(false);
 		}
 	}
 	else if (CollisionMgr::GetInst()->MouseWithBoxSize(Arrow_Button[1])) { // 화살표 오른쪽
+		Arrow_Button[1]->SetScale(1.5f, 1.5f);
 		if (INPUT->GetButtonDown() || INPUT->GetKey(VK_RIGHT) == KeyState::DOWN) {
 			GameMgr::GetInst()->Shape(false);
 			INPUT->ButtonDown(false);
 		}
+	}
+	else {
+		Arrow_Button[0]->SetScale(1.f, 1.f);
+		Arrow_Button[1]->SetScale(1.f, 1.f);
 	}
 	if (INPUT->GetKey(VK_LEFT) == KeyState::DOWN) {
 			GameMgr::GetInst()->Shape(true);
@@ -117,6 +129,7 @@ void Detail_Option::Update(float deltaTime, float Time)
 {
 	Mouse_Shape = UI::GetInst()->m_Mouse;
 	Mouse_Shape->SetPosition(1920 / 2, 1080 / 2);
+	Name();
 	Order();
 	Direction();
 }
@@ -129,5 +142,6 @@ void Detail_Option::Render()
 	Choice_Button[2]->Render();
 	Arrow_Button[0]->Render();
 	Arrow_Button[1]->Render();
+	m_Name[0]->Render();
 	Mouse_Shape->Render();
 }

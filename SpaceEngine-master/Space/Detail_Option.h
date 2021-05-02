@@ -30,6 +30,8 @@ private:
 
 	Sprite* Arrow_Button[2];
 
+	Sprite* m_Name[10];
+
 	int Line;
 	bool ColBox;
 public:
@@ -37,6 +39,7 @@ public:
 	~Detail_Option();
 
 	void Order();
+	void Name();
 	void Shape();
 	void Direction();
 	void Init();
