@@ -19,21 +19,35 @@ private:
 	//창 크기
 	Sprite* Window;
 
-	//마우스 색
-	Sprite* MouseColor;
-
 	// 구르기, W, S, A, D,  
 	Sprite* KeyChange;
+
+
+	// 미니맵 표시 : 항상, 전투 중 제외, 사용 안 함 
+	Sprite* MineMap;
+	
+	// 화살표
+	Sprite* Arrow_Button[4];
+
+	// 감마
+	Sprite* Gamma;
+
+	//풀스크린
+	Sprite* FullScreen;
+
+	// 체크박스
+	Sprite* CheckBox[10];
+
+	// 이름 : 커서, 미니맵, 
+	Sprite* m_Name[10];
 
 	// 취소, 초기화, 확인 버튼
 	Sprite* Choice_Button[3];
 
-	Sprite* Arrow_Button[2];
-
-	Sprite* m_Name[10];
-
 	int Line;
 	bool ColBox;
+	int m_Type;
+	int Minemap_Option;
 public:
 	Detail_Option(int type);
 	~Detail_Option();
@@ -42,7 +56,10 @@ public:
 	void Name();
 	void Shape();
 	void Direction();
-	void Init();
+
+
+	void Reset();
+
 	void Update(float deltaTime, float Time);
 	void Render();
 

@@ -38,6 +38,7 @@ public:
 	
 	void Init(); 
 	void Shape(bool dir); // 마우스 모양 바꾸는 기능
+	void MeniMap(bool add);
 	void CreateUI();
 	void ReleaseUI();
 	void CreatePlayer();
@@ -49,6 +50,7 @@ public:
 	int Difficulty;
 	bool _UICreate;
 	bool _PlayerCreate;
+	int menimap;
 	CurrentScene m_Scene;
 	MouseShape m_MouseShape;
 };

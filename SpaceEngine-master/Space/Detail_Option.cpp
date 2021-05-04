@@ -17,20 +17,31 @@ Detail_Option::Detail_Option(int type)
 	Choice_Button[2] = Sprite::Create(L"Painting/Option/Check.png");
 	Choice_Button[2]->SetPosition(1920 / 2+ 435, 940);
 
-	Arrow_Button[0] = Sprite::Create(L"Painting/Option/left.png");
-	Arrow_Button[0]->SetPosition(1920 / 2 - 300, 1080/2);
-
-	Arrow_Button[1] = Sprite::Create(L"Painting/Option/right.png");
-	Arrow_Button[1]->SetPosition(1920 / 2 + 300, 1080/2);
-
-	Mouse_Shape = Sprite::Create(L"Painting/Mouse/Mouse.png");
-
-	m_Name[0] = Sprite::Create(L"Painting/Option/Cusor.png");
 	if (type == _Start) { // 게임 플레이 : 커서  모양, 미니맵 표시(항상,전투중 제외,없음),
+
+		Mouse_Shape = Sprite::Create(L"Painting/Mouse/Mouse.png");
+		MineMap = Sprite::Create(L"Painting/Mouse/Mouse.png");
+
 		//마우스 모양
+		m_Name[0] = Sprite::Create(L"Painting/Option/Game_Play/Cusor.png");
+
+		// 마우스 화살표
+		Arrow_Button[0] = Sprite::Create(L"Painting/Option/left.png");
+		Arrow_Button[0]->SetPosition(1920 / 2 - 300, 300);
+
+		Arrow_Button[1] = Sprite::Create(L"Painting/Option/right.png");
+		Arrow_Button[1]->SetPosition(1920 / 2 + 300, 300);
+
+		// 미니맵 표시 화살표
+		Arrow_Button[2] = Sprite::Create(L"Painting/Option/left.png");
+		Arrow_Button[2]->SetPosition(1920 / 2 - 300, 550);
+
+		Arrow_Button[3] = Sprite::Create(L"Painting/Option/right.png");
+		Arrow_Button[3]->SetPosition(1920 / 2 + 300, 550);
+
+		//미니맵 표시
+		m_Name[1] = Sprite::Create(L"Painting/Option/Game_Play/MeniMap.png");
 		
-		//마우스 색
-		Sprite* MouseColor;
 	}
 	else if (type == _Control) { // 컨트롤 : 키바꾸기(재장전,W,A,S,D,구르기), (아이템고민중)
 
@@ -45,6 +56,7 @@ Detail_Option::Detail_Option(int type)
 			//볼륨설정
 		Sprite* Sound;
 	}
+	m_Type = type;
 }
 
 Detail_Option::~Detail_Option()
@@ -85,7 +97,29 @@ void Detail_Option::Order()
 
 void Detail_Option::Name()
 {
-	m_Name[0]->SetPosition(Mouse_Shape->m_Position.x, Mouse_Shape->m_Position.y - 100);
+	if (m_Type == _Start) {
+		m_Name[0]->SetPosition(Mouse_Shape->m_Position.x, Mouse_Shape->m_Position.y - 100);
+		m_Name[1]->SetPosition(MineMap->m_Position.x, MineMap->m_Position.y - 100);
+		if (CollisionMgr::GetInst()->MouseWithBoxSize(Choice_Button[0])) { // 게임 플레이 : 커서 모양, 미니맵 표시(항상,전투중 제외,없음),
+			if (INPUT->GetButtonDown()) {
+				GameMgr::GetInst()->m_Scene = CurrentScene::NONE;
+				//GameMgr::GetInst()->Shape(true);
+				INPUT->ButtonDown(false);
+			}
+			Line = 1;
+			ColBox = true;
+		}
+		else if (CollisionMgr::GetInst()->MouseWithBoxSize(Choice_Button[1])) { // 컨트롤 : 키바꾸기(재장전,W,A,S,D,구르기), (아이템고민중)
+			if (INPUT->GetButtonDown()) {
+				GameMgr::GetInst()->Shape(false);
+
+				//GameMgr::GetInst()->m_Scene = CurrentScene::NONE;
+				INPUT->ButtonDown(false);
+			}
+			Line = 2;
+			ColBox = true;
+		}
+	}
 }
 
 void Detail_Option::Shape()
@@ -95,40 +129,58 @@ void Detail_Option::Shape()
 
 void Detail_Option::Direction() //그 활성화 상태일때 오른쪽왼쪽누르면 되는것으로, 아닐땐 회색
 {
-	if (CollisionMgr::GetInst()->MouseWithBoxSize(Arrow_Button[0])) { // 화살표 왼쪽
-		Arrow_Button[0]->SetScale(1.5f,1.5f);
-		if (INPUT->GetButtonDown()||INPUT->GetKey(VK_LEFT)==KeyState::DOWN) {
-			GameMgr::GetInst()->Shape(true);
-			INPUT->ButtonDown(false);
+	if (m_Type == _Start) {
+		if (CollisionMgr::GetInst()->MouseWithBoxSize(Arrow_Button[2])) { // 화살표 왼쪽
+			Arrow_Button[2]->SetScale(1.5f, 1.5f);
+			if (INPUT->GetButtonDown() || INPUT->GetKey(VK_LEFT) == KeyState::DOWN) {
+				GameMgr::GetInst()->MeniMap(true);
+				INPUT->ButtonDown(false);
+			}
 		}
-	}
-	else if (CollisionMgr::GetInst()->MouseWithBoxSize(Arrow_Button[1])) { // 화살표 오른쪽
-		Arrow_Button[1]->SetScale(1.5f, 1.5f);
-		if (INPUT->GetButtonDown() || INPUT->GetKey(VK_RIGHT) == KeyState::DOWN) {
-			GameMgr::GetInst()->Shape(false);
-			INPUT->ButtonDown(false);
+		else if (CollisionMgr::GetInst()->MouseWithBoxSize(Arrow_Button[3])) { // 화살표 오른쪽
+			Arrow_Button[3]->SetScale(1.5f, 1.5f);
+			if (INPUT->GetButtonDown() || INPUT->GetKey(VK_RIGHT) == KeyState::DOWN) {
+				GameMgr::GetInst()->MeniMap(false);
+				INPUT->ButtonDown(false);
+			}
 		}
-	}
-	else {
-		Arrow_Button[0]->SetScale(1.f, 1.f);
-		Arrow_Button[1]->SetScale(1.f, 1.f);
-	}
-	if (INPUT->GetKey(VK_LEFT) == KeyState::DOWN) {
+		else {
+			Arrow_Button[2]->SetScale(1.f, 1.f);
+			Arrow_Button[3]->SetScale(1.f, 1.f);
+		}
+		if (INPUT->GetKey(VK_LEFT) == KeyState::DOWN) {
 			GameMgr::GetInst()->Shape(true);
-	}
-	else if (INPUT->GetKey(VK_RIGHT) == KeyState::DOWN) {
+		}
+		else if (INPUT->GetKey(VK_RIGHT) == KeyState::DOWN) {
 			GameMgr::GetInst()->Shape(false);
+		}
 	}
 }
 
-void Detail_Option::Init()
+void Detail_Option::Reset()
 {
+	GameMgr::GetInst()->m_MouseShape = MouseShape::none;
+	GameMgr::GetInst()->menimap = 1;
 }
 
 void Detail_Option::Update(float deltaTime, float Time)
 {
-	Mouse_Shape = UI::GetInst()->m_Mouse;
-	Mouse_Shape->SetPosition(1920 / 2, 1080 / 2);
+	if (m_Type == _Start) {
+		Mouse_Shape = UI::GetInst()->m_Mouse;
+		Minemap_Option = GameMgr::GetInst()->menimap;
+		if (Minemap_Option == 1) {
+			MineMap = Sprite::Create(L"Painting/Option/Game_Play/always.png");
+		}
+		else if (Minemap_Option == 2) {
+			MineMap = Sprite::Create(L"Painting/Option/Game_Play/notbattle.png");
+		}
+		else {
+			MineMap = Sprite::Create(L"Painting/Option/Game_Play/not_used.png");
+		}
+		Mouse_Shape->SetPosition(1920 / 2, 300);
+		
+		MineMap->SetPosition(1920 / 2, 550);
+	}
 	Name();
 	Order();
 	Direction();
@@ -140,8 +192,14 @@ void Detail_Option::Render()
 	Choice_Button[0]->Render();
 	Choice_Button[1]->Render();
 	Choice_Button[2]->Render();
-	Arrow_Button[0]->Render();
-	Arrow_Button[1]->Render();
-	m_Name[0]->Render();
-	Mouse_Shape->Render();
+	if (m_Type == _Start) {
+		for (int h = 0; h < 4; h++) {
+			Arrow_Button[h]->Render();
+		}
+		m_Name[0]->Render();
+		m_Name[1]->Render();
+		Mouse_Shape->Render();
+		MineMap->Render();
+	}
+
 }

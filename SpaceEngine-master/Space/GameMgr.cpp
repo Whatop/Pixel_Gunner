@@ -13,7 +13,8 @@ GameMgr::~GameMgr()
 
 void GameMgr::Init()
 {
-	shape = 0;
+	shape = 7;
+	menimap = 1;
 	Difficulty = 1;
 	_UICreate = false;
 	_PlayerCreate = false;
@@ -81,6 +82,26 @@ void GameMgr::Shape(bool dir)//false 위로 true 아래로
 	}
 	else if (shape == 7) {
 		m_MouseShape = MouseShape::none;
+	}
+}
+
+void GameMgr::MeniMap(bool add)
+{
+	if (add) {
+		if (menimap >= 3) {
+			menimap = 1;
+		}
+		else {
+			menimap++;
+		}
+	}
+	else {
+		if (menimap <= 1) {
+			menimap = 3;
+		}
+		else {
+			menimap--;
+		}
 	}
 }
 
