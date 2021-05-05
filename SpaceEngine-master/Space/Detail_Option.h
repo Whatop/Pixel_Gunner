@@ -10,18 +10,12 @@ class Detail_Option : public Object //키 바꾸는 것, 볼륨, 창 크기, UI 크기, 마우
 {
 private:
 	Sprite* m_BG;
-	//볼륨설정
-	Sprite* Sound;
 
 	//마우스 모양
 	Sprite* Mouse_Shape;
-
-	//창 크기
-	Sprite* Window;
-
+	
 	// 구르기, W, S, A, D,  
 	Sprite* KeyChange;
-
 
 	// 미니맵 표시 : 항상, 전투 중 제외, 사용 안 함 
 	Sprite* MineMap;
@@ -29,11 +23,14 @@ private:
 	// 화살표
 	Sprite* Arrow_Button[4];
 
-	// 감마
-	Sprite* Gamma;
-
 	//풀스크린
-	Sprite* FullScreen;
+	Sprite* Window;
+
+	// 해상도
+	Sprite* Resolution;
+
+	//사운드, 감마 바
+	Sprite* Bar[10];
 
 	// 체크박스
 	Sprite* CheckBox[10];

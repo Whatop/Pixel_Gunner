@@ -24,6 +24,12 @@ enum class MouseShape {
 	point,
 	none
 };
+enum class Player_Situation {
+	FIGHT, // 싸움
+	REST, // 가만히 
+	MOVE, // 움직임
+	NONE
+};
 class GameMgr : public Singleton<GameMgr> // UI 생성 및 삭제(UI관리함), 플레이어, 몬스터 스폰, 랭킹, 
 {
 private:
