@@ -1,7 +1,10 @@
 #pragma once
 class Stage1 : public Scene
 {
+	Sprite* m_BG;
+	Sprite* m_Obstacle[10];
 	bool m_Puase;
+
 public:
 	Stage1();
 	~Stage1();

@@ -41,7 +41,7 @@ private:
 	// 취소, 초기화, 확인 버튼
 	Sprite* Choice_Button[3];
 
-	int Line;
+	int m_Line;
 	bool ColBox;
 	int m_Type;
 	int Minemap_Option;
@@ -51,14 +51,17 @@ public:
 
 	void Order();
 	void Name();
-	void Shape();
-	void Direction();
-
 
 	void Reset();
 
 	void Update(float deltaTime, float Time);
 	void Render();
+
+	void Line();
+	void Start();
+	void Control();
+	void Vidio();
+	void Audio();
 
 };
 

@@ -30,6 +30,12 @@ enum class Player_Situation {
 	MOVE, // 움직임
 	NONE
 };
+enum class MeniMap_Option {
+	ALWAYS,
+	NOT_USED,
+	NOT_BATTLE,
+	NONE
+};
 class GameMgr : public Singleton<GameMgr> // UI 생성 및 삭제(UI관리함), 플레이어, 몬스터 스폰, 랭킹, 
 {
 private:
@@ -59,6 +65,7 @@ public:
 	int menimap;
 	CurrentScene m_Scene;
 	MouseShape m_MouseShape;
+	MeniMap_Option m_MeniMap;
 };
 
 	//else if (type == _Control) { // 컨트롤 : 키바꾸기(재장전,W,A,S,D,구르기), (아이템고민중)

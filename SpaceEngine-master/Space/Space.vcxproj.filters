@@ -82,6 +82,9 @@
     <ClCompile Include="Detail_Option.cpp">
       <Filter>Game\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Wall.cpp">
+      <Filter>Game\Stage</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -164,6 +167,9 @@
     </ClInclude>
     <ClInclude Include="Detail_Option.h">
       <Filter>Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall.h">
+      <Filter>Game\Stage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

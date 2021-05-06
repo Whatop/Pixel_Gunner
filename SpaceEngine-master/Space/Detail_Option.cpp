@@ -98,6 +98,7 @@ Detail_Option::Detail_Option(int type)
 		Bar[2]->SetPosition(1920 / 2, 700);
 	}
 	m_Type = type;
+	m_Line = 1;
 }
 
 Detail_Option::~Detail_Option()
@@ -107,37 +108,55 @@ Detail_Option::~Detail_Option()
 void Detail_Option::Order()
 {
 	if (CollisionMgr::GetInst()->MouseWithBoxSize(Choice_Button[0])) { //취소
-		Choice_Button[0]->R = 255;
-		Choice_Button[0]->G = 255;
-		Choice_Button[0]->B = 255;
+		for (int h = 0; h < 3; h++) {
+			if (h != 0) {
+				Choice_Button[h]->R = 120;
+				Choice_Button[h]->G = 120;
+				Choice_Button[h]->B = 120;
+			}
+		}
 		if (INPUT->GetButtonDown()) {
 			GameMgr::GetInst()->m_Scene = CurrentScene::NONE;
 			INPUT->ButtonDown(false);
 		}
-		Line = 1;
+		if (_Start) {
+			m_Line = 3;
+		}
 	}
 	else if (CollisionMgr::GetInst()->MouseWithBoxSize(Choice_Button[1])) { // 초기화
-		Choice_Button[1]->R = 255;
-		Choice_Button[1]->G = 255;
-		Choice_Button[1]->B = 255;
+		for (int h = 0; h < 3; h++) {
+			if (h != 1) {
+				Choice_Button[h]->R = 120;
+				Choice_Button[h]->G = 120;
+				Choice_Button[h]->B = 120;
+			}
+		}
 		if (INPUT->GetButtonDown()) {
 			Reset();
 			INPUT->ButtonDown(false);
 		}
-		Line = 2;
+		if (_Start) {
+			m_Line = 4;
+		}
 	}
 	else if (CollisionMgr::GetInst()->MouseWithBoxSize(Choice_Button[2])) { // 확인
-		Choice_Button[2]->R = 255;
-		Choice_Button[2]->G = 255;
-		Choice_Button[2]->B = 255;
+		for (int h = 0; h < 3; h++) {
+			if (h != 2) {
+				Choice_Button[h]->R = 120;
+				Choice_Button[h]->G = 120;
+				Choice_Button[h]->B = 120;
+			}
+		}
 		if (INPUT->GetButtonDown()) {
 			GameMgr::GetInst()->m_Scene = CurrentScene::NONE;
 			INPUT->ButtonDown(false);
 		}
-		Line = 3;
+		if (_Start) {
+			m_Line = 5;
+		}
 	}
 	else {
-		for (int h = 0; h < 3; h++) {
+		for (int h = 0; h < 3; h++) { 
 			Choice_Button[h]->R = 120;
 			Choice_Button[h]->G = 120;
 			Choice_Button[h]->B = 120;
@@ -159,75 +178,108 @@ void Detail_Option::Name()
 	}
 }
 
-void Detail_Option::Shape()
-{
-
-}
-
-void Detail_Option::Direction() //그 활성화 상태일때 오른쪽왼쪽누르면 되는것으로, 아닐땐 회색
+void Detail_Option::Reset()
 {
 	if (m_Type == _Start) {
-		if (CollisionMgr::GetInst()->MouseWithBoxSize(Arrow_Button[0])) { // 화살표 왼쪽
-			Arrow_Button[0]->SetScale(1.5f, 1.5f);
-			if (INPUT->GetButtonDown()) {
-				GameMgr::GetInst()->Shape(true);
-				INPUT->ButtonDown(false);
-			}
-			Line = 1;
-		}
-		else if (CollisionMgr::GetInst()->MouseWithBoxSize(Arrow_Button[1])) { // 화살표 오른쪽
-			Arrow_Button[1]->SetScale(1.5f, 1.5f);
-			if (INPUT->GetButtonDown()) {
-				GameMgr::GetInst()->Shape(false);
-				INPUT->ButtonDown(false);
-			}
-			Line = 2;
-		}
-		else {
-			Arrow_Button[2]->SetScale(1.f, 1.f);
-			Arrow_Button[3]->SetScale(1.f, 1.f);
-		}
-		if (INPUT->GetKey(VK_LEFT) == KeyState::DOWN) {
-			GameMgr::GetInst()->Shape(true);
-		}
-		else if (INPUT->GetKey(VK_RIGHT) == KeyState::DOWN) {
-			GameMgr::GetInst()->Shape(false);
-		}
+		GameMgr::GetInst()->m_MouseShape = MouseShape::none;
+		GameMgr::GetInst()->menimap = 1;
+	}
+}
 
-		if (CollisionMgr::GetInst()->MouseWithBoxSize(Arrow_Button[2])) { // 화살표 왼쪽
-			Arrow_Button[2]->SetScale(1.5f, 1.5f);
-			if (INPUT->GetButtonDown() || INPUT->GetKey(VK_LEFT) == KeyState::DOWN) {
+void Detail_Option::Update(float deltaTime, float Time)
+{
+	Name();
+	Start();
+	Order();
+	Line();
+}
+
+void Detail_Option::Line()
+{
+	if (m_Type == _Start) {
+		if (m_Line == 1) {
+			for (int h = 0; h < 2; h++) {
+				Arrow_Button[h]->R = 255;
+				Arrow_Button[h]->G = 255;
+				Arrow_Button[h]->B = 255;
+			}
+			m_Name[0]->R = 255;
+			m_Name[0]->G = 255;
+			m_Name[0]->B = 255;
+			Mouse_Shape->R = 255;
+			Mouse_Shape->G = 255;
+			Mouse_Shape->B = 255;
+
+			if (INPUT->GetKey(VK_LEFT) == KeyState::DOWN) {
+				GameMgr::GetInst()->Shape(true);
+			}
+			else if (INPUT->GetKey(VK_RIGHT) == KeyState::DOWN) {
+				GameMgr::GetInst()->Shape(false);
+			}
+		}
+		else if (m_Line == 2) {
+			for (int h = 2; h < 4; h++) {
+				Arrow_Button[h]->R = 255;
+				Arrow_Button[h]->G = 255;
+				Arrow_Button[h]->B = 255;
+			}
+			m_Name[1]->R = 255;
+			m_Name[1]->G = 255;
+			m_Name[1]->B = 255;
+			MineMap->R = 255;
+			MineMap->G = 255;
+			MineMap->B = 255;
+			if (INPUT->GetKey(VK_LEFT) == KeyState::DOWN) {
 				GameMgr::GetInst()->MeniMap(true);
-				INPUT->ButtonDown(false);
 			}
-		}
-		else if (CollisionMgr::GetInst()->MouseWithBoxSize(Arrow_Button[3])) { // 화살표 오른쪽
-			Arrow_Button[3]->SetScale(1.5f, 1.5f);
-			if (INPUT->GetButtonDown() || INPUT->GetKey(VK_RIGHT) == KeyState::DOWN) {
+			else if (INPUT->GetKey(VK_RIGHT) == KeyState::DOWN) {
 				GameMgr::GetInst()->MeniMap(false);
-				INPUT->ButtonDown(false);
 			}
 		}
-		else {
-			Arrow_Button[2]->SetScale(1.f, 1.f);
-			Arrow_Button[3]->SetScale(1.f, 1.f);
+		else if (m_Line == 3) {
+			Choice_Button[0]->R = 255;
+			Choice_Button[0]->G = 255;
+			Choice_Button[0]->B = 255;
+			if (INPUT->GetKey(VK_RETURN) == KeyState::DOWN) {
+				GameMgr::GetInst()->m_Scene = CurrentScene::NONE;
+			}
 		}
-		if (INPUT->GetKey(VK_LEFT) == KeyState::DOWN) {
-			GameMgr::GetInst()->MeniMap(true);
+		else if (m_Line == 4) {
+			Choice_Button[1]->R = 255;
+			Choice_Button[1]->G = 255;
+			Choice_Button[1]->B = 255;
+			if (INPUT->GetKey(VK_RETURN) == KeyState::DOWN) {
+				Reset();
+			}
 		}
-		else if (INPUT->GetKey(VK_RIGHT) == KeyState::DOWN) {
-			GameMgr::GetInst()->MeniMap(false);
+		else if (m_Line == 5) {
+			Choice_Button[2]->R = 255;
+			Choice_Button[2]->G = 255;
+			Choice_Button[2]->B = 255;
+			if (INPUT->GetKey(VK_RETURN) == KeyState::DOWN) {
+				GameMgr::GetInst()->m_Scene = CurrentScene::NONE;
+			}
+		}
+		if (INPUT->GetKey(VK_DOWN) == KeyState::DOWN) {
+			if (m_Line >= 5) {
+				m_Line = 1;
+			}
+			else {
+				m_Line++;
+			}
+		}
+		else if (INPUT->GetKey(VK_UP) == KeyState::DOWN) {
+			if (m_Line <= 1) {
+				m_Line = 5;
+			}
+			else {
+				m_Line--;
+			}
 		}
 	}
 }
 
-void Detail_Option::Reset()
-{
-	GameMgr::GetInst()->m_MouseShape = MouseShape::none;
-	GameMgr::GetInst()->menimap = 1;
-}
-
-void Detail_Option::Update(float deltaTime, float Time)
+void Detail_Option::Start()
 {
 	if (m_Type == _Start) {
 		Mouse_Shape = UI::GetInst()->m_Mouse;
@@ -242,12 +294,83 @@ void Detail_Option::Update(float deltaTime, float Time)
 			MineMap = Sprite::Create(L"Painting/Option/Game_Play/not_used.png");
 		}
 		Mouse_Shape->SetPosition(1920 / 2, 300);
-		
+
 		MineMap->SetPosition(1920 / 2, 550);
+
+		if (CollisionMgr::GetInst()->MouseWithBoxSize(Arrow_Button[0])) { // 화살표 왼쪽
+
+			Arrow_Button[0]->SetScale(1.5f, 1.5f);
+			if (INPUT->GetButtonDown()) {
+				GameMgr::GetInst()->Shape(true);
+				INPUT->ButtonDown(false);
+			}
+			m_Line = 1;
+		}
+		else if (CollisionMgr::GetInst()->MouseWithBoxSize(Arrow_Button[1])) { // 화살표 오른쪽
+			Arrow_Button[1]->SetScale(1.5f, 1.5f);
+			if (INPUT->GetButtonDown()) {
+				GameMgr::GetInst()->Shape(false);
+				INPUT->ButtonDown(false);
+			}
+			m_Line = 1;
+		}
+		else {
+			for (int h = 0; h < 2; h++) {
+				Arrow_Button[h]->R = 120;
+				Arrow_Button[h]->G = 120;
+				Arrow_Button[h]->B = 120;
+				Arrow_Button[h]->SetScale(1.f, 1.f);
+			}
+			m_Name[0]->R = 120;
+			m_Name[0]->G = 120;
+			m_Name[0]->B = 120;
+			Mouse_Shape->R = 120;
+			Mouse_Shape->G = 120;
+			Mouse_Shape->B = 120;
+		}
+		if (CollisionMgr::GetInst()->MouseWithBoxSize(Arrow_Button[2])) { // 화살표 왼쪽
+			Arrow_Button[2]->SetScale(1.5f, 1.5f);
+			if (INPUT->GetButtonDown() || INPUT->GetKey(VK_LEFT) == KeyState::DOWN) {
+				GameMgr::GetInst()->MeniMap(true);
+				INPUT->ButtonDown(false);
+			}
+			m_Line = 2;
+		}
+		else if (CollisionMgr::GetInst()->MouseWithBoxSize(Arrow_Button[3])) { // 화살표 오른쪽
+			Arrow_Button[3]->SetScale(1.5f, 1.5f);
+			if (INPUT->GetButtonDown() || INPUT->GetKey(VK_RIGHT) == KeyState::DOWN) {
+				GameMgr::GetInst()->MeniMap(false);
+				INPUT->ButtonDown(false);
+			}
+			m_Line = 2;
+		}
+		else {
+			for (int h = 2; h < 4; h++) {
+				Arrow_Button[h]->R = 120;
+				Arrow_Button[h]->G = 120;
+				Arrow_Button[h]->B = 120;
+				Arrow_Button[h]->SetScale(1.f, 1.f);
+			}
+			m_Name[1]->R = 120;
+			m_Name[1]->G = 120;
+			m_Name[1]->B = 120; 
+			MineMap->R = 120;
+			MineMap->G = 120;
+			MineMap->B = 120;
+		}
 	}
-	Name();
-	Order();
-	Direction();
+}
+
+void Detail_Option::Control()
+{
+}
+
+void Detail_Option::Vidio()
+{
+}
+
+void Detail_Option::Audio()
+{
 }
 
 void Detail_Option::Render()
