@@ -102,12 +102,13 @@ void Player::Dash()
 
 void Player::Update(float deltaTime, float Time)
 {
-	Camera::GetInst()->Follow(this);
 	Move();
 	Dash();
 	WeaponRotate();
 	Shooting();
 	Buff();
+	Camera::GetInst()->Temp(this);
+	Camera::GetInst()->Follow(this);
 }
 
 void Player::Render()
