@@ -61,10 +61,23 @@ void Input::KeyBoardUpdate()
 
 void Input::MouseUpdate()
 {
-	POINT position;
+	RECT rc;
+	POINT position,p1,p2;
+	GetClientRect(App::GetInst()->GetHwnd(), &rc);
+	p1.x = rc.left;
+	p1.y = rc.top;
+	p2.x = rc.right;
+	p2.y = rc.bottom;
+	ClientToScreen(App::GetInst()->GetHwnd(), &p1);
+	ClientToScreen(App::GetInst()->GetHwnd(), &p2);
+	rc.left = p1.x;
+	rc.top = p1.y;
+	rc.right = p2.x;
+	rc.bottom = p2.y;
+	ClipCursor(&rc);
 	GetCursorPos(&position);
 	ScreenToClient(App::GetInst()->GetHwnd(), &position);
 
-	m_MousePosition.x = static_cast<float>(position.x) + Camera::GetInst()->m_TempPos.x;
-	m_MousePosition.y = static_cast<float>(position.y) + Camera::GetInst()->m_TempPos.y;
+	m_MousePosition.x = static_cast<float>(position.x) + Camera::GetInst()->m_Position.x;
+	m_MousePosition.y = static_cast<float>(position.y) + Camera::GetInst()->m_Position.y;
 }

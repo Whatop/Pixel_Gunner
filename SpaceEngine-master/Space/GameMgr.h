@@ -6,7 +6,6 @@ enum class Game_Difficulty {
 	HARD,
 	NONE
 };
-
 enum class CurrentScene {
 	MAINSCENE,
 	OPTION,
@@ -53,6 +52,7 @@ public:
 	void MeniMap(bool add);
 	void CreateUI();
 	void ReleaseUI();
+	void CreateObstacle();
 	void CreatePlayer();
 	void CreateMonster();
 	void AddDifficulty();

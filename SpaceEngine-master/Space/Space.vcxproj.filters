@@ -85,6 +85,9 @@
     <ClCompile Include="Wall.cpp">
       <Filter>Game\Stage</Filter>
     </ClCompile>
+    <ClCompile Include="Obstacle.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -170,6 +173,9 @@
     </ClInclude>
     <ClInclude Include="Wall.h">
       <Filter>Game\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Obstacle.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

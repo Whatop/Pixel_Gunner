@@ -45,8 +45,6 @@ Sprite* Sprite::Create(std::wstring fileName,D3DCOLOR color)
 	}
 }
 
-
-
 void Sprite::Render()
 {
 	if (m_Parent)
@@ -71,7 +69,7 @@ void Sprite::Render()
 		transForm = GetMatrix();
 	else
 		transForm = Camera::GetInst()->GetWorld() * GetMatrix();
-	
+
 	m_pSp->SetTransform(&transForm);
 
 	D3DXVECTOR3 center = D3DXVECTOR3(m_Size.x / 2, m_Size.y / 2, 0);

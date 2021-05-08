@@ -14,8 +14,8 @@ MainScene::~MainScene()
 
 void MainScene::Init() //
 {
+
 	GameMgr::GetInst()->m_Scene = CurrentScene::MAINSCENE;
-	GameMgr::GetInst()->m_MouseShape = MouseShape::none;
 	GameMgr::GetInst()->CreateUI();
 	BackGround = Sprite::Create(L"Painting/TestBackGround.png");
 	BackGround->SetPosition(1920 / 2, 1080 / 2);
@@ -45,9 +45,8 @@ void MainScene::Release()
 void MainScene::Update(float deltaTime, float time)
 // 마우스 닿고 있을때 키보드 못하도록 할수없나 근대 이거하려
 {
-
 	if (INPUT->GetKey(VK_F2) == KeyState::DOWN) {
-			GameMgr::GetInst()->Shape(false);
+		GameMgr::GetInst()->Shape(false);
 	}
 	else if (INPUT->GetKey(VK_F3) == KeyState::DOWN) {
 		GameMgr::GetInst()->Shape(true);

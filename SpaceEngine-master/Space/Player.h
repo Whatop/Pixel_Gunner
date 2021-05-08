@@ -1,13 +1,14 @@
 #pragma once
 
 enum class Weapon_Type {
-	BASIC,
 	GUN1,
 	GUN2,
+	BASICGUN,
 	MELEE,
 	GRENADE,
 	NONE
 };
+
 // 1번 기본무기, 2번 무기, 3번 근접무기, 4번 슈류탄
 class Player : public Object
 {
@@ -15,6 +16,8 @@ private:
 	Sprite* m_Player;
 	Sprite* m_Hand;
 	Sprite* m_Weapon;//이거 따로만들까 고민중 일단 만들기
+	
+	int m_Type;
 
 	float m_Speed;
 	float DelayTime;
@@ -23,11 +26,14 @@ private:
 	float m_DashTime;
 
 	bool m_Dash;
+	int HaveGun;
+
 
 	Vec2 Dire;
 	Vec2 Mouse;
 
-	Weapon_Type Weapon;
+	Weapon_Type m_Weapon_Type;
+	std::vector<std::string>m_Weapon_Tag;//이걸로 무기의 
 public:
 	Player();
 	Player(Vec2 Pos);
@@ -35,6 +41,7 @@ public:
 	
 	void Move();
 	void WeaponRotate();
+	void Weapon();
 	void Shooting();
 	void Buff();
 	void Dash();

@@ -17,7 +17,7 @@ void UI::Init() // ÃÑ Ä­ + ÃÑ¾Ë Ä­ + HP + µîµî
 
 	m_UI = new TextMgr();
 	m_UI->Init(42, true, false, "±¼¸²");
-	m_UI->SetColor(255, 0, 0, 0);
+	m_UI->SetColor(255, 255, 255, 255);
 }
 
 void UI::Release()

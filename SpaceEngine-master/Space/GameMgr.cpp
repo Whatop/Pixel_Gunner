@@ -2,6 +2,8 @@
 #include "GameMgr.h"
 #include "UI.h"
 #include "Player.h"
+#include "Wall.h"
+#include "Obstacle.h"
 
 GameMgr::GameMgr()
 {
@@ -18,6 +20,8 @@ void GameMgr::Init()
 	Difficulty = 1;
 	_UICreate = false;
 	_PlayerCreate = false;
+	GameMgr::GetInst()->m_MouseShape = MouseShape::none;
+	GameMgr::GetInst()->m_Scene = CurrentScene::NONE;
 }
 
 void GameMgr::CreateUI()
@@ -31,6 +35,38 @@ void GameMgr::ReleaseUI()
 	UI::GetInst()->Release();
 	UI::GetInst()->ReleaseInst();
 	_UICreate = false;
+}
+
+void GameMgr::CreateObstacle()
+{
+	if (GameMgr::GetInst()->m_Scene == CurrentScene::STAGE1) {
+		for (int i = 1; i < 187; i++)
+		{
+			ObjMgr->AddObject(new Wall(Vec2(1920 - 40, 80 * -i + 1080 + 40)), "Wall");
+			ObjMgr->AddObject(new Wall(Vec2(40, 80 * -i + 1080 + 40)), "Wall");
+
+		}
+		for (int i = 1; i < 24; i++)
+		{
+			ObjMgr->AddObject(new Wall(Vec2(80 * -i - 40 + 1920, -14920 + 1160)), "Wall");
+			ObjMgr->AddObject(new Wall(Vec2(80 * -i - 40 + 1920, 1080 - 40)), "Wall");
+		};
+		for (int i = 2; i < 11; i++)
+		{
+			ObjMgr->AddObject(new Wall(Vec2(80 * -i - 40 + 1920, -400)), "Wall");
+		} // 1차 성벽 오른쪽
+		for (int i = 2; i < 11; i++)
+		{
+			ObjMgr->AddObject(new Wall(Vec2(80 * i - 40, -400)), "Wall");
+		} // 1차 성벽 왼쪽
+		ObjMgr->AddObject(new Obstacle(L"Painting/Stage1/Obstacle_1.png", Vec2(500, 300)), "Wall");
+		ObjMgr->AddObject(new Obstacle(L"Painting/Stage1/Obstacle_2.png", Vec2(1500, 0)), "Wall");
+		ObjMgr->AddObject(new Obstacle(L"Painting/Stage1/Obstacle_2.png", Vec2(400, 700)), "Wall");
+		ObjMgr->AddObject(new Obstacle(L"Painting/Stage1/Obstacle_3.png", Vec2(1500, 650)), "Wall");
+	}
+	else if (GameMgr::GetInst()->m_Scene == CurrentScene::STAGE2) {
+
+	}
 }
 
 void GameMgr::CreatePlayer()

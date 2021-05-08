@@ -5,7 +5,7 @@ Wall::Wall(Vec2 Pos)
 {
 	m_Wall = Sprite::Create(L"Painting/Stage1/Wall.png");
 	m_Wall->SetParent(this);
-	m_Wall->SetPosition(Pos);
+	SetPosition(Pos);
 }
 
 Wall::~Wall()
