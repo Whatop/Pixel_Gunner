@@ -2,6 +2,7 @@
 #include "Stage1.h"
 #include "Player.h"
 #include "Obstacle.h"
+#include "Weapon.h"
 
 Stage1::Stage1()
 {
@@ -21,7 +22,7 @@ void Stage1::Init()
 	
 
 	ObjMgr->AddObject(new Player, "Player");
-	ObjMgr->AddObject(new Obstacle(L"Painting/Weapon/Test.png",Vec2(1920/2,-300)), "Weapon");
+	ObjMgr->AddObject(new Weapon(L"Painting/Weapon/Test.png","MK47",Vec2(1920/2,-300)), "Weapon");
 }
 
 void Stage1::Update(float deltaTime, float Time)

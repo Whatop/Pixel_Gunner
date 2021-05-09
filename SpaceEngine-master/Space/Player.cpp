@@ -11,6 +11,10 @@ Player::Player()
 
 	m_Hand = Sprite::Create(L"Painting/Player/Hand.png");
 	m_Hand->SetPosition(500, 500);
+
+	m_Weapon = Sprite::Create(L"Painting/Player/Hand.png");
+	m_Weapon->SetPosition(500, 500);
+
 	m_Speed = 5.f;
 	DelayTime = 0;
 	m_Dash = false;
@@ -18,6 +22,14 @@ Player::Player()
 	m_DashCooltime = 0;
 	m_DashTime = 0;
 	m_Type = 1;
+	HaveGun = 0;
+	m_Weapon_Type = Weapon_Type::GUN1;
+	m_Weapon_Tag.clear();
+	m_Weapon_Tag.push_back("GUN1");
+	m_Weapon_Tag.push_back("GUN2");
+	m_Weapon_Tag.push_back("기본 무기");
+	m_Weapon_Tag.push_back("근접 무기");
+	m_Weapon_Tag.push_back("수류탄");
 }
 
 Player::Player(Vec2 Pos)
@@ -28,6 +40,10 @@ Player::Player(Vec2 Pos)
 
 	m_Hand = Sprite::Create(L"Painting/Player/Hand.png");
 	m_Hand->SetPosition(Pos);
+
+	m_Weapon = Sprite::Create(L"Painting/Player/Hand.png");
+	m_Weapon->SetPosition(Pos);
+
 	m_Speed = 5.f;
 	DelayTime = 0;
 	m_Dash = false;
@@ -36,6 +52,13 @@ Player::Player(Vec2 Pos)
 	m_DashTime = 0.f;
 	m_Type = 1;
 	HaveGun = 0;
+	m_Weapon_Type = Weapon_Type::NONE;
+	m_Weapon_Tag.clear();
+	m_Weapon_Tag.push_back("GUN1");
+	m_Weapon_Tag.push_back("GUN2");
+	m_Weapon_Tag.push_back("기본 무기");
+	m_Weapon_Tag.push_back("근접 무기");
+	m_Weapon_Tag.push_back("수류탄");
 }
 
 Player::~Player()
@@ -66,14 +89,15 @@ void Player::WeaponRotate()
 	m_Hand->SetPosition(m_Position.x, m_Position.y);
 }
 
-void Player::Weapon()
+void Player::Weapon_Type()
 {
+	
 	ObjMgr->CollisionCheak(this, "Weapon");
 	// 1번 기본 무기, 2번 근접무기, 3번 슈류탄
 	
 	if (INPUT->GetKey('1')==KeyState::DOWN) { 
 		if (HaveGun == 1) {
-			m_Weapon_Type = Weapon_Type::GUN2;
+			m_Weapon_Type = Weapon_Type::GUN1;
 		}
 		if (HaveGun == 2) {
 			m_Weapon_Type = Weapon_Type::GUN1;
@@ -118,6 +142,29 @@ void Player::Weapon()
 		if (INPUT->GetKey('5') == KeyState::DOWN) {
 			m_Weapon_Type = Weapon_Type::GRENADE;
 		}
+	}
+	if (HaveGun == 0) {
+		m_Weapon->m_Visible = false;
+	}
+	else {
+		m_Weapon->m_Visible = true;
+	}
+
+	if (m_Weapon_Type == Weapon_Type::GUN1) {
+		if (m_Weapon_Tag.at(1)=="MK47") {
+			if (m_Weapon->m_Rotation > -1.5 && m_Weapon->m_Rotation < 1.5) {
+				m_Weapon = Sprite::Create(L"Painting/Weapon/Weapon_1.png");
+			}
+			else {
+				m_Weapon = Sprite::Create(L"Painting/Weapon/Weapon_2.png");
+			}
+			m_Weapon->m_Position = m_Hand->m_Position;
+			m_Weapon->m_Rotation = m_Hand->m_Rotation;
+			std::cout << m_Weapon->m_Rotation << std::endl;
+		}
+	}
+	else if (m_Weapon_Type == Weapon_Type::GUN2) {
+		m_Weapon_Tag.at(2);
 	}
 }
 
@@ -167,7 +214,7 @@ void Player::Update(float deltaTime, float Time)
 	WeaponRotate();
 	Shooting();
 	Buff();
-	Weapon();
+	Weapon_Type();
 	//Camera::GetInst()->Temp(this);
 }
 
@@ -175,6 +222,7 @@ void Player::Render()
 {
 	m_Player->Render();
 	m_Hand->Render();
+	m_Weapon->Render();
 }
 
 void Player::OnCollision(Object* obj)
@@ -182,6 +230,10 @@ void Player::OnCollision(Object* obj)
 	if (obj->m_Tag == "Weapon") {
 		if (INPUT->GetKey('E') == KeyState::DOWN) {
 			HaveGun++;
+			m_Weapon_Tag.at(1) = obj->m_WeaponName;
+			std::cout << m_Weapon_Tag.at(1) << std::endl;
+			std::cout <<"가지고있는 총 : " <<HaveGun << std::endl;
+			std::cout <<"몇번 칸 : "<<(int)m_Weapon_Type << std::endl;
 		}
 	}
 }

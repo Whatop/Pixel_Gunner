@@ -11,6 +11,7 @@ Object::Object() :
 	, m_Visible(true)
 	, m_Layer(0)
 	, m_Tag("UnNamed")
+	, m_WeaponName("UnWeapon")
 	, m_RotationCenter(0.f, 0.f)
 	, m_Parent(nullptr)
 	, m_Radius(0.f)

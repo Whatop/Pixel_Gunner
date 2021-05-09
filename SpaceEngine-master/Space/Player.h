@@ -33,7 +33,7 @@ private:
 	Vec2 Mouse;
 
 	Weapon_Type m_Weapon_Type;
-	std::vector<std::string>m_Weapon_Tag;//이걸로 무기의 
+	std::vector<std::string>m_Weapon_Tag;
 public:
 	Player();
 	Player(Vec2 Pos);
@@ -41,7 +41,7 @@ public:
 	
 	void Move();
 	void WeaponRotate();
-	void Weapon();
+	void Weapon_Type();
 	void Shooting();
 	void Buff();
 	void Dash();

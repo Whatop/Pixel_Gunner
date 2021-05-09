@@ -88,6 +88,9 @@
     <ClCompile Include="Obstacle.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -175,6 +178,9 @@
       <Filter>Game\Stage</Filter>
     </ClInclude>
     <ClInclude Include="Obstacle.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
       <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
