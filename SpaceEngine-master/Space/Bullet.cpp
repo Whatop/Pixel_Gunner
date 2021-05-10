@@ -7,6 +7,7 @@ Bullet::Bullet(std::wstring filename, Vec2 arrival, Vec2 pos, float speed)
 	m_Bullet->SetParent(this);
 
 	SetPosition(pos);
+	m_Layer = -2;
 	Dire = arrival;
 	m_Speed = speed;
 	m_Timer = 0.f;

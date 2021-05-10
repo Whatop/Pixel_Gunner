@@ -71,8 +71,9 @@ void GameMgr::CreateObstacle()
 
 void GameMgr::CreatePlayer()
 {
-	_PlayerCreate = true;
-	ObjMgr->AddObject(new Player,"Player");
+	_PlayerCreate = true;	
+	ObjMgr->AddObject(new Player(Vec2(500, 500)), "Player");
+
 }
 
 void GameMgr::CreateMonster()

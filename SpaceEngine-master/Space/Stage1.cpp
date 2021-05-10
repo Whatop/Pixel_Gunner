@@ -16,12 +16,10 @@ void Stage1::Init()
 {
 	GameMgr::GetInst()->m_Scene = CurrentScene::STAGE1;
 	GameMgr::GetInst()->CreateObstacle();
+	GameMgr::GetInst()->CreatePlayer();
 	m_BG = Sprite::Create(L"Painting/Stage1/BG.png");
 	m_BG->SetPosition(1920 / 2, 1080-m_BG->m_Size.y/2);
 
-	
-
-	ObjMgr->AddObject(new Player, "Player");
 	ObjMgr->AddObject(new Weapon(L"Painting/Weapon/Test.png","MK47",Vec2(1920/2,-300)), "Weapon");
 }
 

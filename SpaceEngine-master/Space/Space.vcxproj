@@ -51,6 +51,7 @@
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="Wall.cpp" />
     <ClCompile Include="Weapon.cpp" />
+    <ClCompile Include="Weapon_case.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -83,6 +84,7 @@
     <ClInclude Include="UI.h" />
     <ClInclude Include="Wall.h" />
     <ClInclude Include="Weapon.h" />
+    <ClInclude Include="Weapon_case.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

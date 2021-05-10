@@ -88,6 +88,9 @@
     <ClCompile Include="Obstacle.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="Weapon_case.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
     <ClCompile Include="Weapon.cpp">
       <Filter>Game</Filter>
     </ClCompile>
@@ -178,6 +181,9 @@
       <Filter>Game\Stage</Filter>
     </ClInclude>
     <ClInclude Include="Obstacle.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon_case.h">
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Weapon.h">

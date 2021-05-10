@@ -14,7 +14,8 @@ class Player : public Object
 {
 private:
 	Sprite* m_Player;
-	Sprite* m_Hand;
+	Sprite* m_Hand_Left;
+	Sprite* m_Hand_Right;
 	Sprite* m_Weapon;//이거 따로만들까 고민중 일단 만들기
 	
 	int m_Type;
@@ -35,11 +36,11 @@ private:
 	Weapon_Type m_Weapon_Type;
 	std::vector<std::string>m_Weapon_Tag;
 public:
-	Player();
 	Player(Vec2 Pos);
 	~Player();
 	
 	void Move();
+	void Hand();
 	void WeaponRotate();
 	void Weapon_Type();
 	void Shooting();

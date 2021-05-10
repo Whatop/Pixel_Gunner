@@ -3,46 +3,24 @@
 #include "Bullet.h"
 #include "Evasion.h"
 
-Player::Player()
-{
-	m_Player = Sprite::Create(L"Painting/Player/Player.png");
-	m_Player->SetParent(this);
-	SetPosition(1920/2,1080/2);
-
-	m_Hand = Sprite::Create(L"Painting/Player/Hand.png");
-	m_Hand->SetPosition(500, 500);
-
-	m_Weapon = Sprite::Create(L"Painting/Player/Hand.png");
-	m_Weapon->SetPosition(500, 500);
-
-	m_Speed = 5.f;
-	DelayTime = 0;
-	m_Dash = false;
-	m_Timer = 0;
-	m_DashCooltime = 0;
-	m_DashTime = 0;
-	m_Type = 1;
-	HaveGun = 0;
-	m_Weapon_Type = Weapon_Type::GUN1;
-	m_Weapon_Tag.clear();
-	m_Weapon_Tag.push_back("GUN1");
-	m_Weapon_Tag.push_back("GUN2");
-	m_Weapon_Tag.push_back("기본 무기");
-	m_Weapon_Tag.push_back("근접 무기");
-	m_Weapon_Tag.push_back("수류탄");
-}
-
 Player::Player(Vec2 Pos)
 {
 	m_Player = Sprite::Create(L"Painting/Player/Player.png");
 	m_Player->SetParent(this);
 	SetPosition(Pos);
+	m_Layer = 0;
 
-	m_Hand = Sprite::Create(L"Painting/Player/Hand.png");
-	m_Hand->SetPosition(Pos);
+	m_Hand_Left = Sprite::Create(L"Painting/Player/Hand.png");
+	m_Hand_Left->SetPosition(Pos);
+	m_Hand_Left->m_Layer = 1;
 
-	m_Weapon = Sprite::Create(L"Painting/Player/Hand.png");
+	m_Hand_Right = Sprite::Create(L"Painting/Player/Hand.png");
+	m_Hand_Right->SetPosition(Pos);
+	m_Hand_Right->m_Layer = 1;
+
+	m_Weapon = Sprite::Create(L"Painting/Weapon/Weapon_1.png");
 	m_Weapon->SetPosition(Pos);
+	m_Weapon->m_Layer = -1;
 
 	m_Speed = 5.f;
 	DelayTime = 0;
@@ -52,13 +30,22 @@ Player::Player(Vec2 Pos)
 	m_DashTime = 0.f;
 	m_Type = 1;
 	HaveGun = 0;
+
 	m_Weapon_Type = Weapon_Type::NONE;
+
 	m_Weapon_Tag.clear();
 	m_Weapon_Tag.push_back("GUN1");
 	m_Weapon_Tag.push_back("GUN2");
 	m_Weapon_Tag.push_back("기본 무기");
 	m_Weapon_Tag.push_back("근접 무기");
 	m_Weapon_Tag.push_back("수류탄");
+
+
+	std::cout << "-0번째 : " << m_Weapon_Tag.at(0) << std::endl;
+	std::cout << "-1번째 : " << m_Weapon_Tag.at(1) << std::endl;
+	std::cout << "-2번째 : " << m_Weapon_Tag.at(2) << std::endl;
+	std::cout << "-3번째 : " << m_Weapon_Tag.at(3) << std::endl;
+	std::cout << "-4번째 : " << m_Weapon_Tag.at(4) << std::endl;
 }
 
 Player::~Player()
@@ -81,17 +68,31 @@ void Player::Move()
 	}
 }
 
+void Player::Hand()
+{
+	m_Hand_Left->SetPosition(m_Position.x - 30, m_Position.y + 15);
+	m_Hand_Right->SetPosition(m_Position.x + 30, m_Position.y + 15);
+}
+
 void Player::WeaponRotate()
 {
-	Mouse = INPUT->GetMousePos() - m_Hand->m_Position;
+	//   1.5
+	//3 	  0
+	//	 1.5
+	Mouse = INPUT->GetMousePos() - m_Weapon->m_Position;
 	D3DXVec2Normalize(&Dire, &Mouse);
-	m_Hand->m_Rotation=(std::atan2(Dire.y, Dire.x));
-	m_Hand->SetPosition(m_Position.x, m_Position.y);
+	m_Weapon->m_Rotation=(std::atan2(Dire.y, Dire.x));
+	if (m_Weapon->m_Rotation > -1.5f && m_Weapon->m_Rotation < 1.5f) {
+		m_Weapon->SetPosition(m_Hand_Right->m_Position.x + m_Hand_Right->m_Size.x + 10 * m_Weapon->m_Rotation, m_Hand_Right->m_Position.y + 10 * m_Weapon->m_Rotation);
+	}
+	else {
+		m_Weapon->SetPosition(m_Hand_Left->m_Position.x - m_Hand_Right->m_Size.x - 10 * m_Weapon->m_Rotation, m_Hand_Left->m_Position.y + 10 * m_Weapon->m_Rotation);
+	}
+	std::cout << m_Weapon->m_Rotation << std::endl;
 }
 
 void Player::Weapon_Type()
 {
-	
 	ObjMgr->CollisionCheak(this, "Weapon");
 	// 1번 기본 무기, 2번 근접무기, 3번 슈류탄
 	
@@ -99,7 +100,7 @@ void Player::Weapon_Type()
 		if (HaveGun == 1) {
 			m_Weapon_Type = Weapon_Type::GUN1;
 		}
-		if (HaveGun == 2) {
+		else if (HaveGun == 2) {
 			m_Weapon_Type = Weapon_Type::GUN1;
 		}
 		else {
@@ -149,7 +150,6 @@ void Player::Weapon_Type()
 	else {
 		m_Weapon->m_Visible = true;
 	}
-
 	if (m_Weapon_Type == Weapon_Type::GUN1) {
 		if (m_Weapon_Tag.at(1)=="MK47") {
 			if (m_Weapon->m_Rotation > -1.5 && m_Weapon->m_Rotation < 1.5) {
@@ -158,9 +158,6 @@ void Player::Weapon_Type()
 			else {
 				m_Weapon = Sprite::Create(L"Painting/Weapon/Weapon_2.png");
 			}
-			m_Weapon->m_Position = m_Hand->m_Position;
-			m_Weapon->m_Rotation = m_Hand->m_Rotation;
-			std::cout << m_Weapon->m_Rotation << std::endl;
 		}
 	}
 	else if (m_Weapon_Type == Weapon_Type::GUN2) {
@@ -173,7 +170,13 @@ void Player::Shooting()
 	if (m_Type == 1) {
 		DelayTime += dt;
 		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
-			ObjMgr->AddObject(new Bullet(L"Painting/Player/Bullet.png", Dire, m_Hand->m_Position, 1550), "Bullet");
+			
+			if (m_Weapon->m_Rotation > -1.5 && m_Weapon->m_Rotation < 1.5) {
+				ObjMgr->AddObject(new Bullet(L"Painting/Player/Bullet.png", Dire, m_Weapon->m_Position, 1550), "Bullet");
+			}
+			else {
+				ObjMgr->AddObject(new Bullet(L"Painting/Player/Bullet.png", Dire, m_Weapon->m_Position, 1550), "Bullet");
+			}
 			DelayTime = 0;
 		}
 	}
@@ -213,7 +216,8 @@ void Player::Update(float deltaTime, float Time)
 	Camera::GetInst()->Follow(this);
 	WeaponRotate();
 	Shooting();
-	Buff();
+	Buff(); 
+	Hand();
 	Weapon_Type();
 	//Camera::GetInst()->Temp(this);
 }
@@ -221,7 +225,8 @@ void Player::Update(float deltaTime, float Time)
 void Player::Render()
 {
 	m_Player->Render();
-	m_Hand->Render();
+	m_Hand_Left->Render();
+	m_Hand_Right->Render();
 	m_Weapon->Render();
 }
 
@@ -231,7 +236,7 @@ void Player::OnCollision(Object* obj)
 		if (INPUT->GetKey('E') == KeyState::DOWN) {
 			HaveGun++;
 			m_Weapon_Tag.at(1) = obj->m_WeaponName;
-			std::cout << m_Weapon_Tag.at(1) << std::endl;
+			std::cout << "첫번째 총 : " << m_Weapon_Tag.at(1) << std::endl;
 			std::cout <<"가지고있는 총 : " <<HaveGun << std::endl;
 			std::cout <<"몇번 칸 : "<<(int)m_Weapon_Type << std::endl;
 		}
