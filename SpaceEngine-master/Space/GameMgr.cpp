@@ -17,6 +17,7 @@ void GameMgr::Init()
 {
 	shape = 7;
 	menimap = 1;
+	HaveGun = 0;
 	Difficulty = 1;
 	_UICreate = false;
 	_PlayerCreate = false;
@@ -158,4 +159,64 @@ void GameMgr::AddDifficulty()
 		GameDifficulty = Game_Difficulty::HARD;
 	}
 	Difficulty++;
+}
+
+void GameMgr::Weapon_Holding()
+{
+	// 1번 기본 무기, 2번 근접무기, 3번 슈류탄
+
+	if (INPUT->GetKey('1') == KeyState::DOWN) {
+		if (HaveGun == 1) {
+			m_Weapon_Type = Weapon_Type::GUN1;
+		}
+		else if (HaveGun == 2) {
+			m_Weapon_Type = Weapon_Type::GUN1;
+		}
+		else {
+			m_Weapon_Type = Weapon_Type::BASICGUN;
+		}
+	}
+	else if (INPUT->GetKey('2') == KeyState::DOWN) {
+		if (HaveGun == 1) {
+			m_Weapon_Type = Weapon_Type::BASICGUN;
+		}
+		else if (HaveGun == 2) {
+			m_Weapon_Type = Weapon_Type::GUN2;
+		}
+		else {
+			m_Weapon_Type = Weapon_Type::MELEE;
+		}
+	}
+	else if (INPUT->GetKey('3') == KeyState::DOWN) {
+		if (HaveGun == 1) {
+			m_Weapon_Type = Weapon_Type::MELEE;
+		}
+		else if (HaveGun == 2) {
+			m_Weapon_Type = Weapon_Type::BASICGUN;
+		}
+		else {
+			m_Weapon_Type = Weapon_Type::GRENADE;
+		}
+	}
+	if (HaveGun == 1) {
+		if (INPUT->GetKey('4') == KeyState::DOWN) {
+			if (HaveGun == 2) {
+				m_Weapon_Type = Weapon_Type::MELEE;
+			}
+			else {
+				m_Weapon_Type = Weapon_Type::GRENADE;
+			}
+		}
+	}
+	if (HaveGun == 2) {
+		if (INPUT->GetKey('5') == KeyState::DOWN) {
+			m_Weapon_Type = Weapon_Type::GRENADE;
+		}
+	}
+
+	if (m_Weapon_Type == Weapon_Type::GUN1) {
+		
+	}
+	else if (m_Weapon_Type == Weapon_Type::GUN2) {
+	}
 }

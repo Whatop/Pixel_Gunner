@@ -35,6 +35,17 @@ enum class MeniMap_Option {
 	NOT_BATTLE,
 	NONE
 };
+
+enum class Weapon_Type {
+	GUN1,
+	GUN2,
+	BASICGUN,
+	MELEE,
+	GRENADE,
+	NONE
+};
+
+// 1번 기본무기, 2번 무기, 3번 근접무기, 4번 슈류탄
 class GameMgr : public Singleton<GameMgr> // UI 생성 및 삭제(UI관리함), 플레이어, 몬스터 스폰, 랭킹, 
 {
 private:
@@ -56,16 +67,20 @@ public:
 	void CreatePlayer();
 	void CreateMonster();
 	void AddDifficulty();
+
+	void Weapon_Holding();
 	Game_Difficulty GetDifficulty() { return GameDifficulty; }
 	CurrentScene GetScene() { return m_Scene; }
 public:
 	int Difficulty;
 	bool _UICreate;
 	bool _PlayerCreate;
+	int HaveGun;
 	int menimap;
 	CurrentScene m_Scene;
 	MouseShape m_MouseShape;
 	MeniMap_Option m_MeniMap;
+	Weapon_Type m_Weapon_Type;
 };
 
 	//else if (type == _Control) { // 컨트롤 : 키바꾸기(재장전,W,A,S,D,구르기), (아이템고민중)
