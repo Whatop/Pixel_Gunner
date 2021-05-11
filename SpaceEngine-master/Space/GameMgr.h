@@ -77,6 +77,7 @@ public:
 	bool _PlayerCreate;
 	int HaveGun;
 	int menimap;
+	Vec2 Pos;
 	CurrentScene m_Scene;
 	MouseShape m_MouseShape;
 	MeniMap_Option m_MeniMap;

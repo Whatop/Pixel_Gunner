@@ -216,12 +216,7 @@ void GameMgr::Weapon_Holding()
 	}
 
 	if (m_Weapon_Type == Weapon_Type::GUN1) {
-		for (auto& iter : ObjMgr->m_Objects) {
-			if (iter->m_Tag == "Player") {	
-			if (INPUT->GetKey('1') == KeyState::DOWN)
-			ObjMgr->AddObject(new Weapon("Heroine", iter->m_Position), "Weapon");
-			}
-		}
+		
 	}
 	else if (m_Weapon_Type == Weapon_Type::GUN2) {
 	}

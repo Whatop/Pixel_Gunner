@@ -10,6 +10,7 @@ Weapon::Weapon(std::string weapontag, Vec2 Pos)
 	SetPosition(Pos);
 	m_WeaponName = weapontag;
 	DelayTime = 0;
+	std::cout << "권혁우" << std::endl;
 }
 
 Weapon::~Weapon()
@@ -20,16 +21,21 @@ void Weapon::Fire()
 {
 	m_State.Damege = 10;
 	m_State.Range = 10;
-	m_State.Reload= 10;
+	m_State.Reload = 10;
 	m_State.Speed = 10;
 	m_State.Ammo_Capacity = 10;
-
-
 
 	if (m_WeaponName == "Heroine") {
 		DelayTime += dt;
 		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
 				ObjMgr->AddObject(new Bullet(L"Painting/Player/Bullet.png", Dire, m_Position, 1550), "Bullet");
+			DelayTime = 0;
+		}
+	}
+	if (m_WeaponName == "Bullet_Bore") {
+		DelayTime += dt;
+		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
+			ObjMgr->AddObject(new Bullet(L"Painting/Player/Bullet.png", Dire, m_Position, 1550), "Bullet");
 			DelayTime = 0;
 		}
 	}

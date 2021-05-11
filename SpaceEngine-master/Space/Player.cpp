@@ -54,8 +54,10 @@ void Player::Move()
 void Player::Hand()
 {
 	if (m_Weapon_Type == Weapon_Type::GUN1) {
-		
-	}
+			if (INPUT->GetKey('1') == KeyState::DOWN) {
+				ObjMgr->AddObject(new Weapon(Weapon_Case_Tag.at(0), m_Position), "Weapon");
+			}
+		}
 }
 
 void Player::Buff() //탄창 수 증가,체력 증가, 스피드 증가 등등  
@@ -108,7 +110,9 @@ void Player::OnCollision(Object* obj)
 		if (INPUT->GetKey('E') == KeyState::DOWN) {
 			GameMgr::GetInst()->HaveGun++;
 			m_Weapon_Tag.at(1) = obj->m_WeaponName;
+			Weapon_Case_Tag.push_back(obj->m_WeaponName);
 			std::cout << "첫번째 총 : " << m_Weapon_Tag.at(1) << std::endl;
+			std::cout << "테스트 : " << Weapon_Case_Tag.at(0) << std::endl;
 		}
 	}
 }

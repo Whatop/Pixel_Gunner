@@ -21,6 +21,7 @@ void Stage1::Init()
 	m_BG->SetPosition(1920 / 2, 1080-m_BG->m_Size.y/2);
 
 	ObjMgr->AddObject(new Weapon_case(L"Painting/Weapon/Test.png","Heroine",Vec2(1920/2,-300)), "WeaponCase");
+	ObjMgr->AddObject(new Weapon_case(L"Painting/Weapon/Test.png","Bullet_Bore",Vec2(1920/2,-400)), "WeaponCase");
 }
 
 void Stage1::Update(float deltaTime, float Time)

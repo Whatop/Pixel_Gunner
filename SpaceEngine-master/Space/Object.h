@@ -29,6 +29,7 @@ public:
 	int m_Layer;
 	std::string m_Tag;
 	std::string m_WeaponName;//무기Class만들어서 이거 이름 만들면 되겠따
+	std::vector<std::string>Weapon_Case_Tag;
 public:
 	Object();
 	~Object();
