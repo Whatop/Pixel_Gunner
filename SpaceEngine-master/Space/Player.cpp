@@ -10,14 +10,6 @@ Player::Player(Vec2 Pos)
 	SetPosition(Pos);
 	m_Layer = 0;
 
-	m_Hand_Left = Sprite::Create(L"Painting/Player/Hand.png");
-	m_Hand_Left->SetPosition(Pos);
-	m_Hand_Left->m_Layer = 1;
-
-	m_Hand_Right = Sprite::Create(L"Painting/Player/Hand.png");
-	m_Hand_Right->SetPosition(Pos);
-	m_Hand_Right->m_Layer = 1;
-
 	m_Speed = 5.f;
 	m_Dash = false;
 	m_Timer = 0.f;
@@ -61,12 +53,8 @@ void Player::Move()
 
 void Player::Hand()
 {
-	m_Hand_Left->SetPosition(m_Position.x - 30, m_Position.y + 15);
-	m_Hand_Right->SetPosition(m_Position.x + 30, m_Position.y + 15);
-
 	if (m_Weapon_Type == Weapon_Type::GUN1) {
-		if(INPUT->GetKey('1')==KeyState::DOWN)
-		ObjMgr->AddObject(new Weapon("MK47", m_Position), "Weapon");
+		
 	}
 }
 
@@ -112,14 +100,13 @@ void Player::Update(float deltaTime, float Time)
 void Player::Render()
 {
 	m_Player->Render();
-	m_Hand_Left->Render();
-	m_Hand_Right->Render();
 }
 
 void Player::OnCollision(Object* obj)
 {
 	if (obj->m_Tag == "WeaponCase") {
 		if (INPUT->GetKey('E') == KeyState::DOWN) {
+			GameMgr::GetInst()->HaveGun++;
 			m_Weapon_Tag.at(1) = obj->m_WeaponName;
 			std::cout << "Ã¹¹øÂ° ÃÑ : " << m_Weapon_Tag.at(1) << std::endl;
 		}

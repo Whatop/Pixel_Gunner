@@ -4,8 +4,6 @@ class Player : public Object
 {
 private:
 	Sprite* m_Player;
-	Sprite* m_Hand_Left;
-	Sprite* m_Hand_Right;
 
 	float m_Speed;
 	float DelayTime;

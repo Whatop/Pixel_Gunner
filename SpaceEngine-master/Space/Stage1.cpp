@@ -20,7 +20,7 @@ void Stage1::Init()
 	m_BG = Sprite::Create(L"Painting/Stage1/BG.png");
 	m_BG->SetPosition(1920 / 2, 1080-m_BG->m_Size.y/2);
 
-	ObjMgr->AddObject(new Weapon_case(L"Painting/Weapon/Test.png","MK47",Vec2(1920/2,-300)), "WeaponCase");
+	ObjMgr->AddObject(new Weapon_case(L"Painting/Weapon/Test.png","Heroine",Vec2(1920/2,-300)), "WeaponCase");
 }
 
 void Stage1::Update(float deltaTime, float Time)

@@ -1,4 +1,12 @@
 #pragma once
+
+struct Weapon_State {
+public:
+	int Damege, Speed, Reload, Range, Ammo_Capacity;
+	int Damege_Ratio, Ammo_Ratio, Speed_Ratio, Reload_Ratio, Range_Ratio;
+};
+
+
 class Object
 {
 public:

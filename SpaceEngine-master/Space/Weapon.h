@@ -1,13 +1,5 @@
 #pragma once
 
-struct Weapon_State {
-public:
-	int Damege, Maxammo, Speed;
-	int Damege_Coefficient; // 배수
-	int Ammo_Coefficient; // 배수
-	int Speed_Coefficient; // 배수
-};
-
 class Weapon : public Object
 {
 private:

@@ -19,62 +19,19 @@ Weapon::~Weapon()
 void Weapon::Fire()
 {
 	m_State.Damege = 10;
-	m_State.Maxammo = 10;
+	m_State.Range = 10;
+	m_State.Reload= 10;
 	m_State.Speed = 10;
-	
+	m_State.Ammo_Capacity = 10;
 
-	if (m_WeaponName == "DP-28") {
-	}
-	if (m_WeaponName == "M249") {
-	}
 
-	if (m_WeaponName == "UZI") {
-	}
-	if (m_WeaponName == "Tommy Gun") {
-	}
-	if (m_WeaponName == "PP-19") {
-	}
-	if (m_WeaponName == "Vector") {
-	}
 
-	if (m_WeaponName == "M416") {
-	}
-	if (m_WeaponName == "AKM") {
-	}
-	if (m_WeaponName == "M16A5") {
-	}
-	if (m_WeaponName == "MK47") {
+	if (m_WeaponName == "Heroine") {
 		DelayTime += dt;
 		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
-
-			//if (m_Rotation > -1.5 && m_Rotation < 1.5) {
 				ObjMgr->AddObject(new Bullet(L"Painting/Player/Bullet.png", Dire, m_Position, 1550), "Bullet");
-			//}
 			DelayTime = 0;
 		}
-	}
-
-	if (m_WeaponName == "SCAR_L") {
-	}
-	if (m_WeaponName == "AUG") {
-	}
-	if (m_WeaponName == "Groza") {
-	}
-
-	if (m_WeaponName == "S1897") {
-	}
-	if (m_WeaponName == "S12K") {
-	}
-	if (m_WeaponName == "S686") {
-	}
-
-	if (m_WeaponName == "Win94") {
-	}
-	if (m_WeaponName == "SKS") {
-	}
-	if (m_WeaponName == "Kar98") {
-	}
-	if (m_WeaponName == "MINI14") {
 	}
 }
 
@@ -92,6 +49,10 @@ void Weapon::WeaponRotate()
 
 void Weapon::Update(float delatTime, float Time)
 {
+	for (auto& iter : ObjMgr->m_Objects) {
+		if(iter->m_Tag == "Player")
+		m_Position = iter->m_Position;
+	}
 	Fire();
 	WeaponRotate();
 }
