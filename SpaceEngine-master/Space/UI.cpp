@@ -14,6 +14,10 @@ void UI::Init() // ÃÑ Ä­ + ÃÑ¾Ë Ä­ + HP + µîµî
 	m_Mouse = Sprite::Create(L"Painting/Mouse/Mouse.png");
 	m_Mouse->SetPosition(INPUT->GetMousePos());
 
+	m_BlackUI[0] = Sprite::Create(L"Painting/UI/Timer.png");
+	m_BlackUI[0]->SetPosition(150, 50);
+	if(GameMgr::GetInst()->GetScene() == CurrentScene::STAGE1||GameMgr::GetInst()->GetScene() == CurrentScene::STAGE2)
+	ObjMgr->AddObject(m_BlackUI[0], "UI");
 
 	m_UI = new TextMgr();
 	m_UI->Init(42, true, false, "±¼¸²");
@@ -49,6 +53,29 @@ void UI::Update(float deltaTime, float Time)
 		m_Mouse = Sprite::Create(L"Painting/Mouse/Mouse.png");
 	}
 	m_Mouse->SetPosition(INPUT->GetMousePos());
+	Timer+= dt;
+	if (Timer >= 1) {
+		m_Time[3]++;
+		Timer = 0;
+		if (m_Time[3] > 9) {
+			m_Time[2]++;
+			m_Time[3]=0;
+		}
+		if (m_Time[2] > 5) {
+			m_Time[1]++;
+			m_Time[2] = 0;
+		}
+		if (m_Time[1] > 5) {
+			m_Time[0]++;
+			m_Time[1] = 0;
+		}
+		if (m_Time[0] > 5) {
+			m_Time[0] = 0;
+			m_Time[1] = 0;
+			m_Time[2] = 0;
+			m_Time[3] = 0;
+		}
+	}
 }
 
 void UI::Render()
@@ -56,7 +83,8 @@ void UI::Render()
 	m_Mouse->Render();
 	//if (GameMgr::GetInst()->GetScene() == CurrentScene::STAGE1) {
 		Renderer::GetInst()->GetSprite()->Begin(D3DXSPRITE_ALPHABLEND);
-		m_UI->print("½Ã°£ : " + std::to_string(gt) + "\nÇÁ·¹ÀÓ : " + std::to_string(dt), 100, 100);
+		m_UI->print(std::to_string(m_Time[0])+ std::to_string(m_Time[1])+" : "+ std::to_string(m_Time[2])+ std::to_string(m_Time[3]), 150, 30);
+		//m_UI->print("½Ã°£ : " + std::to_string(gt) + "\nÇÁ·¹ÀÓ : " + std::to_string(dt), 100, 100);
 		m_UI->print("¸¶¿ì½º X : " + std::to_string((int)INPUT->GetMousePos().x) + "\n¸¶¿ì½º Y : " + std::to_string((int)INPUT->GetMousePos().y), 1620, 100);
 		Renderer::GetInst()->GetSprite()->End();
 	//}

@@ -2,8 +2,8 @@
 
 struct Weapon_State {
 public:
-	int Damege, Speed, Reload, Range, Ammo_Capacity;
-	int Damege_Ratio, Ammo_Ratio, Speed_Ratio, Reload_Ratio, Range_Ratio;
+	int Damege, Speed, Reload, Range, Ammo_Capacity, Ammo;
+	int Damege_Ratio, Ammo_Capacity_Ratio,Ammo_Ratio, Speed_Ratio, Reload_Ratio, Range_Ratio;
 };
 
 

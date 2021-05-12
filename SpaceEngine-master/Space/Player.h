@@ -4,12 +4,18 @@ class Player : public Object
 {
 private:
 	Sprite* m_Player;
+	Sprite* m_ColBox[5];
 
 	float m_Speed;
 	float DelayTime;
 	float m_Timer;
 	float m_DashCooltime;
 	float m_DashTime;
+
+	bool Up;
+	bool Down ;
+	bool Right;
+	bool Left; 
 
 	bool m_Dash;
 
@@ -24,6 +30,7 @@ public:
 	
 	void Move();
 	void Hand();
+	void ColBox();
 	void Buff();
 	void Dash();
 

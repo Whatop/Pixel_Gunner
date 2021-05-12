@@ -3,6 +3,7 @@
 
 Weapon_case::Weapon_case(std::wstring fileName, std::string weapontag, Vec2 Pos)
 {
+	//weapontag »©°í ·£´ý
 	m_WeaponCase = Sprite::Create(fileName);
 	m_WeaponCase->SetParent(this);
 	SetPosition(Pos);
