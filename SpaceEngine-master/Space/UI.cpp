@@ -14,11 +14,21 @@ void UI::Init() // 총 칸 + 총알 칸 + HP + 등등
 	m_Mouse = Sprite::Create(L"Painting/Mouse/Mouse.png");
 	m_Mouse->SetPosition(INPUT->GetMousePos());
 
-	m_BlackUI[0] = Sprite::Create(L"Painting/UI/Timer.png");
-	m_BlackUI[0]->SetPosition(150, 50);
-	if(GameMgr::GetInst()->GetScene() == CurrentScene::STAGE1||GameMgr::GetInst()->GetScene() == CurrentScene::STAGE2)
-	ObjMgr->AddObject(m_BlackUI[0], "UI");
+	m_Interface[0] = Sprite::Create(L"Painting/UI/Timer.png");
+	m_Interface[0]->SetPosition(150, 50);
 
+	m_Interface[1] = Sprite::Create(L"Painting/UI/HpBar.png"); // HPBar
+	m_Interface[1]->SetPosition(1920/2, 900);
+
+	m_Interface[2] = Sprite::Create(L"Painting/UI/HP.png"); // HP
+	m_Interface[2]->SetPosition(1920 / 2, 900);
+
+
+	if (GameMgr::GetInst()->GetScene() == CurrentScene::STAGE1 || GameMgr::GetInst()->GetScene() == CurrentScene::STAGE2) {
+		ObjMgr->AddObject(m_Interface[0], "UI");
+		ObjMgr->AddObject(m_Interface[1], "UI");
+		ObjMgr->AddObject(m_Interface[2], "UI");
+	}
 	m_UI = new TextMgr();
 	m_UI->Init(42, true, false, "굴림");
 	m_UI->SetColor(255, 255, 255, 255);
@@ -81,13 +91,23 @@ void UI::Update(float deltaTime, float Time)
 void UI::Render()
 {
 	m_Mouse->Render();
-	//if (GameMgr::GetInst()->GetScene() == CurrentScene::STAGE1) {
+	if (GameMgr::GetInst()->GetScene() == CurrentScene::STAGE1) {
 		Renderer::GetInst()->GetSprite()->Begin(D3DXSPRITE_ALPHABLEND);
 		m_UI->print(std::to_string(m_Time[0])+ std::to_string(m_Time[1])+" : "+ std::to_string(m_Time[2])+ std::to_string(m_Time[3]), 150, 30);
 		//m_UI->print("시간 : " + std::to_string(gt) + "\n프레임 : " + std::to_string(dt), 100, 100);
 		m_UI->print("마우스 X : " + std::to_string((int)INPUT->GetMousePos().x) + "\n마우스 Y : " + std::to_string((int)INPUT->GetMousePos().y), 1620, 100);
 		Renderer::GetInst()->GetSprite()->End();
-	//}
+
+		m_HpGage = m_Interface[1]->m_Size.x / 92;
+		int Hp = 92 - m_Hp;
+		if (m_Hp >= 0)
+		{
+			SetRect(&m_Interface[1]->m_Collision, m_Interface[1]->m_Position.x - m_Interface[1]->m_Size.x / 2, m_Interface[1]->m_Position.y - m_Interface[1]->m_Size.y / 2,
+				m_Interface[1]->m_Position.x + m_Interface[1]->m_Size.x / 2, m_Interface[1]->m_Position.y + m_Interface[1]->m_Size.y / 2);
+
+			m_Interface[1]->m_Rect.right = m_Interface[1]->m_Size.x - (Hp * m_HpGage);
+		}
+	}
 	/*else if (GameMgr::GetInst()->GetScene() == CurrentScene::STAGE2) {
 		Renderer::GetInst()->GetSprite()->Begin(D3DXSPRITE_ALPHABLEND);
 		m_UI->print("시간 : " + std::to_string(gt) + "\n프레임 : " + std::to_string(dt), 100, 100);

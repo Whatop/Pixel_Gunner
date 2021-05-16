@@ -13,11 +13,16 @@ private:
 	float m_DashTime;
 
 	bool Up;
-	bool Down ;
+	bool Down;
 	bool Right;
 	bool Left; 
 
+	bool X[2];
+	bool Y[2];
+	
 	bool m_Dash;
+
+	float Multiple;
 
 	Vec2 Dire;
 	Vec2 Mouse;

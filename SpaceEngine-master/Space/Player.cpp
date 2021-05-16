@@ -13,12 +13,16 @@ Player::Player(Vec2 Pos)
 	m_Timer = 0.f;
 	m_DashCooltime = 0.f;
 	m_DashTime = 0.f;
+	Multiple = 1;
 
 	Up = false;
 	Down = false;
 	Right = false;
 	Left = false;
-
+	Y[0] = false;
+	Y[1] = false;
+	X[0] = false;
+	X[1] = false;
 
 	m_Weapon_Tag.clear();
 	m_Weapon_Tag.push_back("GUN1");
@@ -50,20 +54,20 @@ Player::~Player()
 void Player::Move()
 {
 	if (INPUT->GetKey('W') == KeyState::PRESS) {
-		if(!Down)
-			m_Position.y -= m_Speed;
+		if (!Down)
+			m_Position.y -= m_Speed * Multiple;
+	}	
+	if (INPUT->GetKey('S') == KeyState::PRESS) {
+		if (!Up)
+			m_Position.y += m_Speed * Multiple;
 	}
 	if(INPUT->GetKey('A') == KeyState::PRESS){
 		if (!Right)
-			m_Position.x -= m_Speed;
-	}
-	if (INPUT->GetKey('S') == KeyState::PRESS) {
-		if (!Up)
-			m_Position.y += m_Speed;
+			m_Position.x -= m_Speed * Multiple;
 	}
 	if (INPUT->GetKey('D') == KeyState::PRESS) {
 		if (!Left)
-			m_Position.x +=  m_Speed;
+			m_Position.x +=  m_Speed * Multiple;
 	}
 }
 

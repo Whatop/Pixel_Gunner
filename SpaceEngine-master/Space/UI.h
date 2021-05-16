@@ -2,7 +2,7 @@
 
 class UI : public Singleton<UI>
 {
-	Sprite* m_BlackUI[10];
+	Sprite* m_Interface[10];
 	TextMgr* m_UI;
 	int m_Hp;
 	//구르기 시간
@@ -22,7 +22,8 @@ public:
 
 	void Update(float deltaTime, float Time);
 	void Render();
-	
+	float m_HpGage;
+
 	Sprite* m_Mouse;
 };
 
