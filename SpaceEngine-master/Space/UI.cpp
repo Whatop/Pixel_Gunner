@@ -119,20 +119,20 @@ void UI::Render()
 		int Hp = GameMgr::GetInst()->m_Max_Hp - GameMgr::GetInst()->m_Hp;
 		if (GameMgr::GetInst()->m_Hp >= 0)
 		{
-			SetRect(&m_Interface[2]->m_Collision, m_Interface[2]->m_Position.x - m_Interface[2]->m_Size.x / 2, m_Interface[2]->m_Position.y - m_Interface[1]->m_Size.y / 2,
+			SetRect(&m_Interface[2]->m_Collision, m_Interface[2]->m_Position.x - m_Interface[2]->m_Size.x / 2, m_Interface[2]->m_Position.y - m_Interface[2]->m_Size.y / 2,
 				m_Interface[2]->m_Position.x + m_Interface[2]->m_Size.x / 2, m_Interface[2]->m_Position.y + m_Interface[2]->m_Size.y / 2);
 
 			m_Interface[2]->m_Rect.right = m_Interface[2]->m_Size.x - (Hp * m_HpGage);
 		}
 
-		m_HpGage = m_Interface[4]->m_Size.x / GameMgr::GetInst()->m_DashCooltime;
-		int Dash = GameMgr::GetInst()->m_Max_Dash - GameMgr::GetInst()->m_DashCooltime;
+		m_DashGage = m_Interface[4]->m_Size.x / GameMgr::GetInst()->m_Max_Dash;
+		int Dash = GameMgr::GetInst()->m_Max_Dash* 10 - GameMgr::GetInst()->m_DashCooltime* 10;
 		if (GameMgr::GetInst()->m_DashCooltime >= 0)
 		{
-			SetRect(&m_Interface[4]->m_Collision, m_Interface[4]->m_Position.x - m_Interface[4]->m_Size.x / 2, m_Interface[4]->m_Position.y - m_Interface[1]->m_Size.y / 2,
+			SetRect(&m_Interface[4]->m_Collision, m_Interface[4]->m_Position.x - m_Interface[4]->m_Size.x / 2, m_Interface[4]->m_Position.y - m_Interface[4]->m_Size.y / 2,
 				m_Interface[4]->m_Position.x + m_Interface[4]->m_Size.x / 2, m_Interface[4]->m_Position.y + m_Interface[4]->m_Size.y / 2);
 
-			m_Interface[4]->m_Rect.right = m_Interface[4]->m_Size.x - (Dash * m_HpGage);
+			m_Interface[4]->m_Rect.right = m_Interface[4]->m_Size.x - (Dash * m_DashGage);
 		}
 	}
 	/*else if (GameMgr::GetInst()->GetScene() == CurrentScene::STAGE2) {

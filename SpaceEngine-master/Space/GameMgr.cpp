@@ -19,7 +19,7 @@ void GameMgr::Init()
 	shape = 7;
 	m_Hp = 100; 
 	m_Max_Hp = 100;
-	m_Max_Dash = 0.3f;
+	m_Max_Dash = 1.f;
 	m_DashCooltime= 0;
 	menimap = 1;
 	HaveGun = 0;

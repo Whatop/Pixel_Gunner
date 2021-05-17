@@ -22,7 +22,7 @@ public:
 	void Update(float deltaTime, float Time);
 	void Render();
 	float m_HpGage;
-	float m_RollGage;
+	float m_DashGage;
 
 	Sprite* m_Mouse;
 };
