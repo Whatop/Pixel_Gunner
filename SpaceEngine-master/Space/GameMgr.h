@@ -50,7 +50,6 @@ class GameMgr : public Singleton<GameMgr> // UI 생성 및 삭제(UI관리함), 플레이어
 {
 private:
 	int m_Score;
-	int m_Hp;
 	int shape;
 	float TimeLmit;
 	Game_Difficulty GameDifficulty;
@@ -72,6 +71,10 @@ public:
 	Game_Difficulty GetDifficulty() { return GameDifficulty; }
 	CurrentScene GetScene() { return m_Scene; }
 public:
+	int m_Max_Hp;
+	int m_Hp;
+	float m_Max_Dash;
+	float m_DashCooltime;
 	int Difficulty;
 	bool _UICreate;
 	bool _PlayerCreate;

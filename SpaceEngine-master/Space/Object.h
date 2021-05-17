@@ -1,11 +1,16 @@
 #pragma once
 
-struct Weapon_State {
+struct Player_State {
 public:
-	int Damege, Speed, Reload, Range, Ammo_Capacity, Ammo;
-	int Damege_Ratio, Ammo_Capacity_Ratio,Ammo_Ratio, Speed_Ratio, Reload_Ratio, Range_Ratio;
+	int MaxHp, Speed, Dash, Heal, Ammo;
+	int Hp_Ratio , Speed_Ratio, Heal_Ratio, Dash_Ratio, Ammo_Ratio;
 };
 
+struct Weapon_State {
+public:
+	int Damege, Speed, Reload, Range, Ammo_Capacity;
+	int Damege_Ratio, Speed_Ratio, Reload_Ratio, Range_Ratio, Ammo_Capacity_Ratio;
+};
 
 class Object
 {

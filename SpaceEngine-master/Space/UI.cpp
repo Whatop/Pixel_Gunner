@@ -17,17 +17,28 @@ void UI::Init() // ÃÑ Ä­ + ÃÑ¾Ë Ä­ + HP + µîµî
 	m_Interface[0] = Sprite::Create(L"Painting/UI/Timer.png");
 	m_Interface[0]->SetPosition(150, 50);
 
-	m_Interface[1] = Sprite::Create(L"Painting/UI/HpBar.png"); // HPBar
-	m_Interface[1]->SetPosition(1920/2, 900);
+	m_Interface[1] = Sprite::Create(L"Painting/UI/BGHpBar.png"); // HPBar
+	m_Interface[1]->SetPosition(1920 / 2, 900);
 
-	m_Interface[2] = Sprite::Create(L"Painting/UI/HP.png"); // HP
+	m_Interface[2] = Sprite::Create(L"Painting/UI/HPBar.png"); // HP
 	m_Interface[2]->SetPosition(1920 / 2, 900);
+
+	m_Interface[3] = Sprite::Create(L"Painting/UI/BGRoolBar.png"); // HPBar
+	m_Interface[3]->SetPosition(1920 / 2, 800);
+
+	m_Interface[4] = Sprite::Create(L"Painting/UI/RoolBar.png"); // HP
+	m_Interface[4]->SetPosition(1920 / 2, 800);
 
 
 	if (GameMgr::GetInst()->GetScene() == CurrentScene::STAGE1 || GameMgr::GetInst()->GetScene() == CurrentScene::STAGE2) {
+		
 		ObjMgr->AddObject(m_Interface[0], "UI");
+
 		ObjMgr->AddObject(m_Interface[1], "UI");
 		ObjMgr->AddObject(m_Interface[2], "UI");
+
+		ObjMgr->AddObject(m_Interface[3], "UI");
+		ObjMgr->AddObject(m_Interface[4], "UI");
 	}
 	m_UI = new TextMgr();
 	m_UI->Init(42, true, false, "±¼¸²");
@@ -41,6 +52,12 @@ void UI::Release()
 void UI::Update(float deltaTime, float Time)
 {
 	SetCursor(NULL);
+	if (INPUT->GetKey('O') == KeyState::DOWN) {
+		GameMgr::GetInst()->m_Hp -= 10;
+	}
+	if (INPUT->GetKey('P') == KeyState::DOWN) {
+		GameMgr::GetInst()->m_Hp += 10;
+	}
 	if (GameMgr::GetInst()->m_MouseShape == MouseShape::scope) {
 		m_Mouse = Sprite::Create(L"Painting/Mouse/1.png");
 	}
@@ -98,14 +115,24 @@ void UI::Render()
 		m_UI->print("¸¶¿ì½º X : " + std::to_string((int)INPUT->GetMousePos().x) + "\n¸¶¿ì½º Y : " + std::to_string((int)INPUT->GetMousePos().y), 1620, 100);
 		Renderer::GetInst()->GetSprite()->End();
 
-		m_HpGage = m_Interface[1]->m_Size.x / 92;
-		int Hp = 92 - m_Hp;
-		if (m_Hp >= 0)
+		m_HpGage = m_Interface[2]->m_Size.x / GameMgr::GetInst()->m_Max_Hp;
+		int Hp = GameMgr::GetInst()->m_Max_Hp - GameMgr::GetInst()->m_Hp;
+		if (GameMgr::GetInst()->m_Hp >= 0)
 		{
-			SetRect(&m_Interface[1]->m_Collision, m_Interface[1]->m_Position.x - m_Interface[1]->m_Size.x / 2, m_Interface[1]->m_Position.y - m_Interface[1]->m_Size.y / 2,
-				m_Interface[1]->m_Position.x + m_Interface[1]->m_Size.x / 2, m_Interface[1]->m_Position.y + m_Interface[1]->m_Size.y / 2);
+			SetRect(&m_Interface[2]->m_Collision, m_Interface[2]->m_Position.x - m_Interface[2]->m_Size.x / 2, m_Interface[2]->m_Position.y - m_Interface[1]->m_Size.y / 2,
+				m_Interface[2]->m_Position.x + m_Interface[2]->m_Size.x / 2, m_Interface[2]->m_Position.y + m_Interface[2]->m_Size.y / 2);
 
-			m_Interface[1]->m_Rect.right = m_Interface[1]->m_Size.x - (Hp * m_HpGage);
+			m_Interface[2]->m_Rect.right = m_Interface[2]->m_Size.x - (Hp * m_HpGage);
+		}
+
+		m_HpGage = m_Interface[4]->m_Size.x / GameMgr::GetInst()->m_DashCooltime;
+		int Dash = GameMgr::GetInst()->m_Max_Dash - GameMgr::GetInst()->m_DashCooltime;
+		if (GameMgr::GetInst()->m_DashCooltime >= 0)
+		{
+			SetRect(&m_Interface[4]->m_Collision, m_Interface[4]->m_Position.x - m_Interface[4]->m_Size.x / 2, m_Interface[4]->m_Position.y - m_Interface[1]->m_Size.y / 2,
+				m_Interface[4]->m_Position.x + m_Interface[4]->m_Size.x / 2, m_Interface[4]->m_Position.y + m_Interface[4]->m_Size.y / 2);
+
+			m_Interface[4]->m_Rect.right = m_Interface[4]->m_Size.x - (Dash * m_HpGage);
 		}
 	}
 	/*else if (GameMgr::GetInst()->GetScene() == CurrentScene::STAGE2) {

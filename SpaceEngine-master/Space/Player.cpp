@@ -114,6 +114,7 @@ void Player::Dash()
 			m_Speed = 5;
 		}
 	}
+	GameMgr::GetInst()->m_DashCooltime = m_DashCooltime;
 }
 
 void Player::Update(float deltaTime, float Time)
