@@ -24,10 +24,13 @@ void UI::Init() // ÃÑ Ä­ + ÃÑ¾Ë Ä­ + HP + µîµî
 	m_Interface[2]->SetPosition(1920 / 2, 900);
 
 	m_Interface[3] = Sprite::Create(L"Painting/UI/BGRoolBar.png"); // HPBar
-	m_Interface[3]->SetPosition(1920 / 2, 800);
+	m_Interface[3]->SetPosition(1920 / 2, 875);
 
 	m_Interface[4] = Sprite::Create(L"Painting/UI/RoolBar.png"); // HP
-	m_Interface[4]->SetPosition(1920 / 2, 800);
+	m_Interface[4]->SetPosition(1920 / 2, 875);
+	
+	m_Interface[3]->SetScale(1, 0.5f);
+	m_Interface[4]->SetScale(1, 0.5f);
 
 
 	if (GameMgr::GetInst()->GetScene() == CurrentScene::STAGE1 || GameMgr::GetInst()->GetScene() == CurrentScene::STAGE2) {
@@ -43,6 +46,10 @@ void UI::Init() // ÃÑ Ä­ + ÃÑ¾Ë Ä­ + HP + µîµî
 	m_UI = new TextMgr();
 	m_UI->Init(42, true, false, "±¼¸²");
 	m_UI->SetColor(255, 255, 255, 255);
+
+	m_Hp = new TextMgr();
+	m_Hp->Init(32, true, false, "±¼¸²");
+	m_Hp->SetColor(255, 255, 255, 255);
 }
 
 void UI::Release()
@@ -110,7 +117,9 @@ void UI::Render()
 	m_Mouse->Render();
 	if (GameMgr::GetInst()->GetScene() == CurrentScene::STAGE1) {
 		Renderer::GetInst()->GetSprite()->Begin(D3DXSPRITE_ALPHABLEND);
-		m_UI->print(std::to_string(m_Time[0])+ std::to_string(m_Time[1])+" : "+ std::to_string(m_Time[2])+ std::to_string(m_Time[3]), 150, 30);
+		m_UI->print(std::to_string(m_Time[0])+ std::to_string(m_Time[1])+" : "
+			+ std::to_string(m_Time[2])+ std::to_string(m_Time[3]), 150, 30);
+		m_Hp->print(std::to_string(GameMgr::GetInst()->m_Hp), 1920 / 2-150, 885);
 		//m_UI->print("½Ã°£ : " + std::to_string(gt) + "\nÇÁ·¹ÀÓ : " + std::to_string(dt), 100, 100);
 		m_UI->print("¸¶¿ì½º X : " + std::to_string((int)INPUT->GetMousePos().x) + "\n¸¶¿ì½º Y : " + std::to_string((int)INPUT->GetMousePos().y), 1620, 100);
 		Renderer::GetInst()->GetSprite()->End();
@@ -126,7 +135,7 @@ void UI::Render()
 		}
 
 		m_DashGage = m_Interface[4]->m_Size.x / GameMgr::GetInst()->m_Max_Dash;
-		int Dash = GameMgr::GetInst()->m_Max_Dash* 10 - GameMgr::GetInst()->m_DashCooltime* 10;
+		int Dash = GameMgr::GetInst()->m_Max_Dash - GameMgr::GetInst()->m_DashCooltime*100;
 		if (GameMgr::GetInst()->m_DashCooltime >= 0)
 		{
 			SetRect(&m_Interface[4]->m_Collision, m_Interface[4]->m_Position.x - m_Interface[4]->m_Size.x / 2, m_Interface[4]->m_Position.y - m_Interface[4]->m_Size.y / 2,

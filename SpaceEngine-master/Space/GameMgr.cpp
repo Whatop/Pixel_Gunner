@@ -19,8 +19,8 @@ void GameMgr::Init()
 	shape = 7;
 	m_Hp = 100; 
 	m_Max_Hp = 100;
-	m_Max_Dash = 1.f;
-	m_DashCooltime= 0;
+	m_Max_Dash = 100;
+	m_DashCooltime= 100;
 	menimap = 1;
 	HaveGun = 0;
 	Difficulty = 1;

@@ -95,9 +95,9 @@ void Player::Buff() //탄창 수 증가,체력 증가, 스피드 증가 등등
 
 void Player::Dash()
 {
-	GameMgr::GetInst()->m_DashCooltime = m_DashCooltime;
 	m_DashCooltime += dt;
-	if (INPUT->GetRightButtonDown() && m_DashCooltime >= 1.f)
+	GameMgr::GetInst()->m_DashCooltime = m_DashCooltime;
+	if (INPUT->GetRightButtonDown() && m_DashCooltime >=1.f)
 	{
 		m_Dash = true;
 	}
