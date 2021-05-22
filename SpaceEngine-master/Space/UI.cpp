@@ -32,7 +32,6 @@ void UI::Init() // ÃÑ Ä­ + ÃÑ¾Ë Ä­ + HP + µîµî
 	m_Interface[3]->SetScale(1, 0.5f);
 	m_Interface[4]->SetScale(1, 0.5f);
 
-
 	if (GameMgr::GetInst()->GetScene() == CurrentScene::STAGE1 || GameMgr::GetInst()->GetScene() == CurrentScene::STAGE2) {
 		
 		ObjMgr->AddObject(m_Interface[0], "UI");

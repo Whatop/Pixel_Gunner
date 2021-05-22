@@ -9,6 +9,7 @@ Weapon::Weapon(std::string weapontag, Vec2 Pos)
 	m_Weapon->SetParent(this);
 	SetPosition(Pos);
 	m_WeaponName = weapontag;
+	std::cout << "총 생성 : "<<m_WeaponName<< std::endl;
 	DelayTime = 0;
 }
 
@@ -18,7 +19,20 @@ Weapon::~Weapon()
 
 void Weapon::Fire()
 {
-	
+	if (m_WeaponName == "Basicgun") {
+		SetScale(2.f, 2.f);
+		m_State.Damege = 10;
+		m_State.Range = 10;
+		m_State.Reload = 10;
+		m_State.Speed = 1300;
+		m_State.Ammo_Capacity = 10;
+
+		DelayTime += dt;
+		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
+			ObjMgr->AddObject(new Bullet(L"Painting/Player/Bullet.png", Dire, m_Position, m_State.Speed), "Bullet");
+			DelayTime = 0;
+		}
+	}
 	if (m_WeaponName == "Heroine") {
 
 		m_State.Damege = 10;
@@ -117,6 +131,21 @@ void Weapon::Fire()
 			DelayTime = 0;
 		}
 	}
+	if (m_WeaponName == "Blasphemy") {
+		SetScale(2.f, 2.f);
+		m_State.Damege = 10;
+		m_State.Range = 10;
+		m_State.Reload = 10;
+		m_State.Speed = 1300;
+		m_State.Ammo_Capacity = 10;
+
+		DelayTime += dt;
+		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
+			ObjMgr->AddObject(new Bullet(L"Painting/Player/Bullet.png", Dire, m_Position, m_State.Speed), "Bullet");
+			DelayTime = 0;
+		}
+	}
+	
 }
 
 void Weapon::WeaponRotate()
@@ -127,8 +156,6 @@ void Weapon::WeaponRotate()
 	Mouse = INPUT->GetMousePos() - m_Position;
 	D3DXVec2Normalize(&Dire, &Mouse);
 	m_Rotation = (std::atan2(Dire.y, Dire.x));
-	
-	std::cout << m_Rotation << std::endl;
 }
 
 void Weapon::Update(float delatTime, float Time)

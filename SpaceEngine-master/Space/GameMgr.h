@@ -49,8 +49,9 @@ enum class Weapon_Type {
 class GameMgr : public Singleton<GameMgr> // UI 생성 및 삭제(UI관리함), 플레이어, 몬스터 스폰, 랭킹, 
 {
 private:
-	int m_Score;
 	int shape;
+	int m_Score;
+	bool Not_Overlap[5];
 	float TimeLmit;
 	Game_Difficulty GameDifficulty;
 public:
@@ -81,10 +82,12 @@ public:
 	int HaveGun;
 	int menimap;
 	Vec2 Pos;
+	Vec2 PlayerPos;
 	CurrentScene m_Scene;
 	MouseShape m_MouseShape;
 	MeniMap_Option m_MeniMap;
 	Weapon_Type m_Weapon_Type;
+	std::vector<std::string>Weapon_Case_Tag;
 };
 
 	//else if (type == _Control) { // 컨트롤 : 키바꾸기(재장전,W,A,S,D,구르기), (아이템고민중)

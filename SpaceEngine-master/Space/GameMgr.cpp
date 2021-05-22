@@ -26,8 +26,14 @@ void GameMgr::Init()
 	Difficulty = 1;
 	_UICreate = false;
 	_PlayerCreate = false;
+
+	for (int i = 0; i < 5; i++) {
+		Not_Overlap[i] = true;
+	}
 	GameMgr::GetInst()->m_MouseShape = MouseShape::none;
 	GameMgr::GetInst()->m_Scene = CurrentScene::NONE;
+	GameMgr::GetInst()->m_Weapon_Type = Weapon_Type::BASICGUN;
+	
 }
 
 void GameMgr::CreateUI()
@@ -170,6 +176,8 @@ void GameMgr::Weapon_Holding()
 {
 	// 1번 기본 무기, 2번 근접무기, 3번 슈류탄
 
+	for (auto& iter : ObjMgr->m_Objects) {
+	}
 	if (INPUT->GetKey('1') == KeyState::DOWN) {
 		if (HaveGun == 1) {
 			m_Weapon_Type = Weapon_Type::GUN1;
@@ -203,25 +211,83 @@ void GameMgr::Weapon_Holding()
 			m_Weapon_Type = Weapon_Type::GRENADE;
 		}
 	}
-	if (HaveGun == 1) {
 		if (INPUT->GetKey('4') == KeyState::DOWN) {
+			if (HaveGun == 1) {
+				m_Weapon_Type = Weapon_Type::GRENADE;
+			}
 			if (HaveGun == 2) {
 				m_Weapon_Type = Weapon_Type::MELEE;
 			}
-			else {
+		}
+		if (INPUT->GetKey('5') == KeyState::DOWN) {
+			if (HaveGun == 2) {
 				m_Weapon_Type = Weapon_Type::GRENADE;
 			}
 		}
+
+	if (m_Weapon_Type != Weapon_Type::GUN1) {
+		ObjMgr->DeleteObject("Weapon1");
 	}
-	if (HaveGun == 2) {
-		if (INPUT->GetKey('5') == KeyState::DOWN) {
-			m_Weapon_Type = Weapon_Type::GRENADE;
+	else {
+		if (Not_Overlap[0]) {
+			ObjMgr->AddObject(new Weapon("Heroine", PlayerPos), "Weapon1");
+			Not_Overlap[0] = false;
+		}
+		for (int i = 0; i < 5; i++) {
+			if(i!=0)
+				Not_Overlap[i] = true;
 		}
 	}
-
-	if (m_Weapon_Type == Weapon_Type::GUN1) {
-		
+	if (m_Weapon_Type != Weapon_Type::GUN2) {
+		ObjMgr->DeleteObject("Weapon2");
 	}
-	else if (m_Weapon_Type == Weapon_Type::GUN2) {
+	else {
+		if (Not_Overlap[1]) {
+			ObjMgr->AddObject(new Weapon("Vulcan_Cannon", PlayerPos), "Weapon2");
+			Not_Overlap[1] = false;
+		}
+		for (int i = 0; i < 5; i++) {
+			if (i != 1)
+				Not_Overlap[i] = true;
+		}
+	}
+	if (m_Weapon_Type != Weapon_Type::BASICGUN) {
+		ObjMgr->DeleteObject("Basic");
+	}
+	else {
+		if (Not_Overlap[2]) {
+			ObjMgr->AddObject(new Weapon("Basicgun", PlayerPos), "Basic");
+			Not_Overlap[2] = false;
+		}
+		for (int i = 0; i < 5; i++) {
+			if (i != 2)
+				Not_Overlap[i] = true;
+		}
+	}
+	if (m_Weapon_Type != Weapon_Type::MELEE) {
+		ObjMgr->DeleteObject("Melee");
+	}
+	else {
+		if (Not_Overlap[3]) {
+			ObjMgr->AddObject(new Weapon("Blasphemy", PlayerPos), "Melee");
+			Not_Overlap[3] = false;
+		}
+		for (int i = 0; i < 5; i++) {
+			if (i != 3)
+				Not_Overlap[i] = true;
+		}
+	}
+	if (m_Weapon_Type != Weapon_Type::GRENADE) {
+		ObjMgr->DeleteObject("Grenade");
+	}
+	else {
+		if (Not_Overlap[4]) {
+			ObjMgr->AddObject(new Weapon("RC_Rocket", PlayerPos), "Grenade");
+			Not_Overlap[4] = false;
+		}
+		for (int i=0; i < 5; i++) {
+			if (i != 4)
+				Not_Overlap[i] = true;
+		}
 	}
 }

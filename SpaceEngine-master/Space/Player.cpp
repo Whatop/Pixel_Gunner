@@ -45,6 +45,7 @@ Player::Player(Vec2 Pos)
 	std::cout << "-2번째 : " << m_Weapon_Tag.at(2) << std::endl;
 	std::cout << "-3번째 : " << m_Weapon_Tag.at(3) << std::endl;
 	std::cout << "-4번째 : " << m_Weapon_Tag.at(4) << std::endl;
+
 }
 
 Player::~Player()
@@ -54,30 +55,58 @@ Player::~Player()
 void Player::Move()
 {
 	if (INPUT->GetKey('W') == KeyState::PRESS) {
+		Y[0] = true;
+		if (X[0] || X[1])
+			Multiple = 0.75f;
+
 		if (!Down)
 			m_Position.y -= m_Speed * Multiple;
 	}	
 	if (INPUT->GetKey('S') == KeyState::PRESS) {
+		Y[1] = true;
+		if (X[0] || X[1])
+			Multiple = 0.75f;
+		else
+			Multiple = 1;
 		if (!Up)
 			m_Position.y += m_Speed * Multiple;
 	}
 	if(INPUT->GetKey('A') == KeyState::PRESS){
+		X[0] = true;
+		if (Y[0] || Y[1])
+			Multiple = 0.75f;
+		else
+			Multiple = 1;
 		if (!Right)
 			m_Position.x -= m_Speed * Multiple;
 	}
 	if (INPUT->GetKey('D') == KeyState::PRESS) {
+		X[1] = true;
+		if (Y[0] || Y[1])
+			Multiple = 0.75f;
+		else 
+			Multiple = 1;
 		if (!Left)
 			m_Position.x +=  m_Speed * Multiple;
 	}
+	//std::cout << "Multiple : " << Multiple << std::endl;
 }
 
 void Player::Hand()
 {
-	if (m_Weapon_Type == Weapon_Type::GUN1) {
-			if (INPUT->GetKey('1') == KeyState::DOWN) {
-				ObjMgr->AddObject(new Weapon(Weapon_Case_Tag.at(0), m_Position), "Weapon");
-			}
+	/*if (GameMgr::GetInst()->m_Weapon_Type == Weapon_Type::BASICGUN) {
+		if (INPUT->GetKey('1') == KeyState::DOWN) {
+		}
 	}
+	if (GameMgr::GetInst()->m_Weapon_Type == Weapon_Type::GUN1) {
+			if (INPUT->GetKey('1') == KeyState::DOWN) {
+				ObjMgr->AddObject(new Weapon(Weapon_Case_Tag.at(0), m_Position), "Weapon1");
+			}
+			else if (INPUT->GetKey('2') == KeyState::DOWN) {
+				ObjMgr->AddObject(new Weapon("Basicgun", m_Position), "Basic");
+			}
+	}*/
+	
 }
 
 void Player::ColBox()
@@ -123,6 +152,10 @@ void Player::Update(float deltaTime, float Time)
 	Up = false;
 	Right = false;
 	Down = false;
+	Y[0] = false;
+	Y[1] = false;
+	X[0] = false;
+	X[1] = false;
 	ObjMgr->CollisionCheak(this, "WeaponCase");
 	ObjMgr->CollisionCheak(this, "Wall");
 	Move();
@@ -150,9 +183,9 @@ void Player::OnCollision(Object* obj)
 		if (INPUT->GetKey('E') == KeyState::DOWN) {
 			GameMgr::GetInst()->HaveGun++;
 			m_Weapon_Tag.at(1) = obj->m_WeaponName;
-			Weapon_Case_Tag.push_back(obj->m_WeaponName);
+			GameMgr::GetInst()->Weapon_Case_Tag.push_back(obj->m_WeaponName);
 			std::cout << "첫번째 총 : " << m_Weapon_Tag.at(1) << std::endl;
-			std::cout << "테스트 : " << Weapon_Case_Tag.at(0) << std::endl;
+			std::cout << "테스트 : " << GameMgr::GetInst()->Weapon_Case_Tag.at(0) << std::endl;
 		}
 	}
 	if (obj->m_Tag == "Wall")

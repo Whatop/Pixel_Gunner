@@ -22,11 +22,10 @@ private:
 	
 	bool m_Dash;
 
-	float Multiple;
+	float Multiple;//속도 제어
 
 	Vec2 Dire;
 	Vec2 Mouse;
-	Weapon_Type m_Weapon_Type;
 
 	std::vector<std::string>m_Weapon_Tag;
 public:
