@@ -3,6 +3,7 @@
 class UI : public Singleton<UI>
 {
 	Sprite* m_Interface[10];
+	Sprite* m_OptionUI[10];
 	TextMgr* m_UI;
 	TextMgr* m_Hp;
 	//구르기 시간

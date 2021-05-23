@@ -22,7 +22,7 @@ private:
 	
 	bool m_Dash;
 
-	float Multiple;//속도 제어
+	float Multiple;//대각선 속도 제어
 
 	Vec2 Dire;
 	Vec2 Mouse;
@@ -33,7 +33,7 @@ public:
 	~Player();
 	
 	void Move();
-	void Hand();
+	void Esc();
 	void ColBox();
 	void Buff();
 	void Dash();

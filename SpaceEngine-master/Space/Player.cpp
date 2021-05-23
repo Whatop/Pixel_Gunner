@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Evasion.h"
 #include "Weapon.h"
+#include "Option.h"
 
 Player::Player(Vec2 Pos)
 {
@@ -19,17 +20,13 @@ Player::Player(Vec2 Pos)
 	Down = false;
 	Right = false;
 	Left = false;
+
 	Y[0] = false;
 	Y[1] = false;
 	X[0] = false;
 	X[1] = false;
 
 	m_Weapon_Tag.clear();
-	m_Weapon_Tag.push_back("GUN1");
-	m_Weapon_Tag.push_back("GUN2");
-	m_Weapon_Tag.push_back("기본 무기");
-	m_Weapon_Tag.push_back("근접 무기");
-	m_Weapon_Tag.push_back("수류탄");
 
 	m_ColBox[0] = Sprite::Create(L"Painting/Player/ColBox.png");
 	m_ColBox[0]->SetParent(this);
@@ -38,13 +35,6 @@ Player::Player(Vec2 Pos)
 	m_ColBox[3] = Sprite::Create(L"Painting/Player/Height.png");
 	m_ColBox[4] = Sprite::Create(L"Painting/Player/Height.png");
 	SetPosition(Pos);
-
-
-	std::cout << "-0번째 : " << m_Weapon_Tag.at(0) << std::endl;
-	std::cout << "-1번째 : " << m_Weapon_Tag.at(1) << std::endl;
-	std::cout << "-2번째 : " << m_Weapon_Tag.at(2) << std::endl;
-	std::cout << "-3번째 : " << m_Weapon_Tag.at(3) << std::endl;
-	std::cout << "-4번째 : " << m_Weapon_Tag.at(4) << std::endl;
 
 }
 
@@ -89,24 +79,6 @@ void Player::Move()
 		if (!Left)
 			m_Position.x +=  m_Speed * Multiple;
 	}
-	//std::cout << "Multiple : " << Multiple << std::endl;
-}
-
-void Player::Hand()
-{
-	/*if (GameMgr::GetInst()->m_Weapon_Type == Weapon_Type::BASICGUN) {
-		if (INPUT->GetKey('1') == KeyState::DOWN) {
-		}
-	}
-	if (GameMgr::GetInst()->m_Weapon_Type == Weapon_Type::GUN1) {
-			if (INPUT->GetKey('1') == KeyState::DOWN) {
-				ObjMgr->AddObject(new Weapon(Weapon_Case_Tag.at(0), m_Position), "Weapon1");
-			}
-			else if (INPUT->GetKey('2') == KeyState::DOWN) {
-				ObjMgr->AddObject(new Weapon("Basicgun", m_Position), "Basic");
-			}
-	}*/
-	
 }
 
 void Player::ColBox()
@@ -164,7 +136,7 @@ void Player::Update(float deltaTime, float Time)
 	Buff(); 
 	ColBox(); 
 	GameMgr::GetInst()->Weapon_Holding();
-	Hand();
+	GameMgr::GetInst()->Esc();
 	//Camera::GetInst()->Temp(this);
 }
 
@@ -182,10 +154,16 @@ void Player::OnCollision(Object* obj)
 	if (obj->m_Tag == "WeaponCase") {
 		if (INPUT->GetKey('E') == KeyState::DOWN) {
 			GameMgr::GetInst()->HaveGun++;
-			m_Weapon_Tag.at(1) = obj->m_WeaponName;
+			m_Weapon_Tag.push_back(obj->m_WeaponName);
 			GameMgr::GetInst()->Weapon_Case_Tag.push_back(obj->m_WeaponName);
-			std::cout << "첫번째 총 : " << m_Weapon_Tag.at(1) << std::endl;
-			std::cout << "테스트 : " << GameMgr::GetInst()->Weapon_Case_Tag.at(0) << std::endl;
+			if (GameMgr::GetInst()->HaveGun == 1) {
+				std::cout << "첫번째 총 : " << m_Weapon_Tag.at(0) << std::endl;
+				std::cout << "테스트 : " << GameMgr::GetInst()->Weapon_Case_Tag.at(0) << std::endl;
+			}
+			else if (GameMgr::GetInst()->HaveGun == 2) {
+				std::cout << "두번째 총 : " << m_Weapon_Tag.at(1) << std::endl;
+				std::cout << "테스트 : " << GameMgr::GetInst()->Weapon_Case_Tag.at(1) << std::endl;
+			}
 		}
 	}
 	if (obj->m_Tag == "Wall")

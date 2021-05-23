@@ -67,6 +67,7 @@ public:
 	void CreatePlayer();
 	void CreateMonster();
 	void AddDifficulty();
+	void Esc();
 
 	void Weapon_Holding();
 	Game_Difficulty GetDifficulty() { return GameDifficulty; }
@@ -79,6 +80,7 @@ public:
 	int Difficulty;
 	bool _UICreate;
 	bool _PlayerCreate;
+	bool _PauseUI;
 	int HaveGun;
 	int menimap;
 	Vec2 Pos;

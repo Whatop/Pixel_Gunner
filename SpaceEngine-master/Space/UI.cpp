@@ -32,6 +32,22 @@ void UI::Init() // ÃÑ Ä­ + ÃÑ¾Ë Ä­ + HP + µîµî
 	m_Interface[3]->SetScale(1, 0.5f);
 	m_Interface[4]->SetScale(1, 0.5f);
 
+	m_Interface[4] = Sprite::Create(L"Painting/UI/RoolBar.png"); // HP
+	m_Interface[4]->SetPosition(1920 / 2, 875);
+
+	m_OptionUI[0] = Sprite::Create(L"Painting/UI/OptionName.png"); // HPBar
+	m_OptionUI[0]->SetPosition(500, 300);
+
+	m_OptionUI[1] = Sprite::Create(L"Painting/UI/Back.png"); // HPBar
+	m_OptionUI[1]->SetPosition(500, 500);
+	
+	m_OptionUI[2] = Sprite::Create(L"Painting/UI/giveup.png"); // HPBar
+	m_OptionUI[2]->SetPosition(500, 600);
+
+	m_OptionUI[3] = Sprite::Create(L"Painting/UI/EXIT.png"); // HPBar
+	m_OptionUI[3]->SetPosition(500, 700);
+
+
 	if (GameMgr::GetInst()->GetScene() == CurrentScene::STAGE1 || GameMgr::GetInst()->GetScene() == CurrentScene::STAGE2) {
 		
 		ObjMgr->AddObject(m_Interface[0], "UI");

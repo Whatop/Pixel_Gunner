@@ -25,6 +25,7 @@ void GameMgr::Init()
 	HaveGun = 0;
 	Difficulty = 1;
 	_UICreate = false;
+	_PauseUI = false;
 	_PlayerCreate = false;
 
 	for (int i = 0; i < 5; i++) {
@@ -172,6 +173,16 @@ void GameMgr::AddDifficulty()
 	Difficulty++;
 }
 
+void GameMgr::Esc()
+{
+	if (INPUT->GetKey(VK_ESCAPE) == KeyState::DOWN) {
+		if (_PauseUI)
+			_PauseUI = false;
+		else 
+			_PauseUI = true;
+	}
+}
+
 void GameMgr::Weapon_Holding()
 {
 	// 1번 기본 무기, 2번 근접무기, 3번 슈류탄
@@ -230,7 +241,7 @@ void GameMgr::Weapon_Holding()
 	}
 	else {
 		if (Not_Overlap[0]) {
-			ObjMgr->AddObject(new Weapon("Heroine", PlayerPos), "Weapon1");
+			ObjMgr->AddObject(new Weapon(Weapon_Case_Tag.at(0), PlayerPos), "Weapon1");
 			Not_Overlap[0] = false;
 		}
 		for (int i = 0; i < 5; i++) {
@@ -243,7 +254,7 @@ void GameMgr::Weapon_Holding()
 	}
 	else {
 		if (Not_Overlap[1]) {
-			ObjMgr->AddObject(new Weapon("Vulcan_Cannon", PlayerPos), "Weapon2");
+			ObjMgr->AddObject(new Weapon(Weapon_Case_Tag.at(1), PlayerPos), "Weapon2");
 			Not_Overlap[1] = false;
 		}
 		for (int i = 0; i < 5; i++) {
