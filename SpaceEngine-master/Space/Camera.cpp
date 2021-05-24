@@ -22,21 +22,27 @@ void Camera::Follow(Object* obj)
 {
 	if (obj != nullptr)
 	{
-		if (INPUT->GetMousePos().x >= obj->m_Position.x) {
-			Mouse.x = (INPUT->GetMousePos().x - obj->m_Position.x) / 7;
-		}
-		else if (INPUT->GetMousePos().x <= obj->m_Position.x) {
-			Mouse.x = (INPUT->GetMousePos().x - obj->m_Position.x)/ 7;
-		}
-		if (INPUT->GetMousePos().y >= obj->m_Position.y) {
-			Mouse.y = (INPUT->GetMousePos().y - obj->m_Position.y) / 7;
-		}
-		else if (INPUT->GetMousePos().y <= obj->m_Position.y) {
-			Mouse.y = (INPUT->GetMousePos().y - obj->m_Position.y) / 7;
-		}
-		m_Position.x = obj->m_Position.x - App::GetInst()->m_Width / 2 + Mouse.x;
-		m_Position.y = obj->m_Position.y - App::GetInst()->m_Height / 2 + Mouse.y;
+			if (INPUT->GetMousePos().x >= obj->m_Position.x) {
+				Mouse.x = (INPUT->GetMousePos().x - obj->m_Position.x) / 7;
+			}
+			else if (INPUT->GetMousePos().x <= obj->m_Position.x) {
+				Mouse.x = (INPUT->GetMousePos().x - obj->m_Position.x) / 7;
+			}
+			if (INPUT->GetMousePos().y >= obj->m_Position.y) {
+				Mouse.y = (INPUT->GetMousePos().y - obj->m_Position.y) / 7;
+			}
+			else if (INPUT->GetMousePos().y <= obj->m_Position.y) {
+				Mouse.y = (INPUT->GetMousePos().y - obj->m_Position.y) / 7;
+			}
+			if (GameMgr::GetInst()->_QuarkOption)
+				Mouse = Vec2(0, 0);
+
+			m_Position.x = obj->m_Position.x - App::GetInst()->m_Width / 2 + Mouse.x;
+			m_Position.y = obj->m_Position.y - App::GetInst()->m_Height / 2 + Mouse.y;
+	
+	
 	}
+	
 }
 
 void Camera::Update(float deltaTime, float time)

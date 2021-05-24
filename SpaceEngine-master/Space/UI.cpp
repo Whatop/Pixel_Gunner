@@ -29,11 +29,9 @@ void UI::Init() // ÃÑ Ä­ + ÃÑ¾Ë Ä­ + HP + µîµî
 	m_Interface[4] = Sprite::Create(L"Painting/UI/RoolBar.png"); // HP
 	m_Interface[4]->SetPosition(1920 / 2, 875);
 	
+
 	m_Interface[3]->SetScale(1, 0.5f);
 	m_Interface[4]->SetScale(1, 0.5f);
-
-	m_Interface[4] = Sprite::Create(L"Painting/UI/RoolBar.png"); // HP
-	m_Interface[4]->SetPosition(1920 / 2, 875);
 
 	m_OptionUI[0] = Sprite::Create(L"Painting/UI/OptionBG.png"); // HPBar
 	m_OptionUI[0]->SetPosition(300, 700);
@@ -85,13 +83,14 @@ void UI::Update(float deltaTime, float Time)
 	if (GameMgr::GetInst()->_QuarkOption) {
 		for (int i = 0; i < 5; i++) {
 			m_OptionUI[i]->m_Visible = true;
+			m_OptionUI[0]->SetPosition(GameMgr::GetInst()->PlayerPos);
 		}
 	}
 	else {
 		for (int i = 0; i < 5; i++) {
 			m_OptionUI[i]->m_Visible = false;
 			if (i != 0) {
-				m_OptionUI[i]->SetPosition(300, 400 + 100 * i);
+				m_OptionUI[i]->SetPosition(GameMgr::GetInst()->PlayerPos.x, GameMgr::GetInst()->PlayerPos.y + 400 + 100 * i);
 			}
 		}
 		m_OptionUI[0]->SetPosition(GameMgr::GetInst()->PlayerPos);

@@ -9,7 +9,7 @@ Player::Player(Vec2 Pos)
 	m_Player = Sprite::Create(L"Painting/Player/Player.png");
 	m_Layer = 0;
 
-	m_Speed = 5.f;
+	m_Speed = 7.5f;
 	m_Dash = false;
 	m_Timer = 0.f;
 	m_DashCooltime = 0.f;
@@ -106,14 +106,14 @@ void Player::Dash()
 	{
 		m_Timer += dt;
 		ObjMgr->AddObject(new Evasion(m_Position), "Effect");
-		m_Speed = 15.f;
+		m_Speed = 30.f;
 
 		if (m_Timer >= 0.1f)
 		{
 			m_Timer = 0.f;
 			m_Dash = false;
 			m_DashCooltime = 0;
-			m_Speed = 5;
+			m_Speed = 7.5f;
 		}
 	}
 }
