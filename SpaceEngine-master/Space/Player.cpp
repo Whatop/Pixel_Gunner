@@ -9,7 +9,7 @@ Player::Player(Vec2 Pos)
 	m_Player = Sprite::Create(L"Painting/Player/Player.png");
 	m_Layer = 0;
 
-	m_Speed = 7.5f;
+	m_Speed = 500.f;
 	m_Dash = false;
 	m_Timer = 0.f;
 	m_DashCooltime = 0.f;
@@ -50,7 +50,7 @@ void Player::Move()
 			Multiple = 0.75f;
 
 		if (!Down)
-			m_Position.y -= m_Speed * Multiple;
+			m_Position.y -= m_Speed * Multiple * dt;
 	}	
 	if (INPUT->GetKey('S') == KeyState::PRESS) {
 		Y[1] = true;
@@ -59,7 +59,7 @@ void Player::Move()
 		else
 			Multiple = 1;
 		if (!Up)
-			m_Position.y += m_Speed * Multiple;
+			m_Position.y += m_Speed * Multiple*dt;
 	}
 	if(INPUT->GetKey('A') == KeyState::PRESS){
 		X[0] = true;
@@ -68,7 +68,7 @@ void Player::Move()
 		else
 			Multiple = 1;
 		if (!Right)
-			m_Position.x -= m_Speed * Multiple;
+			m_Position.x -= m_Speed * Multiple * dt;
 	}
 	if (INPUT->GetKey('D') == KeyState::PRESS) {
 		X[1] = true;
@@ -77,7 +77,7 @@ void Player::Move()
 		else 
 			Multiple = 1;
 		if (!Left)
-			m_Position.x +=  m_Speed * Multiple;
+			m_Position.x +=  m_Speed * Multiple * dt;
 	}
 }
 
@@ -106,14 +106,14 @@ void Player::Dash()
 	{
 		m_Timer += dt;
 		ObjMgr->AddObject(new Evasion(m_Position), "Effect");
-		m_Speed = 30.f;
+		m_Speed = 2000.f;
 
 		if (m_Timer >= 0.1f)
 		{
 			m_Timer = 0.f;
 			m_Dash = false;
 			m_DashCooltime = 0;
-			m_Speed = 7.5f;
+			m_Speed = 500.f;
 		}
 	}
 }

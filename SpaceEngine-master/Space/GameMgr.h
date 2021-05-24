@@ -46,16 +46,39 @@ enum class Weapon_Type {
 };
 
 struct Player_State {
-public:
-	int MaxHp,Dash, Heal, Bag;
-	float Speed;
-	float Hp_Ratio, Speed_Ratio, Heal_Ratio, Dash_Ratio, Ammo_Ratio;
+public: 
+	float //스텟
+		Hp,
+		Speed,
+		Def,
+		Dash,
+		Critical;
+	int Bag;
+
+	float //계수 %
+		Hp_Ratio,
+		Speed_Ratio,
+		Def_Ratio,
+		Heal_Ratio,
+		Ammo_Ratio;
 };
 
 struct Weapon_State {
 public:
-	int Damege, Speed, Reload, Range, Ammo;
-	float Damege_Ratio, Speed_Ratio, Reload_Ratio, Range_Ratio, Ammo_Capacity_Ratio;
+	int 
+		Damege, 
+		Speed, 
+		Reload, 
+		Range, 
+		Mag,
+		Ammo;
+	float 
+		Damege_Ratio,
+		Speed_Ratio,
+		Reload_Ratio,
+		Range_Ratio,
+		Mag_Ratio,
+		Ammo_Capacity_Ratio;
 };
 
 // 1번 기본무기, 2번 무기, 3번 근접무기, 4번 슈류탄
@@ -85,10 +108,13 @@ public:
 	void AddDifficulty();	
 	void Esc();
 
-	void SetPlayerStatus(int level, int exp, int hp, float speed, int atk);
-	void SetWeaponStatus(int level, int exp, int hp, float speed, int atk);
+	void UpdatePlayerStatus(float hp, float speed, float def, float dash, float critical, int bag) {
+		m_PlayerStatus = { hp,speed,def,speed,dash,critical,bag};
+	}
+
 
 	void Weapon_Holding();
+
 	Game_Difficulty GetDifficulty() { return GameDifficulty; }
 	CurrentScene GetScene() { return m_Scene; }
 public:

@@ -183,11 +183,6 @@ void GameMgr::Esc()
 	}
 }
 
-void GameMgr::SetPlayerStatus(int level, int exp, int hp, float speed, int atk)
-{
-	//m_PlayerStatus = { level,exp,hp,speed,atk};
-}
-
 void GameMgr::Weapon_Holding()
 {
 	// 1번 기본 무기, 2번 근접무기, 3번 슈류탄
@@ -309,3 +304,4 @@ void GameMgr::Weapon_Holding()
 		}
 	}
 }
+
