@@ -1,17 +1,5 @@
 #pragma once
 
-struct Player_State {
-public:
-	int MaxHp, Speed, Dash, Heal, Ammo;
-	int Hp_Ratio , Speed_Ratio, Heal_Ratio, Dash_Ratio, Ammo_Ratio;
-};
-
-struct Weapon_State {
-public:
-	int Damege, Speed, Reload, Range, Ammo_Capacity;
-	int Damege_Ratio, Speed_Ratio, Reload_Ratio, Range_Ratio, Ammo_Capacity_Ratio;
-};
-
 class Object
 {
 public:
@@ -34,6 +22,7 @@ public:
 	int m_Layer;
 	std::string m_Tag;
 	std::string m_WeaponName;//무기Class만들어서 이거 이름 만들면 되겠따
+
 public:
 	Object();
 	~Object();

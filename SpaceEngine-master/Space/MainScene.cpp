@@ -15,6 +15,7 @@ MainScene::~MainScene()
 void MainScene::Init() //
 {
 
+	Camera::GetInst()->Init();
 	GameMgr::GetInst()->m_Scene = CurrentScene::MAINSCENE;
 	GameMgr::GetInst()->CreateUI();
 	BackGround = Sprite::Create(L"Painting/TestBackGround.png");

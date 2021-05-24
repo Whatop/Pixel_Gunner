@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "MainScene.h"
 #include "UI.h"
 
 UI::UI()
@@ -33,19 +34,19 @@ void UI::Init() // 총 칸 + 총알 칸 + HP + 등등
 	m_Interface[3]->SetScale(1, 0.5f);
 	m_Interface[4]->SetScale(1, 0.5f);
 
-	m_OptionUI[0] = Sprite::Create(L"Painting/UI/OptionBG.png"); // HPBar
+	m_OptionUI[0] = Sprite::Create(L"Painting/UI/OptionBG.png"); // BG
 	m_OptionUI[0]->SetPosition(300, 700);
 
-	m_OptionUI[1] = Sprite::Create(L"Painting/UI/OptionName.png",D3DCOLOR_XRGB(0, 0, 0)); // HPBar
+	m_OptionUI[1] = Sprite::Create(L"Painting/UI/OptionName.png",D3DCOLOR_XRGB(0, 0, 0)); // Name
 	m_OptionUI[1]->SetPosition(300, 300);
 
-	m_OptionUI[2] = Sprite::Create(L"Painting/UI/Back.png", D3DCOLOR_XRGB(0, 0, 0)); // HPBar
+	m_OptionUI[2] = Sprite::Create(L"Painting/UI/Back.png", D3DCOLOR_XRGB(0, 0, 0)); // 돌아가기
 	m_OptionUI[2]->SetPosition(300, 500);
 	
-	m_OptionUI[3] = Sprite::Create(L"Painting/UI/giveup.png", D3DCOLOR_XRGB(0, 0, 0)); // HPBar
+	m_OptionUI[3] = Sprite::Create(L"Painting/UI/giveup.png", D3DCOLOR_XRGB(0, 0, 0)); // 포기하기(타이틀로)
 	m_OptionUI[3]->SetPosition(300, 600);
 
-	m_OptionUI[4] = Sprite::Create(L"Painting/UI/EXIT.png", D3DCOLOR_XRGB(0, 0, 0)); // HPBar
+	m_OptionUI[4] = Sprite::Create(L"Painting/UI/EXIT.png", D3DCOLOR_XRGB(0, 0, 0)); // 게임종료
 	m_OptionUI[4]->SetPosition(300, 700);
 	
 	for (int i = 0; i < 5; i++) {
@@ -84,6 +85,28 @@ void UI::Update(float deltaTime, float Time)
 		for (int i = 0; i < 5; i++) {
 			m_OptionUI[i]->m_Visible = true;
 			m_OptionUI[0]->SetPosition(GameMgr::GetInst()->PlayerPos);
+		}
+		if (CollisionMgr::GetInst()->MouseWithBoxSize(m_OptionUI[2])) {
+			if (INPUT->GetButtonDown()) {
+				GameMgr::GetInst()->_QuarkOption = false;
+				INPUT->ButtonDown(false);
+			}
+		}
+		else if (CollisionMgr::GetInst()->MouseWithBoxSize(m_OptionUI[3])) {
+			if (INPUT->GetButtonDown()) {
+				INPUT->ButtonDown(false);
+				GameMgr::GetInst()->_QuarkOption = false;
+				ObjMgr->Release();
+				SceneDirector::GetInst()->ChangeScene(new MainScene);
+			}
+		}
+		else if (CollisionMgr::GetInst()->MouseWithBoxSize(m_OptionUI[4])) {
+
+			if (INPUT->GetButtonDown()) {
+				INPUT->ButtonDown(false);
+				App::GetInst()->Release();
+				exit(0);
+			}
 		}
 	}
 	else {

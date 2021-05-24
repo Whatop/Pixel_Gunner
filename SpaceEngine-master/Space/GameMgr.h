@@ -45,6 +45,19 @@ enum class Weapon_Type {
 	NONE
 };
 
+struct Player_State {
+public:
+	int MaxHp,Dash, Heal, Bag;
+	float Speed;
+	float Hp_Ratio, Speed_Ratio, Heal_Ratio, Dash_Ratio, Ammo_Ratio;
+};
+
+struct Weapon_State {
+public:
+	int Damege, Speed, Reload, Range, Ammo;
+	float Damege_Ratio, Speed_Ratio, Reload_Ratio, Range_Ratio, Ammo_Capacity_Ratio;
+};
+
 // 1번 기본무기, 2번 무기, 3번 근접무기, 4번 슈류탄
 class GameMgr : public Singleton<GameMgr> // UI 생성 및 삭제(UI관리함), 플레이어, 몬스터 스폰, 랭킹, 
 {
@@ -54,6 +67,9 @@ private:
 	bool Not_Overlap[5];
 	float TimeLmit;
 	Game_Difficulty GameDifficulty;
+
+	Weapon_State m_WeaponStatus;
+	Player_State m_PlayerStatus;
 public:
 	GameMgr();
 	~GameMgr();
@@ -66,8 +82,11 @@ public:
 	void CreateObstacle();
 	void CreatePlayer();
 	void CreateMonster();
-	void AddDifficulty();
+	void AddDifficulty();	
 	void Esc();
+
+	void SetPlayerStatus(int level, int exp, int hp, float speed, int atk);
+	void SetWeaponStatus(int level, int exp, int hp, float speed, int atk);
 
 	void Weapon_Holding();
 	Game_Difficulty GetDifficulty() { return GameDifficulty; }

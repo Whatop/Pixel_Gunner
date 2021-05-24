@@ -25,7 +25,7 @@ void Weapon::Fire()
 		m_State.Range = 10;
 		m_State.Reload = 10;
 		m_State.Speed = 1300;
-		m_State.Ammo_Capacity = 10;
+		m_State.Ammo = 10;
 
 		DelayTime += dt;
 		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
@@ -39,7 +39,7 @@ void Weapon::Fire()
 		m_State.Range = 10;
 		m_State.Reload = 10;
 		m_State.Speed = 1300;
-		m_State.Ammo_Capacity = 10;
+		m_State.Ammo = 10;
 
 		DelayTime += dt;
 		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
@@ -53,7 +53,7 @@ void Weapon::Fire()
 		m_State.Range = 10;
 		m_State.Reload = 10;
 		m_State.Speed = 1300;
-		m_State.Ammo_Capacity = 10;
+		m_State.Ammo = 10;
 
 		DelayTime += dt;
 		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
@@ -67,7 +67,7 @@ void Weapon::Fire()
 		m_State.Range = 10;
 		m_State.Reload = 10;
 		m_State.Speed = 1300;
-		m_State.Ammo_Capacity = 10;
+		m_State.Ammo = 10;
 
 		DelayTime += dt;
 		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
@@ -81,7 +81,7 @@ void Weapon::Fire()
 		m_State.Range = 10;
 		m_State.Reload = 10;
 		m_State.Speed = 1300;
-		m_State.Ammo_Capacity = 10;
+		m_State.Ammo = 10;
 
 		DelayTime += dt;
 		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
@@ -95,7 +95,7 @@ void Weapon::Fire()
 		m_State.Range = 10;
 		m_State.Reload = 10;
 		m_State.Speed = 1300;
-		m_State.Ammo_Capacity = 10;
+		m_State.Ammo = 10;
 
 		DelayTime += dt;
 		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
@@ -109,7 +109,7 @@ void Weapon::Fire()
 		m_State.Range = 10;
 		m_State.Reload = 10;
 		m_State.Speed = 1300;
-		m_State.Ammo_Capacity = 10;
+		m_State.Ammo = 10;
 
 		DelayTime += dt;
 		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
@@ -123,7 +123,7 @@ void Weapon::Fire()
 		m_State.Range = 10;
 		m_State.Reload = 10;
 		m_State.Speed = 1300;
-		m_State.Ammo_Capacity = 10;
+		m_State.Ammo = 10;
 
 		DelayTime += dt;
 		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
@@ -137,7 +137,7 @@ void Weapon::Fire()
 		m_State.Range = 10;
 		m_State.Reload = 10;
 		m_State.Speed = 1300;
-		m_State.Ammo_Capacity = 10;
+		m_State.Ammo = 10;
 
 		DelayTime += dt;
 		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
