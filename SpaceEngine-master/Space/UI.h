@@ -12,7 +12,7 @@ class UI : public Singleton<UI>
 	int MonsterCount;
 	std::string Stage_Name;// + ≥≠¿Ãµµ
 	int shape;
-	float Timer;
+	float m_Timer;
 	int m_Time[4];
 public:
 	UI();
@@ -23,6 +23,9 @@ public:
 
 	void Update(float deltaTime, float Time);
 	void Render();
+
+	void Timer();
+	void Mouse();
 	float m_HpGage;
 	float m_DashGage;
 

@@ -130,7 +130,9 @@ void Player::Update(float deltaTime, float Time)
 	X[1] = false;
 	ObjMgr->CollisionCheak(this, "WeaponCase");
 	ObjMgr->CollisionCheak(this, "Wall");
-	Move();
+	if(!GameMgr::GetInst()->_QuarkOption)
+		Move();
+	
 	Dash();
 	Camera::GetInst()->Follow(this);
 	Buff(); 

@@ -25,7 +25,7 @@ void GameMgr::Init()
 	HaveGun = 0;
 	Difficulty = 1;
 	_UICreate = false;
-	_PauseUI = false;
+	_QuarkOption = false;
 	_PlayerCreate = false;
 
 	for (int i = 0; i < 5; i++) {
@@ -176,10 +176,10 @@ void GameMgr::AddDifficulty()
 void GameMgr::Esc()
 {
 	if (INPUT->GetKey(VK_ESCAPE) == KeyState::DOWN) {
-		if (_PauseUI)
-			_PauseUI = false;
+		if (_QuarkOption)
+			_QuarkOption = false;
 		else 
-			_PauseUI = true;
+			_QuarkOption = true;
 	}
 }
 
@@ -188,6 +188,8 @@ void GameMgr::Weapon_Holding()
 	// 1번 기본 무기, 2번 근접무기, 3번 슈류탄
 
 	for (auto& iter : ObjMgr->m_Objects) {
+		if (iter->m_Tag == "Player")
+			PlayerPos = iter->m_Position;
 	}
 	if (INPUT->GetKey('1') == KeyState::DOWN) {
 		if (HaveGun == 1) {

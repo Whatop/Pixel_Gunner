@@ -35,18 +35,24 @@ void UI::Init() // ÃÑ Ä­ + ÃÑ¾Ë Ä­ + HP + µîµî
 	m_Interface[4] = Sprite::Create(L"Painting/UI/RoolBar.png"); // HP
 	m_Interface[4]->SetPosition(1920 / 2, 875);
 
-	m_OptionUI[0] = Sprite::Create(L"Painting/UI/OptionName.png"); // HPBar
-	m_OptionUI[0]->SetPosition(500, 300);
+	m_OptionUI[0] = Sprite::Create(L"Painting/UI/OptionBG.png"); // HPBar
+	m_OptionUI[0]->SetPosition(300, 700);
 
-	m_OptionUI[1] = Sprite::Create(L"Painting/UI/Back.png"); // HPBar
-	m_OptionUI[1]->SetPosition(500, 500);
+	m_OptionUI[1] = Sprite::Create(L"Painting/UI/OptionName.png",D3DCOLOR_XRGB(0, 0, 0)); // HPBar
+	m_OptionUI[1]->SetPosition(300, 300);
+
+	m_OptionUI[2] = Sprite::Create(L"Painting/UI/Back.png", D3DCOLOR_XRGB(0, 0, 0)); // HPBar
+	m_OptionUI[2]->SetPosition(300, 500);
 	
-	m_OptionUI[2] = Sprite::Create(L"Painting/UI/giveup.png"); // HPBar
-	m_OptionUI[2]->SetPosition(500, 600);
+	m_OptionUI[3] = Sprite::Create(L"Painting/UI/giveup.png", D3DCOLOR_XRGB(0, 0, 0)); // HPBar
+	m_OptionUI[3]->SetPosition(300, 600);
 
-	m_OptionUI[3] = Sprite::Create(L"Painting/UI/EXIT.png"); // HPBar
-	m_OptionUI[3]->SetPosition(500, 700);
-
+	m_OptionUI[4] = Sprite::Create(L"Painting/UI/EXIT.png", D3DCOLOR_XRGB(0, 0, 0)); // HPBar
+	m_OptionUI[4]->SetPosition(300, 700);
+	
+	for (int i = 0; i < 5; i++) {
+		m_OptionUI[i]->m_Visible = true;
+	}
 
 	if (GameMgr::GetInst()->GetScene() == CurrentScene::STAGE1 || GameMgr::GetInst()->GetScene() == CurrentScene::STAGE2) {
 		
@@ -65,6 +71,7 @@ void UI::Init() // ÃÑ Ä­ + ÃÑ¾Ë Ä­ + HP + µîµî
 	m_Hp = new TextMgr();
 	m_Hp->Init(32, true, false, "±¼¸²");
 	m_Hp->SetColor(255, 255, 255, 255);
+	SetCursor(NULL);
 }
 
 void UI::Release()
@@ -73,63 +80,26 @@ void UI::Release()
 
 void UI::Update(float deltaTime, float Time)
 {
-	SetCursor(NULL);
-	if (INPUT->GetKey('O') == KeyState::DOWN) {
-		GameMgr::GetInst()->m_Hp -= 10;
-	}
-	if (INPUT->GetKey('P') == KeyState::DOWN) {
-		GameMgr::GetInst()->m_Hp += 10;
-	}
-	if (GameMgr::GetInst()->m_MouseShape == MouseShape::scope) {
-		m_Mouse = Sprite::Create(L"Painting/Mouse/1.png");
-	}
-	else if (GameMgr::GetInst()->m_MouseShape == MouseShape::square) {
-		m_Mouse = Sprite::Create(L"Painting/Mouse/2.png");
-	}
-	else if (GameMgr::GetInst()->m_MouseShape == MouseShape::circle) {
-		m_Mouse = Sprite::Create(L"Painting/Mouse/3.png");
-	}
-	else if (GameMgr::GetInst()->m_MouseShape == MouseShape::bullet) {
-		m_Mouse = Sprite::Create(L"Painting/Mouse/4.png");
-	}
-	else if (GameMgr::GetInst()->m_MouseShape == MouseShape::cross) {
-		m_Mouse = Sprite::Create(L"Painting/Mouse/5.png");
-	}
-	else if (GameMgr::GetInst()->m_MouseShape == MouseShape::point) {
-		m_Mouse = Sprite::Create(L"Painting/Mouse/6.png");
-	}
-	else if (GameMgr::GetInst()->m_MouseShape == MouseShape::none) {
-		m_Mouse = Sprite::Create(L"Painting/Mouse/Mouse.png");
-	}
-	m_Mouse->SetPosition(INPUT->GetMousePos());
-	Timer+= dt;
-	if (Timer >= 1) {
-		m_Time[3]++;
-		Timer = 0;
-		if (m_Time[3] > 9) {
-			m_Time[2]++;
-			m_Time[3]=0;
+	Timer();
+	Mouse();
+	if (GameMgr::GetInst()->_QuarkOption) {
+		for (int i = 0; i < 5; i++) {
+			m_OptionUI[i]->m_Visible = true;
 		}
-		if (m_Time[2] > 5) {
-			m_Time[1]++;
-			m_Time[2] = 0;
+	}
+	else {
+		for (int i = 0; i < 5; i++) {
+			m_OptionUI[i]->m_Visible = false;
+			if (i != 0) {
+				m_OptionUI[i]->SetPosition(300, 400 + 100 * i);
+			}
 		}
-		if (m_Time[1] > 5) {
-			m_Time[0]++;
-			m_Time[1] = 0;
-		}
-		if (m_Time[0] > 5) {
-			m_Time[0] = 0;
-			m_Time[1] = 0;
-			m_Time[2] = 0;
-			m_Time[3] = 0;
-		}
+		m_OptionUI[0]->SetPosition(GameMgr::GetInst()->PlayerPos);
 	}
 }
 
 void UI::Render()
 {
-	m_Mouse->Render();
 	if (GameMgr::GetInst()->GetScene() == CurrentScene::STAGE1) {
 		Renderer::GetInst()->GetSprite()->Begin(D3DXSPRITE_ALPHABLEND);
 		m_UI->print(std::to_string(m_Time[0])+ std::to_string(m_Time[1])+" : "
@@ -164,4 +134,70 @@ void UI::Render()
 		m_UI->print("½Ã°£ : " + std::to_string(gt) + "\nÇÁ·¹ÀÓ : " + std::to_string(dt), 100, 100);
 		Renderer::GetInst()->GetSprite()->End();
 	}*/
+
+	for (int i = 0; i < 5; i++) {
+		m_OptionUI[i]->Render();
+	}
+	m_Mouse->Render();
+}
+
+void UI::Timer()
+{
+	m_Timer += dt;
+	if (m_Timer >= 1) {
+		m_Time[3]++;
+		m_Timer = 0;
+		if (m_Time[3] > 9) {
+			m_Time[2]++;
+			m_Time[3] = 0;
+		}
+		if (m_Time[2] > 5) {
+			m_Time[1]++;
+			m_Time[2] = 0;
+		}
+		if (m_Time[1] > 5) {
+			m_Time[0]++;
+			m_Time[1] = 0;
+		}
+		if (m_Time[0] > 5) {
+			m_Time[0] = 0;
+			m_Time[1] = 0;
+			m_Time[2] = 0;
+			m_Time[3] = 0;
+		}
+	}
+}
+
+void UI::Mouse()
+{
+	SetCursor(NULL);
+	if (INPUT->GetKey('O') == KeyState::DOWN) {
+		GameMgr::GetInst()->m_Hp -= 10;
+	}
+	if (INPUT->GetKey('P') == KeyState::DOWN) {
+		GameMgr::GetInst()->m_Hp += 10;
+	}
+	if (GameMgr::GetInst()->m_MouseShape == MouseShape::scope) {
+		m_Mouse = Sprite::Create(L"Painting/Mouse/1.png");
+	}
+	else if (GameMgr::GetInst()->m_MouseShape == MouseShape::square) {
+		m_Mouse = Sprite::Create(L"Painting/Mouse/2.png");
+	}
+	else if (GameMgr::GetInst()->m_MouseShape == MouseShape::circle) {
+		m_Mouse = Sprite::Create(L"Painting/Mouse/3.png");
+	}
+	else if (GameMgr::GetInst()->m_MouseShape == MouseShape::bullet) {
+		m_Mouse = Sprite::Create(L"Painting/Mouse/4.png");
+	}
+	else if (GameMgr::GetInst()->m_MouseShape == MouseShape::cross) {
+		m_Mouse = Sprite::Create(L"Painting/Mouse/5.png");
+	}
+	else if (GameMgr::GetInst()->m_MouseShape == MouseShape::point) {
+		m_Mouse = Sprite::Create(L"Painting/Mouse/6.png");
+	}
+	else if (GameMgr::GetInst()->m_MouseShape == MouseShape::none) {
+		m_Mouse = Sprite::Create(L"Painting/Mouse/Mouse.png");
+	}
+	m_Mouse->SetPosition(INPUT->GetMousePos());
+
 }

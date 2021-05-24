@@ -80,7 +80,7 @@ public:
 	int Difficulty;
 	bool _UICreate;
 	bool _PlayerCreate;
-	bool _PauseUI;
+	bool _QuarkOption;
 	int HaveGun;
 	int menimap;
 	Vec2 Pos;

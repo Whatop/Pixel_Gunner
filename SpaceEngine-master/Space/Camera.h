@@ -15,6 +15,7 @@ public:
 	Vec2 m_Position;
 	Vec2 m_Scale;
 
+	Vec2 Pos;
 
 	Matrix GetWorld()
 	{
