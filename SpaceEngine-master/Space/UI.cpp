@@ -90,7 +90,8 @@ void UI::Update(float deltaTime, float Time)
 		for (int i = 0; i < 5; i++) {
 			m_OptionUI[i]->m_Visible = false;
 			if (i != 0) {
-				m_OptionUI[i]->SetPosition(GameMgr::GetInst()->PlayerPos.x, GameMgr::GetInst()->PlayerPos.y + 400 + 100 * i);
+				m_OptionUI[i]->SetPosition(GameMgr::GetInst()->PlayerPos.x-600, 
+					GameMgr::GetInst()->PlayerPos.y-400+ 100 * i);
 			}
 		}
 		m_OptionUI[0]->SetPosition(GameMgr::GetInst()->PlayerPos);
