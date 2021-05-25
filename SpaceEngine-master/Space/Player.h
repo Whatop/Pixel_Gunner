@@ -6,11 +6,21 @@ private:
 	Sprite* m_Player;
 	Sprite* m_ColBox[5];
 
+	float m_Max_Hp;
+	float m_Hp;
+
 	float m_Speed;
+
+	float m_Def;
+
+	float m_Critical;
+
 	float DelayTime;
 	float m_Timer;
+
 	float m_DashCooltime;
 	float m_DashTime;
+	float m_DashCool;
 
 	bool Up;
 	bool Down;
@@ -33,7 +43,7 @@ public:
 	~Player();
 	
 	void Move();
-	void Esc();
+	void State();
 	void ColBox();
 	void Buff();
 	void Dash();

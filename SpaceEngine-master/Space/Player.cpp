@@ -9,13 +9,15 @@ Player::Player(Vec2 Pos)
 	m_Player = Sprite::Create(L"Painting/Player/Player.png");
 	m_Layer = 0;
 
+	m_Max_Hp = 100;
+	m_Hp = m_Max_Hp;
 	m_Speed = 500.f;
 	m_Dash = false;
 	m_Timer = 0.f;
 	m_DashCooltime = 0.f;
 	m_DashTime = 0.f;
+	m_DashCool = 1;
 	Multiple = 1;
-
 	Up = false;
 	Down = false;
 	Right = false;
@@ -81,6 +83,14 @@ void Player::Move()
 	}
 }
 
+void Player::State()
+{
+	GameMgr::GetInst()->m_Max_Hp = m_Max_Hp;
+	GameMgr::GetInst()->m_Hp = m_Hp;
+	GameMgr::GetInst()->m_Def = m_Def;
+	GameMgr::GetInst()->UpdatePlayerStatus(m_Max_Hp, m_Speed, m_Def, m_DashCool, m_Critical, 10);
+}
+
 void Player::ColBox()
 {
 	m_Player->SetPosition(m_Position);
@@ -98,7 +108,7 @@ void Player::Dash()
 {
 	m_DashCooltime += dt;
 	GameMgr::GetInst()->m_DashCooltime = m_DashCooltime;
-	if (INPUT->GetRightButtonDown() && m_DashCooltime >=1.f)
+	if (INPUT->GetRightButtonDown() && m_DashCooltime >= m_DashCool)
 	{
 		m_Dash = true;
 	}
@@ -128,6 +138,7 @@ void Player::Update(float deltaTime, float Time)
 	Y[1] = false;
 	X[0] = false;
 	X[1] = false;
+	State();
 	ObjMgr->CollisionCheak(this, "WeaponCase");
 	ObjMgr->CollisionCheak(this, "Wall");
 	if(!GameMgr::GetInst()->_QuarkOption)

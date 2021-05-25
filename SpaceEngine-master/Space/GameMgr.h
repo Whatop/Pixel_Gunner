@@ -80,7 +80,9 @@ public:
 		Mag_Ratio,
 		Ammo_Capacity_Ratio;
 };
+struct State_Ratio {
 
+};
 // 1번 기본무기, 2번 무기, 3번 근접무기, 4번 슈류탄
 class GameMgr : public Singleton<GameMgr> // UI 생성 및 삭제(UI관리함), 플레이어, 몬스터 스폰, 랭킹, 
 {
@@ -122,6 +124,10 @@ public:
 	int m_Hp;
 	float m_Max_Dash;
 	float m_DashCooltime;
+	float m_Def;
+	float Critical;
+public:
+
 	int Difficulty;
 	bool _UICreate;
 	bool _PlayerCreate;
