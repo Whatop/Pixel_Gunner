@@ -9,15 +9,12 @@ Player::Player(Vec2 Pos)
 	m_Player = Sprite::Create(L"Painting/Player/Player.png");
 	m_Layer = 0;
 
-	m_Max_Hp = 100;
-	m_Hp = m_Max_Hp;
-	m_Speed = 500.f;
 	m_Dash = false;
 	m_Timer = 0.f;
 	m_DashCooltime = 0.f;
 	m_DashTime = 0.f;
-	m_DashCool = 1;
 	Multiple = 1;
+
 	Up = false;
 	Down = false;
 	Right = false;
@@ -38,6 +35,13 @@ Player::Player(Vec2 Pos)
 	m_ColBox[4] = Sprite::Create(L"Painting/Player/Height.png");
 	SetPosition(Pos);
 
+	m_Max_Hp = 100;
+	m_Hp = m_Max_Hp;
+	m_Speed = 500.f;
+	m_DashCool = 1;
+	m_Def = 10; //방어력 10 공격 10만큼 만음  범위 : 무한
+	m_Def_Percent = 90;//방어력 10% 공격 10만큼 막음  범위 : 0~100%
+	GameMgr::GetInst()->UpdatePlayerStatus(m_Max_Hp, m_Speed, m_Def, m_Def_Percent, m_DashCool, m_Critical, 2);
 }
 
 Player::~Player()
@@ -85,10 +89,10 @@ void Player::Move()
 
 void Player::State()
 {
-	GameMgr::GetInst()->m_Max_Hp = m_Max_Hp;
+	GameMgr::GetInst()->m_Max_Hp = m_Max_Hp;//나중에 GameMgr에서 처리하도록 바꾸기 지금 Update로 struct에 자료집어넣으니 거기서 처리가능
 	GameMgr::GetInst()->m_Hp = m_Hp;
 	GameMgr::GetInst()->m_Def = m_Def;
-	GameMgr::GetInst()->UpdatePlayerStatus(m_Max_Hp, m_Speed, m_Def, m_DashCool, m_Critical, 2);
+	GameMgr::GetInst()->UpdatePlayerStatus(m_Max_Hp, m_Speed, m_Def,m_Def_Percent, m_DashCool, m_Critical, 2);
 }
 
 void Player::ColBox()

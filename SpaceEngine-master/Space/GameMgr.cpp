@@ -183,6 +183,13 @@ void GameMgr::Esc()
 	}
 }
 
+int GameMgr::Hit()
+{
+	Damege = m_WeaponStatus.Atk * m_PlayerStatus.Def_Percent;
+	Damege -= m_PlayerStatus.Def;
+	return Damege;
+}
+
 void GameMgr::Weapon_Holding()
 {
 	// 1번 기본 무기, 2번 근접무기, 3번 슈류탄

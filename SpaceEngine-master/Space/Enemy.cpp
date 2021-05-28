@@ -36,5 +36,8 @@ void Enemy::Render()
 
 void Enemy::OnCollision(Object* obj)
 {
-	
+	if (obj->m_Tag == "Bullet") {
+		m_Hp -= GameMgr::GetInst()->Hit();
+	}
+
 }

@@ -46,34 +46,14 @@ enum class Weapon_Type {
 };
 
 struct Player_State {
-public: 
-	float Hp, Speed, Def, Dash, Critical;
+public:
+	float Hp, Speed, Def, Def_Percent, Dash, Critical;
 	int Bag;
-
-	float //계수 %
-		Hp_Ratio,
-		Speed_Ratio,
-		Def_Ratio,
-		Heal_Ratio,
-		Ammo_Ratio;
 };
 
 struct Weapon_State {
 public:
-	int Damege, Speed, Reload, 
-		Range, 
-		Mag,
-		Ammo;
-	float 
-		Damege_Ratio,
-		Speed_Ratio,
-		Reload_Ratio,
-		Range_Ratio,
-		Mag_Ratio,
-		Ammo_Capacity_Ratio;
-};
-struct State_Ratio {
-
+	int Atk, Speed, Reload,Range,Mag,Ammo;
 };
 // 1번 기본무기, 2번 무기, 3번 근접무기, 4번 슈류탄
 class GameMgr : public Singleton<GameMgr> // UI 생성 및 삭제(UI관리함), 플레이어, 몬스터 스폰, 랭킹, 
@@ -85,8 +65,6 @@ private:
 	float TimeLmit;
 	Game_Difficulty GameDifficulty;
 
-	Weapon_State m_WeaponStatus;
-	Player_State m_PlayerStatus;
 public:
 	GameMgr();
 	~GameMgr();
@@ -101,23 +79,43 @@ public:
 	void CreateMonster();
 	void AddDifficulty();	
 	void Esc();
+	int Hit();
 
-	void UpdatePlayerStatus(float hp, float speed, float def, float dash, float critical, int bag) {
-		m_PlayerStatus = { hp,speed,def,dash,critical,bag};
+	void UpdatePlayerStatus(float hp, float speed, float def,float def_dercent, float dash, float critical, int bag) {
+		m_PlayerStatus = { hp,speed,def,def_dercent,dash,critical,bag}
 	}
-
+	void UpdateWeaponStatus(Weapon_State All) {
+		m_WeaponStatus = All;
+	}
 
 	void Weapon_Holding();
 
 	Game_Difficulty GetDifficulty() { return GameDifficulty; }
 	CurrentScene GetScene() { return m_Scene; }
 public:
+	Weapon_State m_WeaponStatus;
+	Player_State m_PlayerStatus;
+	int Damege;
 	int m_Max_Hp;
 	int m_Hp;
 	float m_Max_Dash;
 	float m_DashCooltime;
 	float m_Def;
 	float Critical;
+
+	//float //계수 %
+	//	Hp_Ratio,
+	//	Speed_Ratio,
+	//	Def_Ratio,
+	//	Heal_Ratio,
+	//	Ammo_Ratio;
+	//float
+	//	Damege_Ratio,
+	//	Speed_Ratio,
+	//	Reload_Ratio,
+	//	Range_Ratio,
+	//	Mag_Ratio,
+	//	Ammo_Capacity_Ratio;
 public:
 	
 	int Difficulty;

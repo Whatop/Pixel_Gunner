@@ -13,6 +13,8 @@ private:
 
 	float m_Def;
 
+	float m_Def_Percent;
+
 	float m_Critical;
 
 	float DelayTime;
