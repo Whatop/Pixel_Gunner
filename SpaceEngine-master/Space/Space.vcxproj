@@ -26,6 +26,7 @@
     <ClCompile Include="CollisionMgr.cpp" />
     <ClCompile Include="Detail_Option.cpp" />
     <ClCompile Include="EffectMgr.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Evasion.cpp" />
     <ClCompile Include="GameMgr.cpp" />
     <ClCompile Include="Input.cpp" />
@@ -61,6 +62,7 @@
     <ClInclude Include="CollisionMgr.h" />
     <ClInclude Include="Detail_Option.h" />
     <ClInclude Include="EffectMgr.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Evasion.h" />
     <ClInclude Include="GameMgr.h" />
     <ClInclude Include="Input.h" />

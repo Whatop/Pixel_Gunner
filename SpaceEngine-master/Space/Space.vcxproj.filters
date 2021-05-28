@@ -85,14 +85,17 @@
     <ClCompile Include="Wall.cpp">
       <Filter>Game\Stage</Filter>
     </ClCompile>
-    <ClCompile Include="Obstacle.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Weapon_case.cpp">
+    <ClCompile Include="Enemy.cpp">
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="Weapon.cpp">
-      <Filter>Game</Filter>
+      <Filter>Game\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon_case.cpp">
+      <Filter>Game\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Obstacle.cpp">
+      <Filter>Game\Stage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -180,14 +183,17 @@
     <ClInclude Include="Wall.h">
       <Filter>Game\Stage</Filter>
     </ClInclude>
-    <ClInclude Include="Obstacle.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Weapon_case.h">
+    <ClInclude Include="Enemy.h">
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Weapon.h">
-      <Filter>Game</Filter>
+      <Filter>Game\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon_case.h">
+      <Filter>Game\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Obstacle.h">
+      <Filter>Game\Stage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -214,6 +220,9 @@
     </Filter>
     <Filter Include="Game\Stage">
       <UniqueIdentifier>{22854ae9-34ce-4f94-b76d-77b7099737d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Weapon">
+      <UniqueIdentifier>{722baf89-86ea-4f8a-a1ca-886e965a0f4c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

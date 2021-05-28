@@ -47,12 +47,7 @@ enum class Weapon_Type {
 
 struct Player_State {
 public: 
-	float //½ºÅÝ
-		Hp,
-		Speed,
-		Def,
-		Dash,
-		Critical;
+	float Hp, Speed, Def, Dash, Critical;
 	int Bag;
 
 	float //°è¼ö %
@@ -65,10 +60,7 @@ public:
 
 struct Weapon_State {
 public:
-	int 
-		Damege, 
-		Speed, 
-		Reload, 
+	int Damege, Speed, Reload, 
 		Range, 
 		Mag,
 		Ammo;
@@ -111,7 +103,7 @@ public:
 	void Esc();
 
 	void UpdatePlayerStatus(float hp, float speed, float def, float dash, float critical, int bag) {
-		m_PlayerStatus = { hp,speed,def,speed,dash,critical,bag};
+		m_PlayerStatus = { hp,speed,def,dash,critical,bag};
 	}
 
 
@@ -127,7 +119,7 @@ public:
 	float m_Def;
 	float Critical;
 public:
-
+	
 	int Difficulty;
 	bool _UICreate;
 	bool _PlayerCreate;

@@ -88,7 +88,7 @@ void Player::State()
 	GameMgr::GetInst()->m_Max_Hp = m_Max_Hp;
 	GameMgr::GetInst()->m_Hp = m_Hp;
 	GameMgr::GetInst()->m_Def = m_Def;
-	GameMgr::GetInst()->UpdatePlayerStatus(m_Max_Hp, m_Speed, m_Def, m_DashCool, m_Critical, 10);
+	GameMgr::GetInst()->UpdatePlayerStatus(m_Max_Hp, m_Speed, m_Def, m_DashCool, m_Critical, 2);
 }
 
 void Player::ColBox()
@@ -100,7 +100,7 @@ void Player::ColBox()
 	m_ColBox[4]->SetPosition(m_Position.x + m_ColBox[0]->m_Size.x / 2, m_Position.y);//Left
 }
 	
-void Player::Buff() //탄창 수 증가,체력 증가, 스피드 증가 등등  
+void Player::Buff() //탄창 수 증가, 체력 증가, 스피드 증가 등등  
 {
 }
 
