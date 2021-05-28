@@ -154,7 +154,7 @@ void Weapon::Fire()
 			DelayTime = 0;
 		}
 	}
-	//int Damege, Speed, Reload, Range, Mag, Ammo;
+	//int Damage, Speed, Reload, Range, Mag, Ammo;
 	GameMgr::GetInst()->UpdateWeaponStatus(m_State);
 }
 

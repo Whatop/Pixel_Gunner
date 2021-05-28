@@ -183,11 +183,13 @@ void GameMgr::Esc()
 	}
 }
 
-int GameMgr::Hit()
+int GameMgr::Damage()
 {
-	Damege = m_WeaponStatus.Atk * m_PlayerStatus.Def_Percent;
-	Damege -= m_PlayerStatus.Def;
-	return Damege;
+	m_Damage = m_WeaponStatus.Atk * m_PlayerStatus.Def_Percent;
+	m_Damage -= m_PlayerStatus.Def;
+	
+	UI::GetInst()->m_Hit = true;
+	return m_Damage;
 }
 
 void GameMgr::Weapon_Holding()

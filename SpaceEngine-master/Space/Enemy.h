@@ -2,7 +2,7 @@
 class Enemy : public Object
 {
 	Sprite* m_Monster;
-	float m_Hp,m_Speed;
+	float m_Hp, m_Speed;
 	Vec2 m_Dir;
 	
 public:

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Stage1.h"
 #include "Player.h"
+#include "Enemy.h"
 #include "Obstacle.h"
 #include "Weapon_case.h"
 
@@ -19,6 +20,7 @@ void Stage1::Init()
 	GameMgr::GetInst()->CreatePlayer();
 	GameMgr::GetInst()->ReleaseUI();
 	GameMgr::GetInst()->CreateUI();
+	ObjMgr->AddObject(new Enemy(Vec2(1920 / 2, 1080 / 2 - 1500)), "Enemy");
 	m_BG = Sprite::Create(L"Painting/Stage1/BG.png");
 	m_BG->SetPosition(1920 / 2, 1080-m_BG->m_Size.y/2);
 

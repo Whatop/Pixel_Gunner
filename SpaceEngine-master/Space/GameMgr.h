@@ -29,7 +29,7 @@ enum class Player_Situation {
 	MOVE, // ¿òÁ÷ÀÓ
 	NONE
 };
-enum class MeniMap_Option {
+enum class MeniMap_Option { 
 	ALWAYS,
 	NOT_USED,
 	NOT_BATTLE,
@@ -79,10 +79,10 @@ public:
 	void CreateMonster();
 	void AddDifficulty();	
 	void Esc();
-	int Hit();
+	int Damage();
 
 	void UpdatePlayerStatus(float hp, float speed, float def,float def_dercent, float dash, float critical, int bag) {
-		m_PlayerStatus = { hp,speed,def,def_dercent,dash,critical,bag}
+		m_PlayerStatus = { hp,speed,def,def_dercent,dash,critical,bag };
 	}
 	void UpdateWeaponStatus(Weapon_State All) {
 		m_WeaponStatus = All;
@@ -95,7 +95,7 @@ public:
 public:
 	Weapon_State m_WeaponStatus;
 	Player_State m_PlayerStatus;
-	int Damege;
+	int m_Damage;
 	int m_Max_Hp;
 	int m_Hp;
 	float m_Max_Dash;
@@ -110,7 +110,7 @@ public:
 	//	Heal_Ratio,
 	//	Ammo_Ratio;
 	//float
-	//	Damege_Ratio,
+	//	Damage_Ratio,
 	//	Speed_Ratio,
 	//	Reload_Ratio,
 	//	Range_Ratio,

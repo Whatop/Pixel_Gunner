@@ -41,4 +41,7 @@ void Bullet::OnCollision(Object* obj)
 		std::cout <<"Y : " << m_Position.y << std::endl;
 		ObjMgr->RemoveObject(this);
 	}
+	if (obj->m_Tag == "Enemy") {
+		ObjMgr->RemoveObject(this);
+	}
 }
