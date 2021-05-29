@@ -80,7 +80,7 @@ public:
 	void AddDifficulty();	
 	void Esc();
 	int Damage();
-
+	int GetDamage() { return m_Damage; }
 	void UpdatePlayerStatus(float hp, float speed, float def,float def_dercent, float dash, float critical, int bag) {
 		m_PlayerStatus = { hp,speed,def,def_dercent,dash,critical,bag };
 	}

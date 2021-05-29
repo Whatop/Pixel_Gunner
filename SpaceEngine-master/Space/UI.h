@@ -18,6 +18,7 @@ class UI : public Singleton<UI>
 
 	float m_DelayTime;
 	Vec2 EnemyPos;
+	Vec2 Pos;
 public:
 	UI();
 	~UI();

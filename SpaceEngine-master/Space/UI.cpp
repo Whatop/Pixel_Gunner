@@ -133,7 +133,7 @@ void UI::Render()
 {
 	if (GameMgr::GetInst()->_PlayerCreate){
 	Renderer::GetInst()->GetSprite()->Begin(D3DXSPRITE_ALPHABLEND);
-	m_UItext->print(std::to_string(m_Time[0])+ std::to_string(m_Time[1])+" : "
+		m_UItext->print(std::to_string(m_Time[0])+ std::to_string(m_Time[1])+" : "
 		+ std::to_string(m_Time[2])+ std::to_string(m_Time[3]), 150, 30);
 	m_Hptext->print(std::to_string(GameMgr::GetInst()->m_Hp), 1920 / 2-150, 885);
 	//m_UI->print("시간 : " + std::to_string(gt) + "\n프레임 : " + std::to_string(dt), 100, 100);
@@ -142,12 +142,17 @@ void UI::Render()
 		for (auto iter : ObjMgr->m_Objects) {
 			if (iter->m_Tag == "Enemy") 
 				EnemyPos = iter->m_Position;
+			Pos.x = EnemyPos.x - App::GetInst()->m_Width / 2;
+			Pos.y = EnemyPos.y - App::GetInst()->m_Height / 2;
+			std::cout << Pos.x << std::endl;
+			std::cout << Pos.y << std::endl;
 		}
 		m_DelayTime += dt;
-		if (m_DelayTime > 1)
+		if (m_DelayTime > 1){
 			m_Hit = false;
-		m_Damagetext->print(std::to_string(GameMgr::GetInst()->Damage()), EnemyPos.x, EnemyPos.y);
-
+			m_DelayTime = 0;
+		}
+		m_Damagetext->print("Hit : " + std::to_string(GameMgr::GetInst()->GetDamage()), Pos.x, Pos.y);
 	}
 
 	Renderer::GetInst()->GetSprite()->End();
