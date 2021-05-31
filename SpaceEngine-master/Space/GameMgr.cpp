@@ -185,7 +185,7 @@ void GameMgr::Esc()
 
 int GameMgr::Damage()
 {
-	m_Damage = m_WeaponStatus.Atk * m_PlayerStatus.Def_Percent;
+	m_Damage = m_WeaponStatus.Atk * m_PlayerStatus.Def_Percent * 0.01f;
 	m_Damage -= m_PlayerStatus.Def;
 	
 	UI::GetInst()->m_Hit = true;

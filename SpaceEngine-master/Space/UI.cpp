@@ -140,19 +140,17 @@ void UI::Render()
 	m_UItext->print("마우스 X : " + std::to_string((int)INPUT-> GetMousePos().x) + "\n마우스 Y : " + std::to_string((int)INPUT->GetMousePos().y), 1620, 100);
 	if (m_Hit) {
 		for (auto iter : ObjMgr->m_Objects) {
-			if (iter->m_Tag == "Enemy") 
-				EnemyPos = iter->m_Position;
-			Pos.x = EnemyPos.x - App::GetInst()->m_Width / 2;
-			Pos.y = EnemyPos.y - App::GetInst()->m_Height / 2;
-			std::cout << Pos.x << std::endl;
-			std::cout << Pos.y << std::endl;
+			if (iter->m_Tag == "Player") {
+				Pos.x = iter->m_Position.x;
+				Pos.y = iter->m_Position.y - 100;
+			}
 		}
 		m_DelayTime += dt;
 		if (m_DelayTime > 1){
 			m_Hit = false;
 			m_DelayTime = 0;
 		}
-		m_Damagetext->print("Hit : " + std::to_string(GameMgr::GetInst()->GetDamage()), Pos.x, Pos.y);
+		m_UItext->print(std::to_string(GameMgr::GetInst()->GetDamage()), 1920/2, 1080/2-100);
 	}
 
 	Renderer::GetInst()->GetSprite()->End();
