@@ -2,6 +2,7 @@
 class Bullet : public Object
 {
 	Sprite* m_Bullet;
+	Sprite* m_Halo;
 
 public:
 	Bullet(std::wstring filename, Vec2 arrival, Vec2 pos, float speed);

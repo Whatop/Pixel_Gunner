@@ -22,31 +22,28 @@ void Camera::Follow(Object* obj)
 {
 	if (obj != nullptr)
 	{
-			if (INPUT->GetMousePos().x >= obj->m_Position.x) {
-				Mouse.x = (INPUT->GetMousePos().x - obj->m_Position.x) / 10;
-			}
-			else if (INPUT->GetMousePos().x <= obj->m_Position.x) {
-				Mouse.x = (INPUT->GetMousePos().x - obj->m_Position.x) / 10;
-			}
-			if (INPUT->GetMousePos().y >= obj->m_Position.y) {
-				Mouse.y = (INPUT->GetMousePos().y - obj->m_Position.y) / 10;
-			}
-			else if (INPUT->GetMousePos().y <= obj->m_Position.y) {
-				Mouse.y = (INPUT->GetMousePos().y - obj->m_Position.y) / 10;
-			}
+
+			
 			if (GameMgr::GetInst()->_QuarkOption)
 				Mouse = Vec2(0, 0);
-
-				m_Position.x = obj->m_Position.x - App::GetInst()->m_Width / 2 + Mouse.x;
-				m_Position.y = obj->m_Position.y - App::GetInst()->m_Height / 2 + Mouse.y;
-
-				// 총쏘는 방향 반대로 화면 움직였다가 다시 돌아오기
-				
-				if (Mouse.x > -20 && Mouse.x < 20 && Mouse.y > -20 && Mouse.y < 20) {
-					m_Position.x = obj->m_Position.x - App::GetInst()->m_Width / 2;
-					m_Position.y = obj->m_Position.y - App::GetInst()->m_Height / 2;
+			
+				if (INPUT->GetMousePos().x >= obj->m_Position.x) {
+					Mouse.x = (INPUT->GetMousePos().x - obj->m_Position.x) / 10;
 				}
+				else if (INPUT->GetMousePos().x <= obj->m_Position.x) {
+					Mouse.x = (INPUT->GetMousePos().x - obj->m_Position.x) / 10;
+				}
+				if (INPUT->GetMousePos().y >= obj->m_Position.y) {
+					Mouse.y = (INPUT->GetMousePos().y - obj->m_Position.y) / 10;
+				}
+				else if (INPUT->GetMousePos().y <= obj->m_Position.y) {
+					Mouse.y = (INPUT->GetMousePos().y - obj->m_Position.y) / 10;
+				}
+			m_Position.x = obj->m_Position.x - App::GetInst()->m_Width / 2 + Mouse.x - GameMgr::GetInst()->m_WeaponStatus.Rebound * GameMgr::GetInst()->BulletDir.x;
+			m_Position.y = obj->m_Position.y - App::GetInst()->m_Height / 2 + Mouse.y - GameMgr::GetInst()->m_WeaponStatus.Rebound * GameMgr::GetInst()->BulletDir.y;
 
+			//	m_Position.x = obj->m_Position.x - App::GetInst()->m_Width / 2 - GameMgr::GetInst()->m_WeaponStatus.Rebound * GameMgr::GetInst()->BulletDir.x;
+			//	m_Position.y = obj->m_Position.y - App::GetInst()->m_Height / 2 - GameMgr::GetInst()->m_WeaponStatus.Rebound * GameMgr::GetInst()->BulletDir.y;
 	}
 	
 }

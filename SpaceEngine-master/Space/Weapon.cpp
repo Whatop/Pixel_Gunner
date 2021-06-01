@@ -11,6 +11,14 @@ Weapon::Weapon(std::string weapontag, Vec2 Pos)
 	m_WeaponName = weapontag;
 	std::cout << "총 생성 : "<<m_WeaponName<< std::endl;
 	DelayTime = 0;
+
+	m_State.Atk = 10;
+	m_State.Range = 10;
+	m_State.Reload = 10;
+	m_State.Speed = 1000;
+	m_State.Mag = 10;
+	m_State.Ammo = 10;
+	m_State.Rebound = 0;
 }
 
 Weapon::~Weapon()
@@ -21,28 +29,16 @@ void Weapon::Fire()
 {
 	if (m_WeaponName == "Basicgun") {
 		SetScale(2.f, 2.f);
-		m_State.Atk = 10;
-		m_State.Range = 10;
-		m_State.Reload = 10;
-		m_State.Speed = 1300;
-		m_State.Mag = 10;
-		m_State.Ammo = 10;
 
 		DelayTime += dt;
-		if (INPUT->GetButtonDown() && DelayTime > 0.1f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
+		if (INPUT->GetButtonDown() && DelayTime > 0.17f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
 			ObjMgr->AddObject(new Bullet(L"Painting/Player/Bullet.png", Dire, m_Position, m_State.Speed), "Bullet");
+			m_State.Rebound = 15;
 			DelayTime = 0;
 		}
 
 	}
 	if (m_WeaponName == "Heroine") {
-
-		m_State.Atk = 30;
-		m_State.Range = 10;
-		m_State.Reload = 10;
-		m_State.Speed = 1300;
-		m_State.Mag = 10;
-		m_State.Ammo = 10;
 
 		DelayTime += dt;
 		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
@@ -52,12 +48,6 @@ void Weapon::Fire()
 	}
 	if (m_WeaponName == "Bullet_Bore") {
 		SetScale(2.f, 2.f);
-		m_State.Atk = 40;
-		m_State.Range = 10;
-		m_State.Reload = 10;
-		m_State.Speed = 1300;
-		m_State.Mag = 10;
-		m_State.Ammo = 10;
 
 		DelayTime += dt;
 		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
@@ -67,12 +57,6 @@ void Weapon::Fire()
 	}
 	if (m_WeaponName == "The_Scrambler") {
 		SetScale(2.f, 2.f);
-		m_State.Atk = 10;
-		m_State.Range = 10;
-		m_State.Reload = 10;
-		m_State.Speed = 1300;
-		m_State.Mag = 10;
-		m_State.Ammo = 10;
 
 		DelayTime += dt;
 		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
@@ -82,12 +66,6 @@ void Weapon::Fire()
 	}
 	if (m_WeaponName == "Vulcan_Cannon") {
 		SetScale(2.f, 2.f);
-		m_State.Atk = 10;
-		m_State.Range = 10;
-		m_State.Reload = 10;
-		m_State.Speed = 1300;
-		m_State.Mag = 10;
-		m_State.Ammo = 10;
 
 		DelayTime += dt;
 		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
@@ -97,12 +75,6 @@ void Weapon::Fire()
 	}
 	if (m_WeaponName == "RC_Rocket") {
 		SetScale(2.f, 2.f);
-		m_State.Atk = 10;
-		m_State.Range = 10;
-		m_State.Reload = 10;
-		m_State.Speed = 1300;
-		m_State.Mag = 10;
-		m_State.Ammo = 10;
 
 		DelayTime += dt;
 		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
@@ -112,12 +84,6 @@ void Weapon::Fire()
 	}
 	if (m_WeaponName == "Thumbnail") {
 		SetScale(2.f, 2.f);
-		m_State.Atk = 10;
-		m_State.Range = 10;
-		m_State.Reload = 10;
-		m_State.Speed = 1300;
-		m_State.Mag = 10;
-		m_State.Ammo = 10;
 
 		DelayTime += dt;
 		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
@@ -127,12 +93,6 @@ void Weapon::Fire()
 	}
 	if (m_WeaponName == "Marine_Sidearm") {
 		SetScale(2.f, 2.f);
-		m_State.Atk = 10;
-		m_State.Range = 10;
-		m_State.Reload = 10;
-		m_State.Speed = 1300;
-		m_State.Mag = 10;
-		m_State.Ammo = 10;
 
 		DelayTime += dt;
 		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
@@ -142,12 +102,6 @@ void Weapon::Fire()
 	}
 	if (m_WeaponName == "Blasphemy") {
 		SetScale(2.f, 2.f);
-		m_State.Atk = 10;
-		m_State.Speed = 1300;
-		m_State.Reload = 10;
-		m_State.Range = 10;
-		m_State.Mag= 10;
-		m_State.Ammo = 500;
 
 		DelayTime += dt;
 		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
@@ -155,7 +109,7 @@ void Weapon::Fire()
 			DelayTime = 0;
 		}
 	}
-	//int Damage, Speed, Reload, Range, Mag, Ammo;
+	//int Damage, Speed, Reload, Range, Mag, Ammo,Rebound;
 	GameMgr::GetInst()->UpdateWeaponStatus(m_State);
 }
 
@@ -171,6 +125,9 @@ void Weapon::WeaponRotate()
 
 void Weapon::Update(float delatTime, float Time)
 {
+	if (m_State.Rebound > 0) {
+		m_State.Rebound -= dt * 5;
+	}
 	for (auto& iter : ObjMgr->m_Objects) {
 		if(iter->m_Tag == "Player")
 		m_Position = iter->m_Position;
