@@ -43,8 +43,6 @@ void Bullet::Render()
 void Bullet::OnCollision(Object* obj)
 {
 	if (obj->m_Tag == "Wall") {
-		std::cout <<"X : " <<m_Position.x << std::endl;
-		std::cout <<"Y : " << m_Position.y << std::endl;
 		ObjMgr->RemoveObject(this);
 	}
 	if (obj->m_Tag == "Enemy") {

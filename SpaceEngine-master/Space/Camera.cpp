@@ -45,7 +45,6 @@ void Camera::Follow(Object* obj)
 			//	m_Position.x = obj->m_Position.x - App::GetInst()->m_Width / 2 - GameMgr::GetInst()->m_WeaponStatus.Rebound * GameMgr::GetInst()->BulletDir.x;
 			//	m_Position.y = obj->m_Position.y - App::GetInst()->m_Height / 2 - GameMgr::GetInst()->m_WeaponStatus.Rebound * GameMgr::GetInst()->BulletDir.y;
 	}
-	
 }
 
 void Camera::Update(float deltaTime, float time)

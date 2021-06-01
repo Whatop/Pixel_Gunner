@@ -10,6 +10,16 @@ Weapon::Weapon(std::string weapontag, Vec2 Pos)
 	SetPosition(Pos);
 	m_WeaponName = weapontag;
 	std::cout << "ÃÑ »ý¼º : "<<m_WeaponName<< std::endl;
+
+	m_State.Atk = 10;
+	m_State.Range = 10;
+	m_State.Reload = 10;
+	m_State.Speed = 1000;
+	m_State.Mag = 10;
+	m_State.Ammo = 10;
+	m_State.Rebound = 0;
+
+
 	DelayTime = 0;
 
 	m_State.Atk = 10;
@@ -109,7 +119,7 @@ void Weapon::Fire()
 			DelayTime = 0;
 		}
 	}
-	//int Damage, Speed, Reload, Range, Mag, Ammo,Rebound;
+	//int Damage, Speed, Reload, Range, Mag, Ammo, Rebound;
 	GameMgr::GetInst()->UpdateWeaponStatus(m_State);
 }
 
