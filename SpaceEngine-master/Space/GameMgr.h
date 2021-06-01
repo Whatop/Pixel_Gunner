@@ -53,7 +53,7 @@ public:
 
 struct Weapon_State {
 public:
-	int Atk, Speed, Reload,Range,Mag,Ammo,rebound;
+	int Atk, Speed, Reload, Range, Mag, Ammo, Rebound;
 };
 // 1번 기본무기, 2번 무기, 3번 근접무기, 4번 슈류탄
 class GameMgr : public Singleton<GameMgr> // UI 생성 및 삭제(UI관리함), 플레이어, 몬스터 스폰, 랭킹, 
@@ -126,6 +126,7 @@ public:
 	int HaveGun;
 	int menimap;
 	Vec2 Pos;
+	Vec2 BulletDir;
 	Vec2 PlayerPos;
 	CurrentScene m_Scene;
 	MouseShape m_MouseShape;

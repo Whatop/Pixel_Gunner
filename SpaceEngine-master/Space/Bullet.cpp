@@ -11,6 +11,7 @@ Bullet::Bullet(std::wstring filename, Vec2 arrival, Vec2 pos, float speed)
 	Dire = arrival;
 	m_Speed = speed;
 	m_Timer = 0.f;
+	GameMgr::GetInst()->BulletDir = Dire;
 }
 
 Bullet::~Bullet()
@@ -37,8 +38,6 @@ void Bullet::Render()
 void Bullet::OnCollision(Object* obj)
 {
 	if (obj->m_Tag == "Wall") {
-		std::cout <<"X : " <<m_Position.x << std::endl;
-		std::cout <<"Y : " << m_Position.y << std::endl;
 		ObjMgr->RemoveObject(this);
 	}
 	if (obj->m_Tag == "Enemy") {
