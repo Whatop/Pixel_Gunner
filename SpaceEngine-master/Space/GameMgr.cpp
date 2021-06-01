@@ -187,8 +187,12 @@ int GameMgr::Damage()
 {
 	m_Damage = m_WeaponStatus.Atk * m_PlayerStatus.Def_Percent * 0.01f;
 	m_Damage -= m_PlayerStatus.Def;
-	
-	UI::GetInst()->m_Hit = true;
+	m_Hit = true;
+	if (m_Damage < 0)
+		m_Damage = 0;
+
+	std::cout << "ÀÔÈù µ¥¹ÌÁö : " << m_Damage << std::endl;
+
 	return m_Damage;
 }
 

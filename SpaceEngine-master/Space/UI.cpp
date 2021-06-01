@@ -71,12 +71,12 @@ void UI::Init() // ÃÑ Ä­ + ÃÑ¾Ë Ä­ + HP + µîµî
 	m_Hptext->Init(32, true, false, "±¼¸²");
 	m_Hptext->SetColor(255, 255, 255, 255);
 	
-	m_Damagetext = new TextMgr();
-	m_Damagetext->Init(32, true, false, "±¼¸²");
-	m_Damagetext->SetColor(255, 255, 255, 255);
+	//m_Damagetext = new TextMgr();
+	//m_Damagetext->Init(32, true, false, "±¼¸²");
+	//m_Damagetext->SetColor(255, 255, 255, 255);
 	
-	m_DelayTime = 0;
-	m_Hit = false;
+	//m_DelayTime = 0;
+	//m_Hit = false;
 
 	SetCursor(NULL);
 }
@@ -138,7 +138,7 @@ void UI::Render()
 	m_Hptext->print(std::to_string(GameMgr::GetInst()->m_Hp), 1920 / 2-150, 885);
 	//m_UI->print("½Ã°£ : " + std::to_string(gt) + "\nÇÁ·¹ÀÓ : " + std::to_string(dt), 100, 100);
 	m_UItext->print("¸¶¿ì½º X : " + std::to_string((int)INPUT-> GetMousePos().x) + "\n¸¶¿ì½º Y : " + std::to_string((int)INPUT->GetMousePos().y), 1620, 100);
-	if (m_Hit) {
+	/*if (m_Hit) {
 		for (auto iter : ObjMgr->m_Objects) {
 			if (iter->m_Tag == "Player") {
 				Pos.x = iter->m_Position.x;
@@ -147,11 +147,11 @@ void UI::Render()
 		}
 		m_DelayTime += dt;
 		if (m_DelayTime > 1){
-			m_Hit = false;
+  			m_Hit = false;
 			m_DelayTime = 0;
 		}
 		m_UItext->print(std::to_string(GameMgr::GetInst()->GetDamage()), 1920/2, 1080/2-100);
-	}
+	}*/
 
 	Renderer::GetInst()->GetSprite()->End();
 

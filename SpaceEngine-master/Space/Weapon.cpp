@@ -5,7 +5,7 @@
 Weapon::Weapon(std::string weapontag, Vec2 Pos)
 {
 	m_Trans.assign(weapontag.begin(), weapontag.end());
-	m_Weapon = Sprite::Create(L"Painting/Weapon/"+m_Trans + L".png");
+	m_Weapon = Sprite::Create(L"Painting/Weapon/" + m_Trans + L".png");
 	m_Weapon->SetParent(this);
 	SetPosition(Pos);
 	m_WeaponName = weapontag;
@@ -29,10 +29,11 @@ void Weapon::Fire()
 		m_State.Ammo = 10;
 
 		DelayTime += dt;
-		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
+		if (INPUT->GetButtonDown() && DelayTime > 0.1f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
 			ObjMgr->AddObject(new Bullet(L"Painting/Player/Bullet.png", Dire, m_Position, m_State.Speed), "Bullet");
 			DelayTime = 0;
 		}
+
 	}
 	if (m_WeaponName == "Heroine") {
 
