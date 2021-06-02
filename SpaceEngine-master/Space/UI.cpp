@@ -36,6 +36,7 @@ void UI::Init() // ÃÑ Ä­ + ÃÑ¾Ë Ä­ + HP + µîµî
 
 	m_OptionUI[0] = Sprite::Create(L"Painting/UI/OptionBG.png"); // BG
 	m_OptionUI[0]->SetPosition(300, 700);
+	m_OptionUI[0]->SetScale(2, 2);
 
 	m_OptionUI[1] = Sprite::Create(L"Painting/UI/OptionName.png",D3DCOLOR_XRGB(0, 0, 0)); // Name
 	m_OptionUI[1]->SetPosition(300, 300);
@@ -87,9 +88,9 @@ void UI::Release()
 
 void UI::Update(float deltaTime, float Time)
 {
-	Timer();
 	Mouse();
 	if (GameMgr::GetInst()->_QuarkOption) {
+		m_Interface[0]->m_Visible = false;
 		for (int i = 0; i < 5; i++) {
 			m_OptionUI[i]->m_Visible = true;
 			m_OptionUI[0]->SetPosition(GameMgr::GetInst()->PlayerPos);
@@ -104,6 +105,7 @@ void UI::Update(float deltaTime, float Time)
 			if (INPUT->GetButtonDown()) {
 				INPUT->ButtonDown(false);
 				GameMgr::GetInst()->_QuarkOption = false;
+				GameMgr::GetInst()->Init();
 				ObjMgr->Release();
 				SceneDirector::GetInst()->ChangeScene(new MainScene);
 			}
@@ -118,6 +120,7 @@ void UI::Update(float deltaTime, float Time)
 		}
 	}
 	else {
+		m_Interface[0]->m_Visible = true;
 		for (int i = 0; i < 5; i++) {
 			m_OptionUI[i]->m_Visible = false;
 			if (i != 0) {
@@ -126,35 +129,24 @@ void UI::Update(float deltaTime, float Time)
 			}
 		}
 		m_OptionUI[0]->SetPosition(GameMgr::GetInst()->PlayerPos);
+		Timer();
 	}
 }
 
 void UI::Render()
 {
 	if (GameMgr::GetInst()->_PlayerCreate){
-	Renderer::GetInst()->GetSprite()->Begin(D3DXSPRITE_ALPHABLEND);
-		m_UItext->print(std::to_string(m_Time[0])+ std::to_string(m_Time[1])+" : "
-		+ std::to_string(m_Time[2])+ std::to_string(m_Time[3]), 150, 30);
-	m_Hptext->print(std::to_string(GameMgr::GetInst()->m_Hp), 1920 / 2-150, 885);
-	//m_UI->print("½Ã°£ : " + std::to_string(gt) + "\nÇÁ·¹ÀÓ : " + std::to_string(dt), 100, 100);
-	m_UItext->print("¸¶¿ì½º X : " + std::to_string((int)INPUT-> GetMousePos().x) + "\n¸¶¿ì½º Y : " + std::to_string((int)INPUT->GetMousePos().y), 1620, 100);
-	/*if (m_Hit) {
-		for (auto iter : ObjMgr->m_Objects) {
-			if (iter->m_Tag == "Player") {
-				Pos.x = iter->m_Position.x;
-				Pos.y = iter->m_Position.y - 100;
-			}
-		}
-		m_DelayTime += dt;
-		if (m_DelayTime > 1){
-  			m_Hit = false;
-			m_DelayTime = 0;
-		}
-		m_UItext->print(std::to_string(GameMgr::GetInst()->GetDamage()), 1920/2, 1080/2-100);
-	}*/
+		if (!GameMgr::GetInst()->_QuarkOption) {
+			Renderer::GetInst()->GetSprite()->Begin(D3DXSPRITE_ALPHABLEND);
+			m_UItext->print(std::to_string(m_Time[0]) + std::to_string(m_Time[1]) + " : "
+				+ std::to_string(m_Time[2]) + std::to_string(m_Time[3]), 150, 30);
+			m_Hptext->print(std::to_string(GameMgr::GetInst()->m_Hp), 1920 / 2 - 150, 885);
+			
+			m_UItext->print(std::to_string(GameMgr::GetInst()->m_WeaponStatus.MaxMag) + " / " + std::to_string(GameMgr::GetInst()->m_WeaponStatus.Mag) +
+				"       " + std::to_string(GameMgr::GetInst()->m_WeaponStatus.Ammo), 1920 / 2 + 250, 885);
 
-	Renderer::GetInst()->GetSprite()->End();
-
+			Renderer::GetInst()->GetSprite()->End();
+		}
 		m_HpGage = m_Interface[2]->m_Size.x / GameMgr::GetInst()->m_Max_Hp;
 		int Hp = GameMgr::GetInst()->m_Max_Hp - GameMgr::GetInst()->m_Hp;
 		if (GameMgr::GetInst()->m_Hp >= 0)
