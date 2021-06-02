@@ -6,7 +6,7 @@
 
 Player::Player(Vec2 Pos)
 {
-	m_Player = Sprite::Create(L"Painting/Player/Player.png");
+	m_Player = Sprite::Create(L"Painting/Player/Player.png",D3DCOLOR_XRGB(255,255,255));
 	m_Layer = 0;
 
 	m_Dash = false;
