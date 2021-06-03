@@ -89,9 +89,6 @@ void Player::Move()
 
 void Player::State()
 {
-	GameMgr::GetInst()->m_Max_Hp = m_Max_Hp;//나중에 GameMgr에서 처리하도록 바꾸기 지금 Update로 struct에 자료집어넣으니 거기서 처리가능
-	GameMgr::GetInst()->m_Hp = m_Hp;
-	GameMgr::GetInst()->m_Def = m_Def;
 	GameMgr::GetInst()->UpdatePlayerStatus(m_Max_Hp, m_Speed, m_Def,m_Def_Percent, m_DashCool, m_Critical, 2);
 }
 
@@ -189,21 +186,13 @@ void Player::OnCollision(Object* obj)
 	{
 		RECT rc;
 			if (IntersectRect(&rc, &m_ColBox[1]->m_Collision, &obj->m_Collision))
-			{
 				Down = true;
-			}
 			if (IntersectRect(&rc, &m_ColBox[2]->m_Collision, &obj->m_Collision))
-			{
 				Up = true;
-			}
 			if (IntersectRect(&rc, &m_ColBox[3]->m_Collision, &obj->m_Collision))
-			{
 				Right = true;
-			}
 			if (IntersectRect(&rc, &m_ColBox[4]->m_Collision, &obj->m_Collision))
-			{
 				Left = true;
-			}
 	}
 	if (obj->m_Tag == "Enemy") {
 		//

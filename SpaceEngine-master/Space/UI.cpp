@@ -143,10 +143,17 @@ void UI::Render()
 			m_Hptext->print(std::to_string(GameMgr::GetInst()->m_Hp), 1920 / 2 - 150, 885);
 			//…
 
-			//m_UItext->print(std::to_string(GameMgr::GetInst()->m_WeaponStatus.Mag) + " / " + std::to_string(GameMgr::GetInst()->m_WeaponStatus.MaxMag) +
-			//	"       " + std::to_string(GameMgr::GetInst()->m_WeaponStatus.Ammo), 1920 / 2 + 250, 885);
-
-			m_UItext->print(std::to_string(GameMgr::GetInst()->m_WeaponStatus.Mag) + " / …", 1920 / 2 + 250, 885);
+			
+			if (GameMgr::GetInst()->m_Weapon_Type == Weapon_Type::BASICGUN) {
+				m_UItext->print(std::to_string(GameMgr::GetInst()->m_WeaponStatus.Mag) + " / …", 1920 / 2 + 250, 885);
+			}
+			else if (GameMgr::GetInst()->m_Weapon_Type == Weapon_Type::MELEE) {
+				m_UItext->print("…", 1920 / 2 + 250, 885);
+			}
+			else {
+				m_UItext->print(std::to_string(GameMgr::GetInst()->m_WeaponStatus.Mag) + " / " + std::to_string(GameMgr::GetInst()->m_WeaponStatus.MaxMag) +
+					"       " + std::to_string(GameMgr::GetInst()->m_WeaponStatus.Ammo), 1920 / 2 + 250, 885);
+			}
 
 			Renderer::GetInst()->GetSprite()->End();
 		}
@@ -208,12 +215,6 @@ void UI::Timer()
 void UI::Mouse()
 {
 	SetCursor(NULL);
-	if (INPUT->GetKey('O') == KeyState::DOWN) {
-		GameMgr::GetInst()->m_Hp -= 10;
-	}
-	if (INPUT->GetKey('P') == KeyState::DOWN) {
-		GameMgr::GetInst()->m_Hp += 10;
-	}
 	if (GameMgr::GetInst()->m_MouseShape == MouseShape::scope) {
 		m_Mouse = Sprite::Create(L"Painting/Mouse/1.png");
 	}

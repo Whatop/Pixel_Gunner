@@ -11,10 +11,11 @@ Weapon::Weapon(std::string weapontag, Vec2 Pos)
 
 	m_Reload = Sprite::Create(L"Painting/Player/Reload.png");
 	m_Reload->SetPosition(GameMgr::GetInst()->PlayerPos.x, GameMgr::GetInst()->PlayerPos.y-50);
+	m_Reload->m_Visible = false;
 
 	m_Stick = Sprite::Create(L"Painting/Player/Block.png");
 	m_Stick->SetPosition(GameMgr::GetInst()->PlayerPos.x - m_Reload->m_Size.x/2 , GameMgr::GetInst()->PlayerPos.y - 50);
-
+	m_Stick->m_Visible = false;
 	m_WeaponName = weapontag;
 	std::cout << "ÃÑ »ý¼º : "<<m_WeaponName<< std::endl;
 
@@ -26,7 +27,8 @@ Weapon::Weapon(std::string weapontag, Vec2 Pos)
 	m_State.MaxMag = 30;
 	m_State.Mag = 30;
 
-	m_State.Ammo = 3;
+	m_State.MaxAmmo = 130;
+	m_State.Ammo = 130;
 	m_State.Rebound = 0;
 
 	DelayTime = 0;
@@ -134,6 +136,8 @@ void Weapon::Reload()
 {
 	if (INPUT->GetKey('R') == KeyState::DOWN && m_State.Mag != m_State.MaxMag) {
 		RDown = true;
+		m_Reload->m_Visible = true;
+		m_Stick->m_Visible = true;
 	}
 	if (m_State.Ammo > 0) {
 		if (RDown) {
@@ -142,9 +146,13 @@ void Weapon::Reload()
 				RDown = false;
 				ReloadTime = 0;
 				Reload_Please = false;
+				m_Reload->m_Visible = false;
+				m_Stick->m_Visible = false;
 
 				if (m_State.Ammo >= m_State.MaxMag) {
-					m_State.Ammo = m_State.Ammo - m_State.MaxMag + m_State.Mag;
+					if (m_WeaponName != "Basicgun") {
+						m_State.Ammo = m_State.Ammo - m_State.MaxMag + m_State.Mag;
+					}
 					m_State.Mag = m_State.MaxMag;
 				}
 				else {
