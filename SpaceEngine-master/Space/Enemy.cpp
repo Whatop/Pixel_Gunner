@@ -6,7 +6,7 @@ Enemy::Enemy(Vec2 Pos)
 	m_Monster = Sprite::Create(L"Painting/Active_Item/Decoy.png");
 	m_Monster->SetParent(this);
 	SetPosition(Pos);
-	SetScale(2, 2);
+	SetScale(3, 3);
 	
 }
 

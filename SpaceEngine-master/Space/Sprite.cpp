@@ -56,7 +56,6 @@ void Sprite::Render()
 			, (m_Parent->m_Position.y + (m_Size.y * m_Parent->m_Scale.y) / 2));
 
 		m_Parent->m_Size = m_Size;
-
 	}
 	else
 	{

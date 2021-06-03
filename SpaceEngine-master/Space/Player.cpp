@@ -145,6 +145,8 @@ void Player::Update(float deltaTime, float Time)
 	State();
 	ObjMgr->CollisionCheak(this, "WeaponCase");
 	ObjMgr->CollisionCheak(this, "Wall");
+	ObjMgr->CollisionCheak(this, "Enemy");
+	ObjMgr->CollisionCheak(this, "EBullet");
 	if(!GameMgr::GetInst()->_QuarkOption)
 		Move();
 	
@@ -202,5 +204,11 @@ void Player::OnCollision(Object* obj)
 			{
 				Left = true;
 			}
+	}
+	if (obj->m_Tag == "Enemy") {
+		//
+	}
+	if (obj->m_Tag == "EBullet") {
+		//m_Hp -= 
 	}
 }
