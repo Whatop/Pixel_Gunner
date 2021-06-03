@@ -79,7 +79,10 @@ public:
 	void CreateMonster();
 	void AddDifficulty();	
 	void Esc();
-	int Damage();
+
+	int Damage(); // 적에게 데미지를 주었을때
+	int Hit(); // 내가 적에게 데미지를 입었을때
+	
 	int GetDamage() { return m_Damage; }
 	void UpdatePlayerStatus(float hp, float speed, float def,float def_dercent, float dash, float critical, int bag) {
 		m_PlayerStatus = { hp,speed,def,def_dercent,dash,critical,bag };

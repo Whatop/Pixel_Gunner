@@ -196,6 +196,11 @@ int GameMgr::Damage()
 	return m_Damage;
 }
 
+int GameMgr::Hit()
+{
+	return 0;
+}
+
 void GameMgr::Weapon_Holding()
 {
 	// 1번 기본 무기, 2번 근접무기, 3번 슈류탄

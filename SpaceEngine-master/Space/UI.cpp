@@ -141,9 +141,12 @@ void UI::Render()
 			m_UItext->print(std::to_string(m_Time[0]) + std::to_string(m_Time[1]) + " : "
 				+ std::to_string(m_Time[2]) + std::to_string(m_Time[3]), 150, 30);
 			m_Hptext->print(std::to_string(GameMgr::GetInst()->m_Hp), 1920 / 2 - 150, 885);
-			
-			m_UItext->print(std::to_string(GameMgr::GetInst()->m_WeaponStatus.MaxMag) + " / " + std::to_string(GameMgr::GetInst()->m_WeaponStatus.Mag) +
-				"       " + std::to_string(GameMgr::GetInst()->m_WeaponStatus.Ammo), 1920 / 2 + 250, 885);
+			//¡Ä
+
+			//m_UItext->print(std::to_string(GameMgr::GetInst()->m_WeaponStatus.Mag) + " / " + std::to_string(GameMgr::GetInst()->m_WeaponStatus.MaxMag) +
+			//	"       " + std::to_string(GameMgr::GetInst()->m_WeaponStatus.Ammo), 1920 / 2 + 250, 885);
+
+			m_UItext->print(std::to_string(GameMgr::GetInst()->m_WeaponStatus.Mag) + " / ¡Ä", 1920 / 2 + 250, 885);
 
 			Renderer::GetInst()->GetSprite()->End();
 		}
