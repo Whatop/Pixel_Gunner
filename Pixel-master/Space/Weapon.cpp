@@ -31,7 +31,7 @@ Weapon::Weapon(std::string weapontag, Vec2 Pos)
 	m_State.Ammo = 130;
 	m_State.Rebound = 0;
 
-	DelayTime = 0;
+	DelayTime = 1;
 	ReloadTime = 0;
 	RDown = false;
 	Reload_Please = false;
@@ -47,7 +47,7 @@ void Weapon::Fire()
 		SetScale(2.f, 2.f);
 
 		DelayTime += dt;
-		if (INPUT->GetButtonDown() && DelayTime > 0.17f && !Reload_Please) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
+		if (INPUT->GetButtonDown() && DelayTime > 0.27f && !Reload_Please) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
 			ObjMgr->AddObject(new Bullet(L"Painting/Player/Bullet.png", Dire, m_Position, m_State.Speed), "Bullet");
 			
 			m_State.Mag--;
@@ -60,8 +60,12 @@ void Weapon::Fire()
 	if (m_WeaponName == "Heroine") {
 
 		DelayTime += dt;
-		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
-				ObjMgr->AddObject(new Bullet(L"Painting/Player/Bullet.png", Dire, m_Position, m_State.Speed), "Bullet");
+		if (INPUT->GetButtonDown() && DelayTime > 0.37f && !Reload_Please) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
+			ObjMgr->AddObject(new Bullet(L"Painting/Player/Bullet.png", Dire, m_Position, m_State.Speed), "Bullet");
+
+			m_State.Mag--;
+
+			m_State.Rebound = 20;
 			DelayTime = 0;
 		}
 	}

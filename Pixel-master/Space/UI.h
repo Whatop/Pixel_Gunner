@@ -36,6 +36,7 @@ public:
 
 	float m_HpGage;
 	float m_DashGage;
+	float m_AmmoGage;
 
 	Sprite* m_Mouse;
 };

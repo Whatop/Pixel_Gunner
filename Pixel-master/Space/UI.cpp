@@ -18,21 +18,29 @@ void UI::Init() // ÃÑ Ä­ + ÃÑ¾Ë Ä­ + HP + µîµî
 	m_Interface[0] = Sprite::Create(L"Painting/UI/Timer.png");
 	m_Interface[0]->SetPosition(150, 50);
 
-	m_Interface[1] = Sprite::Create(L"Painting/UI/BGHpBar.png"); // HPBar
-	m_Interface[1]->SetPosition(1920 / 2, 900);
+	m_Interface[1] = Sprite::Create(L"Painting/UI/Bar.png"); 
+	m_Interface[1]->SetPosition(1920 / 2, 1000);
 
-	m_Interface[2] = Sprite::Create(L"Painting/UI/HPBar.png"); // HP
-	m_Interface[2]->SetPosition(1920 / 2, 900);
+	m_Interface[2] = Sprite::Create(L"Painting/UI/HPBar.png");
+	m_Interface[2]->SetPosition(1920 / 2, 1000);
 
-	m_Interface[3] = Sprite::Create(L"Painting/UI/BGRoolBar.png"); // HPBar
-	m_Interface[3]->SetPosition(1920 / 2, 875);
+	m_Interface[3] = Sprite::Create(L"Painting/UI/Bar.png"); 
+	m_Interface[3]->SetPosition(1920 / 2, 975);
 
-	m_Interface[4] = Sprite::Create(L"Painting/UI/RoolBar.png"); // HP
-	m_Interface[4]->SetPosition(1920 / 2, 875);
+	m_Interface[4] = Sprite::Create(L"Painting/UI/RoolBar.png"); 
+	m_Interface[4]->SetPosition(1920 / 2, 975);
 	
-
 	m_Interface[3]->SetScale(1, 0.5f);
 	m_Interface[4]->SetScale(1, 0.5f);
+
+	m_Interface[5] = Sprite::Create(L"Painting/UI/Bar.png"); 
+	m_Interface[5]->SetPosition(50, 875);
+	m_Interface[5]->m_Rotation = D3DXToRadian(90);
+
+	m_Interface[6] = Sprite::Create(L"Painting/UI/AmmoBar.png"); // HP
+	m_Interface[6]->SetPosition(50, 875);
+
+	
 
 	m_OptionUI[0] = Sprite::Create(L"Painting/UI/OptionBG.png"); // BG
 	m_OptionUI[0]->SetPosition(300, 700);
@@ -63,6 +71,9 @@ void UI::Init() // ÃÑ Ä­ + ÃÑ¾Ë Ä­ + HP + µîµî
 
 		ObjMgr->AddObject(m_Interface[3], "UI");
 		ObjMgr->AddObject(m_Interface[4], "UI");
+	
+		ObjMgr->AddObject(m_Interface[5], "UI");
+		ObjMgr->AddObject(m_Interface[6], "UI");
 	}
 	m_UItext = new TextMgr();
 	m_UItext->Init(42, true, false, "±¼¸²");
@@ -135,7 +146,7 @@ void UI::Update(float deltaTime, float Time)
 
 void UI::Render()
 {
-	if (GameMgr::GetInst()->_PlayerCreate){
+	if (GameMgr::GetInst()->_PlayerCreate) {
 		if (!GameMgr::GetInst()->_QuarkOption) {
 			Renderer::GetInst()->GetSprite()->Begin(D3DXSPRITE_ALPHABLEND);
 			m_UItext->print(std::to_string(m_Time[0]) + std::to_string(m_Time[1]) + " : "
@@ -143,7 +154,7 @@ void UI::Render()
 			m_Hptext->print(std::to_string(GameMgr::GetInst()->m_Hp), 1920 / 2 - 150, 885);
 			//¡Ä
 
-			
+
 			if (GameMgr::GetInst()->m_Weapon_Type == Weapon_Type::BASICGUN) {
 				m_UItext->print(std::to_string(GameMgr::GetInst()->m_WeaponStatus.Mag) + " / ¡Ä", 1920 / 2 + 250, 885);
 			}
@@ -160,23 +171,33 @@ void UI::Render()
 		m_HpGage = m_Interface[2]->m_Size.x / GameMgr::GetInst()->m_Max_Hp;
 		int Hp = GameMgr::GetInst()->m_Max_Hp - GameMgr::GetInst()->m_Hp;
 		if (GameMgr::GetInst()->m_Hp >= 0)
-			{
-				SetRect(&m_Interface[2]->m_Collision, m_Interface[2]->m_Position.x - m_Interface[2]->m_Size.x / 2, m_Interface[2]->m_Position.y - m_Interface[2]->m_Size.y / 2,
-					m_Interface[2]->m_Position.x + m_Interface[2]->m_Size.x / 2, m_Interface[2]->m_Position.y + m_Interface[2]->m_Size.y / 2);
+		{
+			SetRect(&m_Interface[2]->m_Collision, m_Interface[2]->m_Position.x - m_Interface[2]->m_Size.x / 2, m_Interface[2]->m_Position.y - m_Interface[2]->m_Size.y / 2,
+				m_Interface[2]->m_Position.x + m_Interface[2]->m_Size.x / 2, m_Interface[2]->m_Position.y + m_Interface[2]->m_Size.y / 2);
 
-				m_Interface[2]->m_Rect.right = m_Interface[2]->m_Size.x - (Hp * m_HpGage);
-			}
+			m_Interface[2]->m_Rect.right = m_Interface[2]->m_Size.x - (Hp * m_HpGage);
+		}
 
 		m_DashGage = m_Interface[4]->m_Size.x / GameMgr::GetInst()->m_Max_Dash;
 		int Dash = GameMgr::GetInst()->m_Max_Dash - GameMgr::GetInst()->m_DashCooltime * 100;
 		if (GameMgr::GetInst()->m_DashCooltime >= 0)
-			{
-				SetRect(&m_Interface[4]->m_Collision, m_Interface[4]->m_Position.x - m_Interface[4]->m_Size.x / 2, m_Interface[4]->m_Position.y - m_Interface[4]->m_Size.y / 2,
-					m_Interface[4]->m_Position.x + m_Interface[4]->m_Size.x / 2, m_Interface[4]->m_Position.y + m_Interface[4]->m_Size.y / 2);
+		{
+			SetRect(&m_Interface[4]->m_Collision, m_Interface[4]->m_Position.x - m_Interface[4]->m_Size.x / 2, m_Interface[4]->m_Position.y - m_Interface[4]->m_Size.y / 2,
+				m_Interface[4]->m_Position.x + m_Interface[4]->m_Size.x / 2, m_Interface[4]->m_Position.y + m_Interface[4]->m_Size.y / 2);
 
-				m_Interface[4]->m_Rect.right = m_Interface[4]->m_Size.x - (Dash * m_DashGage);
-			}
+			m_Interface[4]->m_Rect.right = m_Interface[4]->m_Size.x - (Dash * m_DashGage);
 		}
+
+		m_AmmoGage = m_Interface[6]->m_Size.y / GameMgr::GetInst()->m_WeaponStatus.MaxAmmo;
+		int Ammo = GameMgr::GetInst()->m_WeaponStatus.MaxAmmo - GameMgr::GetInst()->m_WeaponStatus.Ammo;
+		if (GameMgr::GetInst()->m_DashCooltime >= 0)
+		{
+			SetRect(&m_Interface[6]->m_Collision, m_Interface[6]->m_Position.x - m_Interface[6]->m_Size.x / 2, m_Interface[6]->m_Position.y - m_Interface[4]->m_Size.y / 2,
+				m_Interface[6]->m_Position.x + m_Interface[6]->m_Size.x / 2, m_Interface[6]->m_Position.y + m_Interface[6]->m_Size.y / 2);
+
+			m_Interface[6]->m_Rect.top= m_Interface[6]->m_Size.y + (Ammo * m_AmmoGage);
+		}
+	}
 
 	
 	for (int i = 0; i < 5; i++) {
