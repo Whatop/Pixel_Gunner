@@ -1,12 +1,13 @@
 #include "stdafx.h"
 #include "Melee.h"
 
-Melee::Melee(Vec2 Pos)
+Melee::Melee()
 {
 	m_Melee = Sprite::Create(L"Painting/Weapon/Blasphemy.png");
-	m_Melee->SetParent(this);
-	SetPosition(Pos);
+	m_Melee->SetParent(this);	
+	SetPosition(GameMgr::GetInst()->PlayerPos);
 	SetScale(2.f, 2.f);
+
 	Mouse = INPUT->GetMousePos() - m_Position;
 	D3DXVec2Normalize(&Dire, &Mouse);
 	m_Rotation = (std::atan2(Dire.y, Dire.x));

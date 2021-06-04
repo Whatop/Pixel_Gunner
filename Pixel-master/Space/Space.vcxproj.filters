@@ -70,9 +70,6 @@
     <ClCompile Include="GameMgr.cpp">
       <Filter>Game\Mgrs</Filter>
     </ClCompile>
-    <ClCompile Include="Bullet.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
     <ClCompile Include="Evasion.cpp">
       <Filter>Game</Filter>
     </ClCompile>
@@ -100,7 +97,12 @@
     <ClCompile Include="Melee.cpp">
       <Filter>Game\Weapon</Filter>
     </ClCompile>
-    <ClCompile Include="Grenade.cpp" />
+    <ClCompile Include="Grenade.cpp">
+      <Filter>Game\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Game\Weapon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -169,9 +171,6 @@
     <ClInclude Include="GameMgr.h">
       <Filter>Game\Mgrs</Filter>
     </ClInclude>
-    <ClInclude Include="Bullet.h">
-      <Filter>Game</Filter>
-    </ClInclude>
     <ClInclude Include="Evasion.h">
       <Filter>Game</Filter>
     </ClInclude>
@@ -187,9 +186,6 @@
     <ClInclude Include="Wall.h">
       <Filter>Game\Stage</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Game</Filter>
-    </ClInclude>
     <ClInclude Include="Weapon.h">
       <Filter>Game\Weapon</Filter>
     </ClInclude>
@@ -199,8 +195,18 @@
     <ClInclude Include="Obstacle.h">
       <Filter>Game\Stage</Filter>
     </ClInclude>
-    <ClInclude Include="Melee.h" />
-    <ClInclude Include="Grenade.h" />
+    <ClInclude Include="Enemy.h">
+      <Filter>Game\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Grenade.h">
+      <Filter>Game\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Melee.h">
+      <Filter>Game\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Game\Weapon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="FrameWork">

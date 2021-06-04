@@ -7,7 +7,7 @@ class Melee : public Object
 	float Reload_Please;
 	Vec2 Mouse, Dire;
 public:
-	Melee(Vec2 Pos);
+	Melee();
 	~Melee();
 
 	void MeleeRotato();

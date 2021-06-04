@@ -64,6 +64,7 @@ private:
 	bool Not_Overlap[5];
 	float TimeLmit;
 	Game_Difficulty GameDifficulty;
+	Vec2 Mouse, Dire;
 
 public:
 	GameMgr();

@@ -25,11 +25,12 @@ Weapon::Weapon(std::string weapontag, Vec2 Pos)
 	m_State.Speed = 1000;
 	
 	m_State.MaxMag = 30;
-	m_State.Mag = 30;
-
 	m_State.MaxAmmo = 130;
-	m_State.Ammo = 130;
+
 	m_State.Rebound = 0;
+
+	m_State.Mag = 30;
+	m_State.Ammo = 130;
 
 	DelayTime = 1;
 	ReloadTime = 0;
@@ -88,15 +89,6 @@ void Weapon::Fire()
 		}
 	}
 	if (m_WeaponName == "Vulcan_Cannon") {
-		SetScale(2.f, 2.f);
-
-		DelayTime += dt;
-		if (INPUT->GetButtonDown() && DelayTime > 0.5f && !Reload_Please && !RDown) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
-			ObjMgr->AddObject(new Bullet(L"Painting/Player/Bullet.png", Dire, m_Position, m_State.Speed), "Bullet");
-			DelayTime = 0;
-		}
-	}
-	if (m_WeaponName == "RC_Rocket") {
 		SetScale(2.f, 2.f);
 
 		DelayTime += dt;

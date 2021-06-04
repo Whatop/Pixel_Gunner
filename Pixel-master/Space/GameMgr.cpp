@@ -6,6 +6,7 @@
 #include "Obstacle.h"
 #include "Weapon.h"
 #include "Melee.h"
+#include "Grenade.h"
 
 GameMgr::GameMgr()
 {
@@ -301,7 +302,7 @@ void GameMgr::Weapon_Holding()
 	}
 	else {
 		if (Not_Overlap[3]) {
-			ObjMgr->AddObject(new Melee(PlayerPos), "Melee");
+			ObjMgr->AddObject(new Melee(), "Melee");
 			Not_Overlap[3] = false;
 		}
 		for (int i = 0; i < 5; i++) {
@@ -314,7 +315,7 @@ void GameMgr::Weapon_Holding()
 	}
 	else {
 		if (Not_Overlap[4]) {
-			ObjMgr->AddObject(new Weapon("RC_Rocket", PlayerPos), "Grenade");
+			ObjMgr->AddObject(new Grenade(), "Grenade");
 			Not_Overlap[4] = false;
 		}
 		for (int i=0; i < 5; i++) {
