@@ -39,6 +39,7 @@ void UI::Init() // ÃÑ Ä­ + ÃÑ¾Ë Ä­ + HP + µîµî
 
 	m_Interface[6] = Sprite::Create(L"Painting/UI/AmmoBar.png"); // HP
 	m_Interface[6]->SetPosition(50, 875);
+	m_Interface[6]->m_Rotation = D3DXToRadian(180);
 
 	
 
@@ -150,21 +151,21 @@ void UI::Render()
 			Renderer::GetInst()->GetSprite()->Begin(D3DXSPRITE_ALPHABLEND);
 			m_UItext->print(std::to_string(m_Time[0]) + std::to_string(m_Time[1]) + " : "
 				+ std::to_string(m_Time[2]) + std::to_string(m_Time[3]), 150, 30);
-			m_Hptext->print(std::to_string(GameMgr::GetInst()->m_Hp), 1920 / 2 - 150, 885);
+			m_Hptext->print(std::to_string(GameMgr::GetInst()->m_Hp), 1920 / 2 - 150, 985);
 			//¡Ä
 
 
 			if (GameMgr::GetInst()->m_Weapon_Type == Weapon_Type::BASICGUN) {
-				m_UItext->print(std::to_string(GameMgr::GetInst()->m_WeaponStatus.Mag) + " / ¡Ä", 1920 / 2 + 250, 885);
+				m_UItext->print(std::to_string(GameMgr::GetInst()->m_WeaponStatus.Mag) + " ¡Ä", 1920-185, 855);
 			}
 			else if (GameMgr::GetInst()->m_Weapon_Type == Weapon_Type::MELEE) {
-				m_UItext->print("¡Ä", 1920 / 2 + 250, 885);
+				m_UItext->print("¡Ä", 1920 - 185, 855);
 			}
 			else {
-				m_UItext->print(std::to_string(GameMgr::GetInst()->m_WeaponStatus.Mag) + " / " + std::to_string(GameMgr::GetInst()->m_WeaponStatus.MaxMag) +
-					"       " + std::to_string(GameMgr::GetInst()->m_WeaponStatus.Ammo), 1920 / 2 + 250, 885);
+				m_UItext->print(std::to_string(GameMgr::GetInst()->m_WeaponStatus.Mag) + " / " + std::to_string(GameMgr::GetInst()->m_WeaponStatus.MaxMag), 1920 - 185, 855);
 			}
-
+			m_UItext->print(std::to_string(GameMgr::GetInst()->m_WeaponStatus.Ammo) , 25,675);
+			
 			Renderer::GetInst()->GetSprite()->End();
 		}
 		m_HpGage = m_Interface[2]->m_Size.x / GameMgr::GetInst()->m_Max_Hp;
@@ -194,7 +195,7 @@ void UI::Render()
 			SetRect(&m_Interface[6]->m_Collision, m_Interface[6]->m_Position.x - m_Interface[6]->m_Size.x / 2, m_Interface[6]->m_Position.y - m_Interface[6]->m_Size.y / 2,
 				m_Interface[6]->m_Position.x + m_Interface[6]->m_Size.x / 2, m_Interface[6]->m_Position.y + m_Interface[6]->m_Size.y / 2);
 
-			m_Interface[6]->m_Rect.top = m_Interface[6]->m_Size.y - (Ammo * m_AmmoGage);
+			m_Interface[6]->m_Rect.bottom = m_Interface[6]->m_Size.y - (Ammo * m_AmmoGage);
 		}
 	}
 

@@ -5,6 +5,7 @@
 #include "Wall.h"
 #include "Obstacle.h"
 #include "Weapon.h"
+#include "Melee.h"
 
 GameMgr::GameMgr()
 {
@@ -300,7 +301,7 @@ void GameMgr::Weapon_Holding()
 	}
 	else {
 		if (Not_Overlap[3]) {
-			ObjMgr->AddObject(new Weapon("Blasphemy", PlayerPos), "Melee");
+			ObjMgr->AddObject(new Melee(PlayerPos), "Melee");
 			Not_Overlap[3] = false;
 		}
 		for (int i = 0; i < 5; i++) {

@@ -97,6 +97,10 @@
     <ClCompile Include="Obstacle.cpp">
       <Filter>Game\Stage</Filter>
     </ClCompile>
+    <ClCompile Include="Melee.cpp">
+      <Filter>Game\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Grenade.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -195,6 +199,8 @@
     <ClInclude Include="Obstacle.h">
       <Filter>Game\Stage</Filter>
     </ClInclude>
+    <ClInclude Include="Melee.h" />
+    <ClInclude Include="Grenade.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="FrameWork">

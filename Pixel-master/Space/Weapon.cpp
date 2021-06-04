@@ -123,15 +123,6 @@ void Weapon::Fire()
 			DelayTime = 0;
 		}
 	}
-	if (m_WeaponName == "Blasphemy") {
-		SetScale(2.f, 2.f);
-
-		DelayTime += dt;
-		if (INPUT->GetButtonDown() && DelayTime > 0.5f && !Reload_Please && !RDown) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
-			ObjMgr->AddObject(new Bullet(L"Painting/Player/Bullet.png", Dire, m_Position, m_State.Speed), "Bullet");
-			DelayTime = 0;
-		}
-	}
 	//int Damage, Speed, Reload, Range, Mag, Ammo, Rebound;
 	GameMgr::GetInst()->UpdateWeaponStatus(m_State);
 }

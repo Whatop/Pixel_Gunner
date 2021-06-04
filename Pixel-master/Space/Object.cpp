@@ -28,7 +28,14 @@ Matrix Object::GetMatrix()
 {
 	Vec2 RotCenter = Vec2(0, 0);
 	Vec2 ScaleCenter = Vec2(0, 0);
-	if (m_Tag != "UI")
+	if (m_Tag == "Weapon1" || m_Tag == "Weapon2" || m_Tag == "Basic" || m_Tag == "Melee" || m_Tag == "Grenade")
+	{
+		RotCenter.x = -Camera::GetInst()->m_Position.x + m_RotationCenter.x - m_Size.x / 2;
+		RotCenter.y = -Camera::GetInst()->m_Position.y + m_RotationCenter.y;
+		ScaleCenter.x = -Camera::GetInst()->m_Position.x + m_ScaleCenter.x;
+		ScaleCenter.y = -Camera::GetInst()->m_Position.y + m_ScaleCenter.y;
+	}
+	else if (m_Tag != "UI")
 	{
 		RotCenter.x = -Camera::GetInst()->m_Position.x + m_RotationCenter.x;
 		RotCenter.y = -Camera::GetInst()->m_Position.y + m_RotationCenter.y;
