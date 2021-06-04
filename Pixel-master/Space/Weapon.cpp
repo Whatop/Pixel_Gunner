@@ -47,7 +47,7 @@ void Weapon::Fire()
 		SetScale(2.f, 2.f);
 
 		DelayTime += dt;
-		if (INPUT->GetButtonDown() && DelayTime > 0.27f && !Reload_Please) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
+		if (INPUT->GetButtonDown() && DelayTime > 0.27f && !Reload_Please && !RDown) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
 			ObjMgr->AddObject(new Bullet(L"Painting/Player/Bullet.png", Dire, m_Position, m_State.Speed), "Bullet");
 			
 			m_State.Mag--;
@@ -60,7 +60,7 @@ void Weapon::Fire()
 	if (m_WeaponName == "Heroine") {
 
 		DelayTime += dt;
-		if (INPUT->GetButtonDown() && DelayTime > 0.37f && !Reload_Please) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
+		if (INPUT->GetButtonDown() && DelayTime > 0.37f && !Reload_Please && !RDown) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
 			ObjMgr->AddObject(new Bullet(L"Painting/Player/Bullet.png", Dire, m_Position, m_State.Speed), "Bullet");
 
 			m_State.Mag--;
@@ -73,7 +73,7 @@ void Weapon::Fire()
 		SetScale(2.f, 2.f);
 
 		DelayTime += dt;
-		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
+		if (INPUT->GetButtonDown() && DelayTime > 0.5f && !Reload_Please && !RDown) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
 			ObjMgr->AddObject(new Bullet(L"Painting/Player/Bullet.png", Dire, m_Position, m_State.Speed), "Bullet");
 			DelayTime = 0;
 		}
@@ -82,7 +82,7 @@ void Weapon::Fire()
 		SetScale(2.f, 2.f);
 
 		DelayTime += dt;
-		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
+		if (INPUT->GetButtonDown() && DelayTime > 0.5f && !Reload_Please && !RDown){ // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
 			ObjMgr->AddObject(new Bullet(L"Painting/Player/Bullet.png", Dire, m_Position, m_State.Speed), "Bullet");
 			DelayTime = 0;
 		}
@@ -91,7 +91,7 @@ void Weapon::Fire()
 		SetScale(2.f, 2.f);
 
 		DelayTime += dt;
-		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
+		if (INPUT->GetButtonDown() && DelayTime > 0.5f && !Reload_Please && !RDown) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
 			ObjMgr->AddObject(new Bullet(L"Painting/Player/Bullet.png", Dire, m_Position, m_State.Speed), "Bullet");
 			DelayTime = 0;
 		}
@@ -100,7 +100,7 @@ void Weapon::Fire()
 		SetScale(2.f, 2.f);
 
 		DelayTime += dt;
-		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
+		if (INPUT->GetButtonDown() && DelayTime > 0.5f && !Reload_Please && !RDown) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
 			ObjMgr->AddObject(new Bullet(L"Painting/Player/Bullet.png", Dire, m_Position, m_State.Speed), "Bullet");
 			DelayTime = 0;
 		}
@@ -109,7 +109,7 @@ void Weapon::Fire()
 		SetScale(2.f, 2.f);
 
 		DelayTime += dt;
-		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
+		if (INPUT->GetButtonDown() && DelayTime > 0.5f && !Reload_Please && !RDown) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
 			ObjMgr->AddObject(new Bullet(L"Painting/Player/Bullet.png", Dire, m_Position, m_State.Speed), "Bullet");
 			DelayTime = 0;
 		}
@@ -118,7 +118,7 @@ void Weapon::Fire()
 		SetScale(2.f, 2.f);
 
 		DelayTime += dt;
-		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
+		if (INPUT->GetButtonDown() && DelayTime > 0.5f && !Reload_Please && !RDown) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
 			ObjMgr->AddObject(new Bullet(L"Painting/Player/Bullet.png", Dire, m_Position, m_State.Speed), "Bullet");
 			DelayTime = 0;
 		}
@@ -127,7 +127,7 @@ void Weapon::Fire()
 		SetScale(2.f, 2.f);
 
 		DelayTime += dt;
-		if (INPUT->GetButtonDown() && DelayTime > 0.5f) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
+		if (INPUT->GetButtonDown() && DelayTime > 0.5f && !Reload_Please && !RDown) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
 			ObjMgr->AddObject(new Bullet(L"Painting/Player/Bullet.png", Dire, m_Position, m_State.Speed), "Bullet");
 			DelayTime = 0;
 		}

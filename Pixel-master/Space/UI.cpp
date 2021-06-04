@@ -89,7 +89,6 @@ void UI::Init() // ÃÑ Ä­ + ÃÑ¾Ë Ä­ + HP + µîµî
 	
 	//m_DelayTime = 0;
 	//m_Hit = false;
-
 	SetCursor(NULL);
 }
 
@@ -192,10 +191,10 @@ void UI::Render()
 		int Ammo = GameMgr::GetInst()->m_WeaponStatus.MaxAmmo - GameMgr::GetInst()->m_WeaponStatus.Ammo;
 		if (GameMgr::GetInst()->m_DashCooltime >= 0)
 		{
-			SetRect(&m_Interface[6]->m_Collision, m_Interface[6]->m_Position.x - m_Interface[6]->m_Size.x / 2, m_Interface[6]->m_Position.y - m_Interface[4]->m_Size.y / 2,
+			SetRect(&m_Interface[6]->m_Collision, m_Interface[6]->m_Position.x - m_Interface[6]->m_Size.x / 2, m_Interface[6]->m_Position.y - m_Interface[6]->m_Size.y / 2,
 				m_Interface[6]->m_Position.x + m_Interface[6]->m_Size.x / 2, m_Interface[6]->m_Position.y + m_Interface[6]->m_Size.y / 2);
 
-			m_Interface[6]->m_Rect.top= m_Interface[6]->m_Size.y + (Ammo * m_AmmoGage);
+			m_Interface[6]->m_Rect.top = m_Interface[6]->m_Size.y - (Ammo * m_AmmoGage);
 		}
 	}
 
