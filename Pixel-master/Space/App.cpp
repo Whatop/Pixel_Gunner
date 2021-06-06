@@ -57,6 +57,7 @@ void App::Run()
 
 			lastTime = curTime;
 
+
 			/*if (GetAsyncKeyState(VK_ESCAPE))
 			{
 				App::GetInst()->Release();

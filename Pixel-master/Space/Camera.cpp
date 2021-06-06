@@ -12,6 +12,7 @@ void Camera::Init()
 {
 	m_Rotation = 0;
 	m_Position = Vec2(0, 0);
+	Pos = Vec2(0, 0);
 	Mouse = Vec2(0, 0);
 	m_Scale = Vec2(1.f, 1.f);
 	Follow(nullptr);
@@ -29,6 +30,9 @@ void Camera::Follow(Object* obj)
 			
 				m_Position.x = obj->m_Position.x - App::GetInst()->m_Width / 2 + Mouse.x - GameMgr::GetInst()->m_WeaponStatus.Rebound * GameMgr::GetInst()->BulletDir.x;
 			    m_Position.y = obj->m_Position.y - App::GetInst()->m_Height / 2 + Mouse.y - GameMgr::GetInst()->m_WeaponStatus.Rebound * GameMgr::GetInst()->BulletDir.y;
+				
+				Pos.x = obj->m_Position.x - App::GetInst()->m_Width / 2 + Mouse.x;
+				Pos.y = obj->m_Position.y - App::GetInst()->m_Height / 2 + Mouse.y;
 
 			//	m_Position.x = obj->m_Position.x - App::GetInst()->m_Width / 2 - GameMgr::GetInst()->m_WeaponStatus.Rebound * GameMgr::GetInst()->BulletDir.x;
 			//	m_Position.y = obj->m_Position.y - App::GetInst()->m_Height / 2 - GameMgr::GetInst()->m_WeaponStatus.Rebound * GameMgr::GetInst()->BulletDir.y;

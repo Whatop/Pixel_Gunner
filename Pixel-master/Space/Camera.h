@@ -13,9 +13,8 @@ public:
 	Vec2 Mouse;
 	float m_Rotation;
 	Vec2 m_Position;
-	Vec2 m_Scale;
-
 	Vec2 Pos;
+	Vec2 m_Scale;
 
 	Matrix GetWorld()
 	{

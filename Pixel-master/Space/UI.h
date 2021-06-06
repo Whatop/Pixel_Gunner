@@ -2,7 +2,7 @@
 
 class UI : public Singleton<UI>
 {
-	Sprite* m_Interface[10];
+	Sprite* m_Interface[15];
 	Sprite* m_OptionUI[10];
 	TextMgr* m_UItext;
 	TextMgr* m_Hptext;

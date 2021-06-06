@@ -37,10 +37,30 @@ void UI::Init() // ÃÑ Ä­ + ÃÑ¾Ë Ä­ + HP + µîµî
 	m_Interface[5]->SetPosition(50, 875);
 	m_Interface[5]->m_Rotation = D3DXToRadian(90);
 
-	m_Interface[6] = Sprite::Create(L"Painting/UI/AmmoBar.png"); // HP
+	m_Interface[6] = Sprite::Create(L"Painting/UI/AmmoBar.png");
 	m_Interface[6]->SetPosition(50, 875);
-	m_Interface[6]->m_Rotation = D3DXToRadian(180);
+	m_Interface[6]->m_Rotation = D3DXToRadian(180);	
 
+	m_Interface[7] = Sprite::Create(L"Painting/UI/Temp.png");
+	m_Interface[7]->SetPosition(1920 / 2, 930);
+	m_Interface[7]->m_Visible = false;
+
+	m_Interface[8] = Sprite::Create(L"Painting/UI/1.png"); // GUN1
+	m_Interface[8]->SetPosition(1920 / 2 - 200, 930);
+
+	m_Interface[9] = Sprite::Create(L"Painting/UI/2.png"); // GUN2
+	m_Interface[9]->SetPosition(1920 / 2 - 100, 930);	
+
+	m_Interface[10] = Sprite::Create(L"Painting/UI/3.png"); // BasicGun
+	m_Interface[10]->SetPosition(1920 / 2, 930);
+
+	m_Interface[11] = Sprite::Create(L"Painting/UI/4.png"); // Melee
+	m_Interface[11]->SetPosition(1920 / 2 + 100, 930);
+
+	m_Interface[12] = Sprite::Create(L"Painting/UI/5.png"); // ºÕ
+	m_Interface[12]->SetPosition(1920 / 2 + 200, 930);
+
+	//È­»ìÇ¥? ¿·¿¡ Ä­ÀÖµû?
 	
 
 	m_OptionUI[0] = Sprite::Create(L"Painting/UI/OptionBG.png"); // BG
@@ -62,23 +82,23 @@ void UI::Init() // ÃÑ Ä­ + ÃÑ¾Ë Ä­ + HP + µîµî
 	for (int i = 0; i < 5; i++) {
 		m_OptionUI[i]->m_Visible = true;
 	}
+	for (int i = 8; i <= 12; i++) {
+		m_Interface[i]->R = 130;
+		m_Interface[i]->G = 130;
+		m_Interface[i]->B = 130;
+		if(i!=8)
+		m_Interface[i]->SetScale(2, 2);
+	}
 
 	if (GameMgr::GetInst()->GetScene() == CurrentScene::STAGE1 || GameMgr::GetInst()->GetScene() == CurrentScene::STAGE2) {
 		
-		ObjMgr->AddObject(m_Interface[0], "UI");
-
-		ObjMgr->AddObject(m_Interface[1], "UI");
-		ObjMgr->AddObject(m_Interface[2], "UI");
-
-		ObjMgr->AddObject(m_Interface[3], "UI");
-		ObjMgr->AddObject(m_Interface[4], "UI");
-	
-		ObjMgr->AddObject(m_Interface[5], "UI");
-		ObjMgr->AddObject(m_Interface[6], "UI");
+		for (int i = 0; i <= 12; i++) {
+			ObjMgr->AddObject(m_Interface[i], "UI");
+		}
 	}
 	m_UItext = new TextMgr();
 	m_UItext->Init(42, true, false, "±¼¸²");
-	m_UItext->SetColor(255, 255, 255, 255);
+	m_UItext->SetColor(255, 255, 255, 255);	
 
 	m_Hptext = new TextMgr();
 	m_Hptext->Init(32, true, false, "±¼¸²");
@@ -90,7 +110,6 @@ void UI::Init() // ÃÑ Ä­ + ÃÑ¾Ë Ä­ + HP + µîµî
 	
 	//m_DelayTime = 0;
 	//m_Hit = false;
-	SetCursor(NULL);
 }
 
 void UI::Release()
@@ -142,6 +161,76 @@ void UI::Update(float deltaTime, float Time)
 		m_OptionUI[0]->SetPosition(GameMgr::GetInst()->PlayerPos);
 		Timer();
 	}
+	if (GameMgr::GetInst()->m_Weapon_Type == Weapon_Type::GUN1) {
+		m_Interface[8]->R = 255;
+		m_Interface[8]->G = 255;
+		m_Interface[8]->B = 255;
+	}
+	/*else {
+		for (int i = 8; i <= 12; i++) {
+			if (i != 8) {
+				m_Interface[i]->R = 130;
+				m_Interface[i]->G = 130;
+				m_Interface[i]->B = 130;
+			}
+		}
+	}*/
+	if (GameMgr::GetInst()->m_Weapon_Type == Weapon_Type::GUN2) {
+		m_Interface[9]->R = 255;
+		m_Interface[9]->G = 255;
+		m_Interface[9]->B = 255;
+	}
+	/*else {
+		for (int i = 8; i <= 12; i++) {
+			if (i != 9) {
+				m_Interface[i]->R = 130;
+				m_Interface[i]->G = 130;
+				m_Interface[i]->B = 130;
+			}
+		}
+	}*/
+	if (GameMgr::GetInst()->m_Weapon_Type == Weapon_Type::BASICGUN) {
+		m_Interface[10]->R = 255;
+		m_Interface[10]->G = 255;
+		m_Interface[10]->B = 255;
+	}
+	/*else {
+		for (int i = 8; i <= 12; i++) {
+			if (i != 10) {
+				m_Interface[i]->R = 130;
+				m_Interface[i]->G = 130;
+				m_Interface[i]->B = 130;
+			}
+		}
+	}*/
+	if (GameMgr::GetInst()->m_Weapon_Type == Weapon_Type::MELEE) {
+		m_Interface[11]->R = 255;
+		m_Interface[11]->G = 255;
+		m_Interface[11]->B = 255;
+	}
+	/*else {
+		for (int i = 8; i <= 12; i++) {
+			if (i != 11) {
+				m_Interface[i]->R = 130;
+				m_Interface[i]->G = 130;
+				m_Interface[i]->B = 130;
+			}
+		}
+	}*/
+	if (GameMgr::GetInst()->m_Weapon_Type == Weapon_Type::GRENADE) {
+		m_Interface[12]->R = 255;
+		m_Interface[12]->G = 255;
+		m_Interface[12]->B = 255;
+	}
+	/*else {
+		for (int i = 8; i <= 12; i++) {
+			if (i != 12) {
+				m_Interface[i]->R = 130;
+				m_Interface[i]->G = 130;
+				m_Interface[i]->B = 130;
+			}
+		}
+	}*/
 }
 
 void UI::Render()
@@ -235,7 +324,6 @@ void UI::Timer()
 
 void UI::Mouse()
 {
-	SetCursor(NULL);
 	if (GameMgr::GetInst()->m_MouseShape == MouseShape::scope) {
 		m_Mouse = Sprite::Create(L"Painting/Mouse/1.png");
 	}
@@ -258,5 +346,5 @@ void UI::Mouse()
 		m_Mouse = Sprite::Create(L"Painting/Mouse/Mouse.png");
 	}
 	m_Mouse->SetPosition(INPUT->GetMousePos());
-
+	ShowCursor(FALSE);
 }

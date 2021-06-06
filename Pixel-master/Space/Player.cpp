@@ -149,7 +149,7 @@ void Player::Update(float deltaTime, float Time)
 	
 	Dash();
 	Camera::GetInst()->Follow(this);
-	Buff(); 
+	Buff();
 	ColBox(); 
 	GameMgr::GetInst()->Weapon_Holding();
 	GameMgr::GetInst()->Esc();
