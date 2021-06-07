@@ -45,21 +45,17 @@ void UI::Init() // ÃÑ Ä­ + ÃÑ¾Ë Ä­ + HP + µîµî
 	m_Interface[7]->SetPosition(1920 / 2, 930);
 	m_Interface[7]->m_Visible = false;
 
-	m_Interface[8] = Sprite::Create(L"Painting/UI/1.png"); // GUN1
-	m_Interface[8]->SetPosition(1920 / 2 - 200, 930);
-
-	m_Interface[9] = Sprite::Create(L"Painting/UI/2.png"); // GUN2
-	m_Interface[9]->SetPosition(1920 / 2 - 100, 930);	
-
+	m_Interface[8] = Sprite::Create(L"Painting/UI/2.png"); // GUN2
+	m_Interface[9] = Sprite::Create(L"Painting/UI/1.png"); // GUN1
 	m_Interface[10] = Sprite::Create(L"Painting/UI/3.png"); // BasicGun
-	m_Interface[10]->SetPosition(1920 / 2, 930);
-
 	m_Interface[11] = Sprite::Create(L"Painting/UI/4.png"); // Melee
-	m_Interface[11]->SetPosition(1920 / 2 + 100, 930);
-
 	m_Interface[12] = Sprite::Create(L"Painting/UI/5.png"); // ºÕ
-	m_Interface[12]->SetPosition(1920 / 2 + 200, 930);
 
+	m_Interface[8]->SetPosition(1920 / 2 - 300, 930);
+	m_Interface[9]->SetPosition(1920 / 2 - 200, 930);
+	m_Interface[10]->SetPosition(1920 / 2 - 100, 930);
+	m_Interface[11]->SetPosition(1920 / 2, 930);
+	m_Interface[12]->SetPosition(1920 / 2 + 100, 930);
 	//È­»ìÇ¥? ¿·¿¡ Ä­ÀÖµû?
 	
 
@@ -86,7 +82,7 @@ void UI::Init() // ÃÑ Ä­ + ÃÑ¾Ë Ä­ + HP + µîµî
 		m_Interface[i]->R = 130;
 		m_Interface[i]->G = 130;
 		m_Interface[i]->B = 130;
-		if(i!=8)
+		if(i!=9)
 		m_Interface[i]->SetScale(2, 2);
 	}
 
@@ -110,6 +106,8 @@ void UI::Init() // ÃÑ Ä­ + ÃÑ¾Ë Ä­ + HP + µîµî
 	
 	//m_DelayTime = 0;
 	//m_Hit = false;
+	One = true;
+	Two = true;
 }
 
 void UI::Release()
@@ -162,75 +160,99 @@ void UI::Update(float deltaTime, float Time)
 		Timer();
 	}
 	if (GameMgr::GetInst()->m_Weapon_Type == Weapon_Type::GUN1) {
+		m_Interface[9]->R = 255;
+		m_Interface[9]->G = 255;
+		m_Interface[9]->B = 255;
+
+	}
+	else {
+		for (int i = 8; i <= 12; i++) {
+			if (i == 9) {
+				m_Interface[i]->R = 130;
+				m_Interface[i]->G = 130;
+				m_Interface[i]->B = 130;
+			}
+		}
+	}
+	if (GameMgr::GetInst()->m_Weapon_Type == Weapon_Type::GUN2) {
 		m_Interface[8]->R = 255;
 		m_Interface[8]->G = 255;
 		m_Interface[8]->B = 255;
 	}
-	/*else {
+	else {
 		for (int i = 8; i <= 12; i++) {
-			if (i != 8) {
+			if (i == 8) {
 				m_Interface[i]->R = 130;
 				m_Interface[i]->G = 130;
 				m_Interface[i]->B = 130;
 			}
 		}
-	}*/
-	if (GameMgr::GetInst()->m_Weapon_Type == Weapon_Type::GUN2) {
-		m_Interface[9]->R = 255;
-		m_Interface[9]->G = 255;
-		m_Interface[9]->B = 255;
 	}
-	/*else {
-		for (int i = 8; i <= 12; i++) {
-			if (i != 9) {
-				m_Interface[i]->R = 130;
-				m_Interface[i]->G = 130;
-				m_Interface[i]->B = 130;
-			}
-		}
-	}*/
 	if (GameMgr::GetInst()->m_Weapon_Type == Weapon_Type::BASICGUN) {
 		m_Interface[10]->R = 255;
 		m_Interface[10]->G = 255;
 		m_Interface[10]->B = 255;
 	}
-	/*else {
+	else {
 		for (int i = 8; i <= 12; i++) {
-			if (i != 10) {
+			if (i == 10) {
 				m_Interface[i]->R = 130;
 				m_Interface[i]->G = 130;
 				m_Interface[i]->B = 130;
 			}
 		}
-	}*/
+	}
 	if (GameMgr::GetInst()->m_Weapon_Type == Weapon_Type::MELEE) {
 		m_Interface[11]->R = 255;
 		m_Interface[11]->G = 255;
 		m_Interface[11]->B = 255;
+		
 	}
-	/*else {
+	else {
 		for (int i = 8; i <= 12; i++) {
-			if (i != 11) {
+			if (i == 11) {
 				m_Interface[i]->R = 130;
 				m_Interface[i]->G = 130;
 				m_Interface[i]->B = 130;
 			}
 		}
-	}*/
+	}
 	if (GameMgr::GetInst()->m_Weapon_Type == Weapon_Type::GRENADE) {
 		m_Interface[12]->R = 255;
 		m_Interface[12]->G = 255;
-		m_Interface[12]->B = 255;
+		m_Interface[12]->B = 255;	
 	}
-	/*else {
+	else {
 		for (int i = 8; i <= 12; i++) {
-			if (i != 12) {
+			if (i == 12) {
 				m_Interface[i]->R = 130;
 				m_Interface[i]->G = 130;
 				m_Interface[i]->B = 130;
 			}
 		}
-	}*/
+	}	
+
+	if (GameMgr::GetInst()->HaveGun == 1) {
+		m_Interface[9]->m_Visible = true;
+		m_Interface[8]->SetPosition(1920 / 2 - 200, 930);
+		m_Interface[9]->SetPosition(1920 / 2 - 100, 930);
+		m_Interface[10]->SetPosition(1920 / 2, 930);
+		m_Interface[11]->SetPosition(1920 / 2 + 100, 930);
+		m_Interface[12]->SetPosition(1920 / 2 + 200, 930);
+	}
+	else if (GameMgr::GetInst()->HaveGun == 2) {
+		m_Interface[8]->m_Visible = true;
+		m_Interface[8]->SetPosition(1920 / 2 - 200, 930);
+		m_Interface[9]->SetPosition(1920 / 2 - 100, 930);
+		m_Interface[10]->SetPosition(1920 / 2, 930);
+		m_Interface[11]->SetPosition(1920 / 2 + 100, 930);
+		m_Interface[12]->SetPosition(1920 / 2 + 200, 930);
+	}
+	else {
+		m_Interface[8]->m_Visible = false;
+		m_Interface[9]->m_Visible = false;
+	}
+	
 }
 
 void UI::Render()

@@ -38,6 +38,9 @@ public:
 	float m_DashGage;
 	float m_AmmoGage;
 
+	bool One;
+	bool Two;
+
 	Sprite* m_Mouse;
 };
 

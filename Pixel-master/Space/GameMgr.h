@@ -129,6 +129,7 @@ public:
 	bool _QuarkOption;
 	int HaveGun;
 	int menimap;
+
 	Vec2 Pos;
 	Vec2 BulletDir;
 	Vec2 PlayerPos;

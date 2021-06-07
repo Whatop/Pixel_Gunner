@@ -2,9 +2,12 @@
 class Grenade : public Object
 {
 	Sprite* m_Grenade;
-	float DelayTime;
+	float DelayTime, AAddTime;
+
 	Vec2 Mouse, Dire;
-	bool Reload_Please, RDown;
+	int Ammo;
+	bool Limit;
+
 public:
 	Grenade();
 	~Grenade();

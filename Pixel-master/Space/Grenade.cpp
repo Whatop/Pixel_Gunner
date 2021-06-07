@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Grenade.h"
+#include "Grenade.h"
 
 Grenade::Grenade() 
 {
@@ -11,6 +12,8 @@ Grenade::Grenade()
 	Mouse = INPUT->GetMousePos() - m_Position;
 	D3DXVec2Normalize(&Dire, &Mouse);
 	m_Rotation = (std::atan2(Dire.y, Dire.x));
+	Ammo = 2;
+
 }
 
 Grenade::~Grenade()
@@ -27,13 +30,19 @@ void Grenade::GrenadeRotato()
 void Grenade::Update(float deltaTime, float Time)
 {
 	SetPosition(GameMgr::GetInst()->PlayerPos);
+	GrenadeRotato();
 
 		DelayTime += dt;
-		if (INPUT->GetButtonDown() && DelayTime > 0.5f && !Reload_Please && !RDown) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
-			//
+		AAddTime += dt;
+		if (AAddTime > 10 && Ammo <= 2) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
+			Ammo++;
+			AAddTime = 0;
+		}
+		if (INPUT->GetButtonDown() && DelayTime > 0.27f && Ammo > 0) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
+			
+			INPUT->ButtonDown(false);
 			DelayTime = 0;
 		}
-	GrenadeRotato();
 }
 
 void Grenade::Render()

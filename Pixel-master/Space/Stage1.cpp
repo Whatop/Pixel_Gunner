@@ -15,11 +15,10 @@ Stage1::~Stage1()
 
 void Stage1::Init() 
 {
+	GameMgr::GetInst()->ReleaseUI();
 	GameMgr::GetInst()->m_Scene = CurrentScene::STAGE1;
 	GameMgr::GetInst()->CreateObstacle();
 	GameMgr::GetInst()->CreatePlayer();
-	GameMgr::GetInst()->ReleaseUI();
-	GameMgr::GetInst()->CreateUI();
 	ObjMgr->AddObject(new Enemy(Vec2(1920 / 2, 1080 / 2 - 1500)), "Enemy");
 	m_BG = Sprite::Create(L"Painting/Stage1/BG.png");
 	m_BG->SetPosition(1920 / 2, 1080-m_BG->m_Size.y/2);
@@ -31,6 +30,8 @@ void Stage1::Init()
 	ObjMgr->AddObject(new Weapon_case(L"Painting/Weapon/Test.png","Vulcan_Cannon",Vec2(1920/2,-700)), "WeaponCase");
 	ObjMgr->AddObject(new Weapon_case(L"Painting/Weapon/Test.png","Thumbnail",Vec2(1920/2,-800)), "WeaponCase");
 	ObjMgr->AddObject(new Weapon_case(L"Painting/Weapon/Test.png","Marine_Sidearm",Vec2(1920/2,-900)), "WeaponCase");
+
+	GameMgr::GetInst()->CreateUI();
 }
 
 void Stage1::Update(float deltaTime, float Time)

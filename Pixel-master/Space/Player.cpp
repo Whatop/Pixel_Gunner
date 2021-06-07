@@ -112,6 +112,7 @@ void Player::Dash()
 	if (INPUT->GetRightButtonDown() && m_DashCooltime >= m_DashCool)
 	{
 		m_Dash = true;
+		INPUT->RightButtonDown(false);
 	}
 	if (m_Dash)
 	{
@@ -153,7 +154,6 @@ void Player::Update(float deltaTime, float Time)
 	ColBox(); 
 	GameMgr::GetInst()->Weapon_Holding();
 	GameMgr::GetInst()->Esc();
-	//Camera::GetInst()->Temp(this);
 }
 
 void Player::Render()

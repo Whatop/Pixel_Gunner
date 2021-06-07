@@ -216,7 +216,7 @@ void GameMgr::Weapon_Holding()
 			m_Weapon_Type = Weapon_Type::GUN1;
 		}
 		else if (HaveGun == 2) {
-			m_Weapon_Type = Weapon_Type::GUN1;
+			m_Weapon_Type = Weapon_Type::GUN2;
 		}
 		else {
 			m_Weapon_Type = Weapon_Type::BASICGUN;
@@ -227,7 +227,7 @@ void GameMgr::Weapon_Holding()
 			m_Weapon_Type = Weapon_Type::BASICGUN;
 		}
 		else if (HaveGun == 2) {
-			m_Weapon_Type = Weapon_Type::GUN2;
+			m_Weapon_Type = Weapon_Type::GUN1;
 		}
 		else {
 			m_Weapon_Type = Weapon_Type::MELEE;
