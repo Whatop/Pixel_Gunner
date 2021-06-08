@@ -19,6 +19,7 @@ void Enemy::Update(float deltaTime, float Time)
 	ObjMgr->CollisionCheak(this, "Bullet");
 	Move();
 	Shot();
+	GameMgr::GetInst()->MonsterPos = m_Position;
 }
 
 void Enemy::Move()

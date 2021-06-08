@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Grenade.h"
-#include "Grenade.h"
+#include "Missile.h"
 
 Grenade::Grenade() 
 {
@@ -39,7 +39,7 @@ void Grenade::Update(float deltaTime, float Time)
 			AAddTime = 0;
 		}
 		if (INPUT->GetButtonDown() && DelayTime > 0.27f && Ammo > 0) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
-			
+			ObjMgr->AddObject(new Missile(L"Painting/Player/Missile.png"), "Missile");
 			INPUT->ButtonDown(false);
 			DelayTime = 0;
 		}

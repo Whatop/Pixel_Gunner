@@ -103,6 +103,9 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>Game\Weapon</Filter>
     </ClCompile>
+    <ClCompile Include="Missile.cpp">
+      <Filter>Game\Weapon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -205,6 +208,9 @@
       <Filter>Game\Weapon</Filter>
     </ClInclude>
     <ClInclude Include="Bullet.h">
+      <Filter>Game\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Missile.h">
       <Filter>Game\Weapon</Filter>
     </ClInclude>
   </ItemGroup>

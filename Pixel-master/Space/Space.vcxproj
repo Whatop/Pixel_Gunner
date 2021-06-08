@@ -33,6 +33,7 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="MainScene.cpp" />
     <ClCompile Include="Melee.cpp" />
+    <ClCompile Include="Missile.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectMgr.cpp" />
     <ClCompile Include="Obstacle.cpp" />
@@ -71,6 +72,7 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="MainScene.h" />
     <ClInclude Include="Melee.h" />
+    <ClInclude Include="Missile.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectMgr.h" />
     <ClInclude Include="Obstacle.h" />
