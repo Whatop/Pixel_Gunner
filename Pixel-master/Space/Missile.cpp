@@ -8,6 +8,10 @@ Missile::Missile(std::wstring fileName)
 	SetPosition(GameMgr::GetInst()->PlayerPos);
 
 	std::cout << "생성" << std::endl;
+
+	Rad = GameMgr::GetInst()->GrenDir;
+	turnRadian = std::atan2(Rad.y, Rad.x);
+	vrad = 0.08f;
 }
 
 Missile::~Missile()
@@ -18,14 +22,25 @@ void Missile::Update(float deltaTime, float Time)
 {
 	Monster = GameMgr::GetInst()->MonsterPos - m_Position;
 	D3DXVec2Normalize(&Dire, &Monster);
-	float cross = (std::atan2(Dire.y, Dire.x));
-	float angle = acosf((Monster.x * Dire.x) + (Monster.y * Dire.y));
+	//vrad += 5 * dt;
 
-	if (cross > 0)   // 외적 값이 음수이면 시계방향으로 회전
-		angle *= -1;
-	Rotate(angle * turnRadian * dt);
-	turnRadian += 5 * dt;
-	Translate(Dire.x * 1000 * dt, Dire.y * 1000 * dt);
+	float pi2 = D3DX_PI * 2;
+	float diff = std::atan2f(Dire.y, Dire.x) - turnRadian;
+	while (diff < -D3DX_PI) diff += pi2;
+	while (diff >= D3DX_PI) diff -= pi2;
+
+	if (m_Rotation < 0)   // 외적 값이 음수이면 시계방향으로 회전
+		vrad *= -1;
+	if (abs(diff) < vrad)
+		turnRadian += diff;
+	else {
+		turnRadian += (diff < 0 ? -vrad : vrad);
+	}
+	
+	Dire.y = sin(turnRadian);
+	Dire.x = cos(turnRadian);
+	m_Rotation = turnRadian / D3DX_PI / 2 + 0.25f;
+	Translate(Dire.x  * 700 * dt, Dire.y * 700 * dt);
 }
 
 void Missile::Render()

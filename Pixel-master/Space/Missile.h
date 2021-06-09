@@ -2,8 +2,8 @@
 class Missile : public Object
 {
 	Sprite* m_Missile;
-	Vec2 Monster, Dire;
-	float turnRadian;
+	Vec2 Monster, Dire, Rad;
+	float turnRadian,vrad;
 public:
 	Missile(std::wstring fileName);
 	~Missile();

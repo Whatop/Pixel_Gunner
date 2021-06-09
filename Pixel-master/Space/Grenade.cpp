@@ -25,6 +25,7 @@ void Grenade::GrenadeRotato()
 	Mouse = INPUT->GetMousePos() - m_Position;
 	D3DXVec2Normalize(&Dire, &Mouse);
 	m_Rotation = (std::atan2(Dire.y, Dire.x));
+	GameMgr::GetInst()->GrenDir = Dire;
 }
 
 void Grenade::Update(float deltaTime, float Time)
@@ -40,7 +41,8 @@ void Grenade::Update(float deltaTime, float Time)
 		}
 		if (INPUT->GetButtonDown() && DelayTime > 0.27f && Ammo > 0) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 
 			ObjMgr->AddObject(new Missile(L"Painting/Player/Missile.png"), "Missile");
-			INPUT->ButtonDown(false);
+			
+			Ammo--;
 			DelayTime = 0;
 		}
 }

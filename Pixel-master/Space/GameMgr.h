@@ -134,6 +134,7 @@ public:
 	Vec2 BulletDir;
 	Vec2 PlayerPos;
 	Vec2 MonsterPos;
+	Vec2 GrenDir;
 	CurrentScene m_Scene;
 	MouseShape m_MouseShape;
 	MeniMap_Option m_MeniMap;
