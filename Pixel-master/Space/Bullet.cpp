@@ -7,7 +7,7 @@ Bullet::Bullet(std::wstring filename, Vec2 arrival, Vec2 pos, float speed)
 	m_Bullet->SetParent(this);
 	
 	m_Halo = Sprite::Create(L"Painting/Player/Halo.png");
-	m_Halo->A = 50;
+	m_Halo->A = 35;
 	
 	SetPosition(pos);
 	m_Layer = 0;
