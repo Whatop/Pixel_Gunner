@@ -29,8 +29,8 @@ void Missile::Update(float deltaTime, float Time)
 	while (diff < -D3DX_PI) diff += pi2;
 	while (diff >= D3DX_PI) diff -= pi2;
 
-	if (m_Rotation < 0)   // 외적 값이 음수이면 시계방향으로 회전
-		vrad *= -1;
+//	if (turnRadian < 0)   // 외적 값이 음수이면 시계방향으로 회전
+//		vrad *= -1;
 	if (abs(diff) < vrad)
 		turnRadian += diff;
 	else {
@@ -39,7 +39,7 @@ void Missile::Update(float deltaTime, float Time)
 	
 	Dire.y = sin(turnRadian);
 	Dire.x = cos(turnRadian);
-	m_Rotation = turnRadian / D3DX_PI / 2 + 0.25f;
+	m_Rotation = std::atan2f(Dire.y, Dire.x);
 	Translate(Dire.x  * 700 * dt, Dire.y * 700 * dt);
 }
 
