@@ -11,7 +11,7 @@ Missile::Missile(std::wstring fileName)
 
 	Rad = GameMgr::GetInst()->GrenDir;
 	turnRadian = std::atan2(Rad.y, Rad.x);
-	vrad = 0.08f;
+	vrad = 0.004f;
 }
 
 Missile::~Missile()
