@@ -14,6 +14,15 @@ Enemy::Enemy(Vec2 Pos)
 	m_Enemy->SetScale(3, 3);
 	SetPosition(Pos);
 	
+	EnemyState.Hp = 100;
+	EnemyState.Speed = 10;
+	EnemyState.Def = 10;
+	EnemyState.Def_Percent = 0.9f;
+	EnemyState.Dash = 0;
+	EnemyState.Critical = 0;
+
+	
+	
 }
 
 Enemy::~Enemy()
@@ -62,6 +71,7 @@ void Enemy::Render()
 void Enemy::OnCollision(Object* obj)
 {
 	if (obj->m_Tag == "Bullet") {
-		m_Hp -= GameMgr::GetInst()->Damage();
+
+		m_Hp -= (GameMgr::GetInst()->m_WeaponStatus.Atk - EnemyState.Def)*EnemyState.Def_Percent;
 	}
 }
