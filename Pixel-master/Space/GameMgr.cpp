@@ -36,7 +36,8 @@ void GameMgr::Init()
 	GameMgr::GetInst()->m_MouseShape = MouseShape::none;
 	GameMgr::GetInst()->m_Scene = CurrentScene::NONE;
 	GameMgr::GetInst()->m_Weapon_Type = Weapon_Type::BASICGUN;
-	
+	m_Player_Coefficient = { 1, };
+	m_Weapon_Coefficient = { 1, };
 }
 
 void GameMgr::CreateUI()
@@ -185,23 +186,6 @@ void GameMgr::Esc()
 	}
 }
 
-int GameMgr::Damage()
-{
-	m_Damage = m_WeaponStatus.Atk * m_PlayerStatus.Def_Percent * 0.01f;
-	m_Damage -= m_PlayerStatus.Def;
-	m_Hit = true;
-	if (m_Damage < 0)
-		m_Damage = 0;
-
-	std::cout << "ÀÔÈù µ¥¹ÌÁö : " << m_Damage << std::endl;
-
-	return m_Damage;
-}
-
-int GameMgr::Hit()
-{
-	return 0;
-}
 
 void GameMgr::Weapon_Holding()
 {

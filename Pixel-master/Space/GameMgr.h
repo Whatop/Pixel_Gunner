@@ -55,9 +55,19 @@ struct Weapon_State {
 public:
 	int Atk, Speed, Reload, Range, MaxMag, Mag, MaxAmmo, Ammo, Rebound;
 };
+
+struct Player_Coefficient {
+	float Hp, Speed, Def, Def_Percent, Dash, Critical;
+	int Bag;
+};
+
+struct Weapon_Coefficient {
+	float Atk, Speed, Reload, Range, MaxMag, MaxAmmo, Rebound;
+};
+
 // 1번 기본무기, 2번 무기, 3번 근접무기, 4번 슈류탄
 class GameMgr : public Singleton<GameMgr> // UI 생성 및 삭제(UI관리함), 플레이어, 몬스터 스폰, 랭킹, 
-{
+{	
 private:
 	int shape;
 	int m_Score;
@@ -66,39 +76,49 @@ private:
 	Game_Difficulty GameDifficulty;
 	Vec2 Mouse, Dire;
 
+	
 public:
 	GameMgr();
 	~GameMgr();
 	
+	// 초기화
 	void Init(); 
+
+	//설정
 	void Shape(bool dir); // 마우스 모양 바꾸는 기능
 	void MeniMap(bool add);
+	void AddDifficulty();
+
+	//UI
 	void CreateUI();
 	void ReleaseUI();
+	
+	//맵 생성 or 이후
 	void CreateObstacle();
 	void CreatePlayer();
 	void CreateMonster();
-	void AddDifficulty();	
-	void Esc();
 
-	int Damage(); // 적에게 데미지를 주었을때
-	int Hit(); // 내가 적에게 데미지를 입었을때
+	void Esc();
 	
-	int GetDamage() { return m_Damage; }
-	void UpdatePlayerStatus(float hp, float speed, float def,float def_dercent, float dash, float critical, int bag) {
-		m_PlayerStatus = { hp,speed,def,def_dercent,dash,critical,bag };
+	int Damage() { return m_WeaponStatus.Atk; }
+	void Weapon_Holding();
+
+	Game_Difficulty GetDifficulty() { return GameDifficulty; }
+	CurrentScene GetScene() { return m_Scene; }
+
+	void UpdatePlayerStatus(float hp, float speed, float def, float def_dercent, float dash, float critical, int bag) {
+		m_PlayerStatus = { hp * pc.Hp ,speed * pc.Speed ,def * pc.Def,def_dercent * pc.Def_Percent
+			,dash * pc.Dash, critical* pc.Critical, bag * pc.Bag };
 	}
 	void UpdateWeaponStatus(Weapon_State All) {
 		m_WeaponStatus = All;
 	}
 
-	void Weapon_Holding();
-
-	Game_Difficulty GetDifficulty() { return GameDifficulty; }
-	CurrentScene GetScene() { return m_Scene; }
 public:
 	Weapon_State m_WeaponStatus;
 	Player_State m_PlayerStatus;
+	Weapon_Coefficient wc;
+	Player_Coefficient pc;
 	int m_Damage;
 	bool m_Hit;
 	int m_Max_Hp;

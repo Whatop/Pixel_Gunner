@@ -1,5 +1,9 @@
 #pragma once
 
+struct EnemyState {
+	
+};
+
 class Object
 {
 public:
