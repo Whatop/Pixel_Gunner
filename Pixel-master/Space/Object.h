@@ -1,7 +1,8 @@
 #pragma once
 
 struct EnemyState {
-	
+public:
+	float Hp, Speed, Def, Def_Percent, Dash, Critical;
 };
 
 class Object

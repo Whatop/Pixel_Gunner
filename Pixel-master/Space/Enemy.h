@@ -15,6 +15,7 @@ public:
 	void Move();
 	void Shot();
 	void ColBox();
+	void Hit();
 
 	void Render();
 	void OnCollision(Object* obj);

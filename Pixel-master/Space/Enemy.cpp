@@ -46,6 +46,11 @@ void Enemy::ColBox()
 		m_ColBox[4]->SetPosition(m_Position.x + m_ColBox[0]->m_Size.x / 2, m_Position.y);//Left
 }
 
+void Enemy::Hit()
+{
+	
+}
+
 void Enemy::Render()
 {
 	m_Enemy->Render();

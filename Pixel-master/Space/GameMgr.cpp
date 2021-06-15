@@ -36,8 +36,8 @@ void GameMgr::Init()
 	GameMgr::GetInst()->m_MouseShape = MouseShape::none;
 	GameMgr::GetInst()->m_Scene = CurrentScene::NONE;
 	GameMgr::GetInst()->m_Weapon_Type = Weapon_Type::BASICGUN;
-	m_Player_Coefficient = { 1, };
-	m_Weapon_Coefficient = { 1, };
+	pc = { 1, };
+	wc = { 1, };
 }
 
 void GameMgr::CreateUI()

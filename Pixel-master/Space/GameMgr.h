@@ -100,7 +100,6 @@ public:
 
 	void Esc();
 	
-	int Damage() { return m_WeaponStatus.Atk; }
 	void Weapon_Holding();
 
 	Game_Difficulty GetDifficulty() { return GameDifficulty; }
@@ -111,7 +110,13 @@ public:
 			,dash * pc.Dash, critical* pc.Critical, bag * pc.Bag };
 	}
 	void UpdateWeaponStatus(Weapon_State All) {
-		m_WeaponStatus = All;
+			m_WeaponStatus.Atk = All.Atk * wc.Atk;
+			m_WeaponStatus.Speed = All.Speed * wc.Speed;
+			m_WeaponStatus.Reload = All.Reload * wc.Reload;
+			m_WeaponStatus.Range = All.Range * wc.Range;
+			m_WeaponStatus.MaxMag = All.MaxMag * wc.MaxMag;
+			m_WeaponStatus.MaxAmmo = All.MaxAmmo * wc.MaxAmmo;
+			m_WeaponStatus.Rebound = All.Rebound * wc.Rebound;
 	}
 
 public:
