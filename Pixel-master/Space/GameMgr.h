@@ -115,7 +115,9 @@ public:
 			m_WeaponStatus.Reload = All.Reload * wc.Reload;
 			m_WeaponStatus.Range = All.Range * wc.Range;
 			m_WeaponStatus.MaxMag = All.MaxMag * wc.MaxMag;
+			m_WeaponStatus.Mag = All.Mag;
 			m_WeaponStatus.MaxAmmo = All.MaxAmmo * wc.MaxAmmo;
+			m_WeaponStatus.Ammo = All.Ammo;
 			m_WeaponStatus.Rebound = All.Rebound * wc.Rebound;
 	}
 

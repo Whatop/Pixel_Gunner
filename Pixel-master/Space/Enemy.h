@@ -5,7 +5,8 @@ class Enemy : public Object
 	Sprite* m_ColBox[5];
 	float m_Hp, m_Speed;
 	Vec2 m_Dir;
-	
+	bool m_Hit;
+	float DelayTime;
 public:
 	Enemy(Vec2 Pos);
 	~Enemy();

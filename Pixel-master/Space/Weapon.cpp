@@ -19,7 +19,7 @@ Weapon::Weapon(std::string weapontag, Vec2 Pos)
 	m_WeaponName = weapontag;
 	std::cout << "ÃÑ »ý¼º : "<<m_WeaponName<< std::endl;
 
-	m_State.Atk = 10;
+	m_State.Atk = 30;
 	m_State.Range = 10;
 	m_State.Reload = 2;
 	m_State.Speed = 1000;

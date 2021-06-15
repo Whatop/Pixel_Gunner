@@ -2,7 +2,6 @@
 class Missile : public Object
 {
 	Sprite* m_Missile;
-	Sprite* m_Homing;
 	Vec2 Monster, Dire, Rad;
 	float turnRadian,vrad;
 	bool Homing;

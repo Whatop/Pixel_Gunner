@@ -7,9 +7,6 @@ Missile::Missile(std::wstring fileName)
 	m_Missile->SetParent(this);
 	SetPosition(GameMgr::GetInst()->PlayerPos);
 
-	m_Homing = Sprite::Create(L"Painting/Player/Homing_Range.png");
-	m_Homing->SetPosition(m_Position);
-	m_Homing->A = 140;
 	Rad = GameMgr::GetInst()->GrenDir;
 	turnRadian = std::atan2(Rad.y, Rad.x);
 	vrad = 0.001f;
@@ -44,7 +41,6 @@ void Missile::Update(float deltaTime, float Time)
 		Dire.x = cos(turnRadian);
 		m_Rotation = std::atan2f(Dire.y, Dire.x);
 		Translate(Dire.x * 700 * dt, Dire.y * 700 * dt);
-		m_Homing->m_Position = m_Position;
 	}
 	else {
 		ObjMgr->RemoveObject(this);
@@ -55,7 +51,6 @@ void Missile::Update(float deltaTime, float Time)
 void Missile::Render()
 {
 	m_Missile->Render();
-	m_Homing->Render();
 }
 
 void Missile::OnCollision(Object* obj)

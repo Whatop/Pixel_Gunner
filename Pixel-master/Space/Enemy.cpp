@@ -11,18 +11,19 @@ Enemy::Enemy(Vec2 Pos)
 	m_ColBox[3] = Sprite::Create(L"Painting/Player/Height.png");
 	m_ColBox[4] = Sprite::Create(L"Painting/Player/Height.png");
 
+	for (int i = 0; i < 5; i++) {
+		m_ColBox[i]->m_Visible = false;
+	}
 	m_Enemy->SetScale(3, 3);
 	SetPosition(Pos);
-	
+	m_Hit = false;
+
 	EnemyState.Hp = 100;
 	EnemyState.Speed = 10;
 	EnemyState.Def = 10;
-	EnemyState.Def_Percent = 0.9f;
+	EnemyState.Def_Percent = 0;
 	EnemyState.Dash = 0;
 	EnemyState.Critical = 0;
-
-	
-	
 }
 
 Enemy::~Enemy()
@@ -31,7 +32,18 @@ Enemy::~Enemy()
 
 void Enemy::Update(float deltaTime, float Time)
 {
+	m_Hit = false;
+	
+	DelayTime += dt;
+	if (DelayTime > 0.1f) {
+		m_Enemy->R = 255;
+		m_Enemy->G = 255;
+		m_Enemy->B = 255;
+		DelayTime = 0;
+	}
+	
 	ObjMgr->CollisionCheak(this, "Bullet");
+	Hit();
 	Move();
 	Shot();
 	ColBox();
@@ -57,7 +69,15 @@ void Enemy::ColBox()
 
 void Enemy::Hit()
 {
-	
+	if (m_Hit) {
+		m_Enemy->R = 255;
+		m_Enemy->G = 50;
+		m_Enemy->B = 50;
+		m_Hp -= (GameMgr::GetInst()->m_WeaponStatus.Atk - EnemyState.Def) * EnemyState.Def_Percent;
+		std::cout << "데미지 : " << (GameMgr::GetInst()->m_WeaponStatus.Atk - EnemyState.Def) * EnemyState.Def_Percent << std::endl;
+		std::cout << "남은 체력 : " << m_Hp << std::endl;
+		DelayTime = 0;
+	}
 }
 
 void Enemy::Render()
@@ -71,7 +91,7 @@ void Enemy::Render()
 void Enemy::OnCollision(Object* obj)
 {
 	if (obj->m_Tag == "Bullet") {
-
-		m_Hp -= (GameMgr::GetInst()->m_WeaponStatus.Atk - EnemyState.Def)*EnemyState.Def_Percent;
+		m_Hit = true;
 	}
+	
 }
