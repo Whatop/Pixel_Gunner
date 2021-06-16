@@ -19,7 +19,6 @@ Missile::~Missile()
 
 void Missile::Update(float deltaTime, float Time)
 {
-	ObjMgr->CollisionCheak(this, "Enemy");
 	if (!Homing) {
 		Monster = GameMgr::GetInst()->MonsterPos - m_Position;
 		D3DXVec2Normalize(&Dire, &Monster);

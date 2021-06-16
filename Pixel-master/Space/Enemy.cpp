@@ -43,6 +43,7 @@ void Enemy::Update(float deltaTime, float Time)
 	}
 	
 	ObjMgr->CollisionCheak(this, "Bullet");
+	ObjMgr->CollisionCheak(this, "Missile");
 	Hit();
 	Move();
 	Shot();
@@ -93,5 +94,7 @@ void Enemy::OnCollision(Object* obj)
 	if (obj->m_Tag == "Bullet") {
 		m_Hit = true;
 	}
-	
+	if (obj->m_Tag == "Missile") {
+		m_Hit = true;
+	}
 }

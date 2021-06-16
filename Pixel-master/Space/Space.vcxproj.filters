@@ -82,9 +82,6 @@
     <ClCompile Include="Wall.cpp">
       <Filter>Game\Stage</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
     <ClCompile Include="Weapon.cpp">
       <Filter>Game\Weapon</Filter>
     </ClCompile>
@@ -104,6 +101,9 @@
       <Filter>Game\Weapon</Filter>
     </ClCompile>
     <ClCompile Include="Missile.cpp">
+      <Filter>Game\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
       <Filter>Game\Weapon</Filter>
     </ClCompile>
   </ItemGroup>
