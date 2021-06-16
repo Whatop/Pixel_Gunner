@@ -158,6 +158,8 @@ public:
 	int menimap;
 
 	Vec2 Pos;
+	Vec2 Right_Hand;
+	Vec2 Left_Hand;
 	Vec2 BulletDir;
 	Vec2 PlayerPos;
 	Vec2 MonsterPos;

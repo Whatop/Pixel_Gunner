@@ -5,6 +5,7 @@ class Player : public Object
 private:
 	Sprite* m_Player;
 	Sprite* m_ColBox[5];
+	Sprite* m_Hand[2];
 
 	float m_Max_Hp;
 	float m_Hp;
@@ -49,6 +50,7 @@ public:
 	void ColBox();
 	void Buff();
 	void Dash();
+	void Hand();
 
 	void Update(float deltaTime, float Time);
 	void Render();

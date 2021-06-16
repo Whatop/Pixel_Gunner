@@ -247,7 +247,7 @@ void GameMgr::Weapon_Holding()
 	}
 	else {
 		if (Not_Overlap[0]) {
-			ObjMgr->AddObject(new Weapon(Weapon_Case_Tag.at(0), PlayerPos), "Weapon1");
+			ObjMgr->AddObject(new Weapon(Weapon_Case_Tag.at(0), Left_Hand), "Weapon1");
 			Not_Overlap[0] = false;
 		}
 		for (int i = 0; i < 5; i++) {
@@ -260,7 +260,7 @@ void GameMgr::Weapon_Holding()
 	}
 	else {
 		if (Not_Overlap[1]) {
-			ObjMgr->AddObject(new Weapon(Weapon_Case_Tag.at(1), PlayerPos), "Weapon2");
+			ObjMgr->AddObject(new Weapon(Weapon_Case_Tag.at(1), Left_Hand), "Weapon2");
 			Not_Overlap[1] = false;
 		}
 		for (int i = 0; i < 5; i++) {
@@ -273,7 +273,7 @@ void GameMgr::Weapon_Holding()
 	}
 	else {
 		if (Not_Overlap[2]) {
-			ObjMgr->AddObject(new Weapon("Basicgun", PlayerPos), "Basic");
+			ObjMgr->AddObject(new Weapon("Basicgun", Left_Hand), "Basic");
 			Not_Overlap[2] = false;
 		}
 		for (int i = 0; i < 5; i++) {

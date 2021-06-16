@@ -173,10 +173,7 @@ void Weapon::Update(float delatTime, float Time)
 	if (m_State.Rebound > 0) {
 		m_State.Rebound -= dt * 5;
 	}
-	for (auto& iter : ObjMgr->m_Objects) {
-		if(iter->m_Tag == "Player")
-		m_Position = iter->m_Position;
-	}
+	SetPosition(GameMgr::GetInst()->Left_Hand);
 	Fire();
 	WeaponRotate();
 	Reload();

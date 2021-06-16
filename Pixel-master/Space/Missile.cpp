@@ -9,7 +9,8 @@ Missile::Missile(std::wstring fileName)
 
 	Rad = GameMgr::GetInst()->GrenDir;
 	turnRadian = std::atan2(Rad.y, Rad.x);
-	vrad = 0.001f;
+	vrad = 0.019f;
+	Delay = 0.f;
 	Homing = false;
 }
 
@@ -22,9 +23,10 @@ void Missile::Update(float deltaTime, float Time)
 	if (!Homing) {
 		Monster = GameMgr::GetInst()->MonsterPos - m_Position;
 		D3DXVec2Normalize(&Dire, &Monster);
-		//vrad += dt * 0.1;
-		vrad = 0.019f;
-
+		Delay += dt;
+		if (Delay > 1) {
+			vrad += dt * 0.01;
+		}
 		float pi2 = D3DX_PI * 2;
 		float diff = std::atan2f(Dire.y, Dire.x) - turnRadian;
 		while (diff < -D3DX_PI) diff += pi2;

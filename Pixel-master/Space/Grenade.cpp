@@ -6,7 +6,7 @@ Grenade::Grenade()
 {
 	m_Grenade = Sprite::Create(L"Painting/Weapon/RC_Rocket.png");
 	m_Grenade->SetParent(this);
-	SetPosition(GameMgr::GetInst()->PlayerPos);
+	SetPosition(GameMgr::GetInst()->Left_Hand);
 	SetScale(2.f, 2.f);
 
 	Mouse = INPUT->GetMousePos() - m_Position;
@@ -36,7 +36,7 @@ void Grenade::GrenadeRotato()
 
 void Grenade::Update(float deltaTime, float Time)
 {
-	SetPosition(GameMgr::GetInst()->PlayerPos);
+	SetPosition(GameMgr::GetInst()->Left_Hand);
 	GrenadeRotato();
 	DelayTime += dt;
 	AAddTime += dt;

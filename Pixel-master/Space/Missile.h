@@ -3,7 +3,7 @@ class Missile : public Object
 {
 	Sprite* m_Missile;
 	Vec2 Monster, Dire, Rad;
-	float turnRadian,vrad;
+	float turnRadian, vrad, Delay;
 	bool Homing;
 public:
 	Missile(std::wstring fileName);

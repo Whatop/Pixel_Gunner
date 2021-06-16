@@ -5,7 +5,7 @@ Melee::Melee()
 {
 	m_Melee = Sprite::Create(L"Painting/Weapon/Blasphemy.png");
 	m_Melee->SetParent(this);	
-	SetPosition(GameMgr::GetInst()->PlayerPos);
+	SetPosition(GameMgr::GetInst()->Left_Hand);
 	SetScale(2.f, 2.f);
 
 	Mouse = INPUT->GetMousePos() - m_Position;
@@ -26,7 +26,7 @@ void Melee::MeleeRotato()
 
 void Melee::Update(float deltaTime, float Time)
 {
-	SetPosition(GameMgr::GetInst()->PlayerPos);
+	SetPosition(GameMgr::GetInst()->Left_Hand);
 
 	DelayTime += dt;
 	if (INPUT->GetButtonDown() && DelayTime > 0.5f && !Reload_Please && !RDown) { // 총마다 DelayTime 다르고 속도 다르게 하면 됨 

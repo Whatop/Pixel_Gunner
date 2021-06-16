@@ -41,6 +41,12 @@ Player::Player(Vec2 Pos)
 	m_DashCool = 1;
 	m_Def = 10; //방어력 10 공격 10만큼 만음  범위 : 무한
 	m_Def_Percent = 90;//방어력 10% 공격 10만큼 막음  범위 : 0~100%
+	
+	m_Hand[0] = Sprite::Create(L"Painting/Player/Hand.png");
+	m_Hand[1] = Sprite::Create(L"Painting/Player/Hand.png");
+
+	m_Hand[0]->SetPosition(m_Position.x - m_Size.x / 2, m_Position.y);
+	m_Hand[1]->SetPosition(m_Position.x + m_Size.x / 2, m_Position.y);
 	GameMgr::GetInst()->UpdatePlayerStatus(m_Max_Hp, m_Speed, m_Def, m_Def_Percent, m_DashCool, m_Critical, 2);
 }
 
@@ -130,6 +136,14 @@ void Player::Dash()
 	}
 }
 
+void Player::Hand()
+{
+	m_Hand[0]->SetPosition(m_Position.x - m_Player->m_Size.x / 2, m_Position.y);
+	GameMgr::GetInst()->Left_Hand = m_Hand[0]->m_Position;
+	m_Hand[1]->SetPosition(m_Position.x + m_Player->m_Size.x / 2, m_Position.y);
+	GameMgr::GetInst()->Right_Hand = m_Hand[1]->m_Position;
+}
+
 void Player::Update(float deltaTime, float Time)
 {
 	Left = false;
@@ -147,7 +161,7 @@ void Player::Update(float deltaTime, float Time)
 	ObjMgr->CollisionCheak(this, "EBullet");
 	if(!GameMgr::GetInst()->_QuarkOption)
 		Move();
-	
+	Hand();
 	Dash();
 	Camera::GetInst()->Follow(this);
 	Buff();
@@ -163,6 +177,8 @@ void Player::Render()
 		m_ColBox[i]->A = 0;
 		m_ColBox[i]->Render();
 	}
+	m_Hand[0]->Render();
+	m_Hand[1]->Render();
 }
 
 void Player::OnCollision(Object* obj)
