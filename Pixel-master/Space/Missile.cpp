@@ -44,6 +44,7 @@ void Missile::Update(float deltaTime, float Time)
 	}
 	else {
 		ObjMgr->RemoveObject(this);
+		ObjMgr->AddObject(new EffectMgr(L"Painting/Missile/", 1, 0.5f, 8, m_Position), "Effect");
 	}
 	
 }
