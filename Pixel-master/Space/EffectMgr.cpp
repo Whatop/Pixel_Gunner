@@ -4,7 +4,7 @@
 EffectMgr::EffectMgr(std::wstring filename, int start, float speed, int end, Vec2 Pos)
 {
 	Effect = new Animation();
-	Effect->AddContinueFrame(filename, start, end);
+	Effect->AddContinueFrame(filename, start, end,COLORKEY_BALCK);
 	Effect->Init(speed, true);
 	Effect->SetParent(this);
 	Effect->m_Position = Pos;

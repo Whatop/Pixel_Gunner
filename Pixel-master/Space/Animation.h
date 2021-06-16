@@ -16,7 +16,7 @@ public:
 	Animation();
 	~Animation();
 
-	void AddContinueFrame(std::wstring fileName, int firstFrame, int lastFrame);
+	void AddContinueFrame(std::wstring fileName, int firstFrame, int lastFrame, D3DCOLOR ColorKey);
 
 	void Init(float delay, bool play);
 	void Update(float deltaTime, float time);

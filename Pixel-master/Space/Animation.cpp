@@ -17,13 +17,13 @@ Animation::~Animation()
 {
 }
 
-void Animation::AddContinueFrame(std::wstring fileName, int firstFrame, int lastFrame)
+void Animation::AddContinueFrame(std::wstring fileName, int firstFrame, int lastFrame,D3DCOLOR ColorKey)
 {
 	if (firstFrame < lastFrame)
 	{
 		for (int i = firstFrame; i <= lastFrame; i++)
 		{
-			auto sprite = Sprite::Create(fileName.c_str() + std::to_wstring(i) + L".png");
+			auto sprite = Sprite::Create(fileName.c_str() + std::to_wstring(i) + L".png", ColorKey);
 
 			sprite->SetParent(this);
 			if (sprite)
