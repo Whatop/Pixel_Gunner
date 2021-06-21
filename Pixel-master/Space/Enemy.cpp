@@ -81,12 +81,31 @@ void Enemy::Hit()
 	}
 }
 
+void Enemy::Idle()
+{
+
+	m_Action = m_Idle[0];
+	m_Action = m_Idle[1];
+	m_Action = m_Idle[2];
+}
+
+void Enemy::Walk()
+{
+	m_Action = m_Walk;
+}
+
+void Enemy::Die()
+{
+	m_Action = m_Die;
+}
+
 void Enemy::Render()
 {
 	m_Enemy->Render();
 	for (int i = 0; i < 5; i++) {
 		m_ColBox[i]->Render();
 	}
+	m_Action->Render();
 }
 
 void Enemy::OnCollision(Object* obj)

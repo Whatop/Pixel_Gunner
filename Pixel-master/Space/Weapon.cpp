@@ -160,9 +160,6 @@ void Weapon::Reload()
 
 void Weapon::WeaponRotate()
 {
-	//   1.5
-	//3 	  0		
-	//	 1.5
 	Mouse = INPUT->GetMousePos() - m_Position;
 	D3DXVec2Normalize(&Dire, &Mouse);
 	m_Rotation = (std::atan2(Dire.y, Dire.x));

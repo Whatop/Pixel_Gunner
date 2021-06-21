@@ -27,6 +27,12 @@ public:
 	void ColBox();
 	void Hit();
 
+	void Idle();
+	void Walk();
+	void Die();
+
+
+
 	void Render();
 	void OnCollision(Object* obj);
 };
